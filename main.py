@@ -181,6 +181,59 @@ class TestPages:
         result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
         assert "Please input valid phone number!" in result
 
+        def test_click_on_login_button(self):
+        print("\n" + str(test_cases('TC_CLICK_ON_LOGIN_BUTTON')))
+        self.driver.implicitly_wait(30)
+        CanonizerRegisterPage(self.driver).click_on_register_button()
+        CanonizerLoginPage(self.driver).click_on_login_page_button()
+        result = self.driver.find_element(By.ID, "login-btn").text
+        assert "Log In" in result
+
+
+    # TC_LOGIN_WITH_REGISTERED_CREDENTIALS
+    def test_login_with_registered_credentials(self):
+        print("\n" + str(test_cases('TC_LOGIN_WITH_REGISTERED_CREDENTIALS')))
+        self.driver.implicitly_wait(30)
+        CanonizerRegisterPage(self.driver).click_on_register_button()
+        CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_functionality_by_entering_the_registered_credential(DEFAULT_USER, DEFAULT_PASS)
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[1]/a/span[1]").text
+        assert "Start a Topic" in result
+
+    # TC_VERIFY_THE_LOGIN_WITH_BLANK_EMAIL
+    def test_verify_the_login_with_blank_email(self):
+        print("\n" + str(test_cases('TC_LOGIN_WITH_REGISTERED_CREDENTIALS')))
+        self.driver.implicitly_wait(30)
+        CanonizerRegisterPage(self.driver).click_on_register_button()
+        CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_blank_email("", DEFAULT_PASS)
+        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        assert "Please input your Email!" in result
+
+    # TC_VERIFY_THE_LOGIN_WITH_BLANK_PASSWORD
+    def test_verify_the_login_with_blank_password(self):
+        print("\n" + str(test_cases('TC_VERIFY_THE_LOGIN_WITH_BLANK_PASSWORD')))
+        self.driver.implicitly_wait(30)
+        CanonizerRegisterPage(self.driver).click_on_register_button()
+        CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_blank_password(DEFAULT_USER, "")
+        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        assert "Please input your Password!" in result
+
+    # TC_LOGIN_WITH_INVALID_EMAIL
+    def test_login_with_invalid_email(self):
+        self.driver.implicitly_wait(30)
+        CanonizerRegisterPage(self.driver).click_on_register_button()
+        CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_invalid_email_format(DEFAULT_INVALID_USER, DEFAULT_PASS)
+        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        assert "Input is not valid!" in result
+
+    # TC_VERIFY_ONE_TIME_REQUEST_CODE_WITH_VALID_CREDENTIALS
+    def test_verify_one_time_request_code_with_valid_credentials(self):
+        print("\n" + str(test_cases('TC_VERIFY_ONE_TIME_REQUEST_CODE_WITH_VALID_CREDENTIALS')))
+        self.driver.implicitly_wait(30)
+        CanonizerRegisterPage(self.driver).click_on_register_button()
+        CanonizerLoginPage(self.driver).click_on_login_page_button().verify_one_time_request_code_with_valid_credentials(DEFAULT_USER)
+        result = self.driver.find_element(By.ID, "resent-otp-btn").text
+        assert "Resend OTP" in result
+
 
     def teardown_method(self):
 
