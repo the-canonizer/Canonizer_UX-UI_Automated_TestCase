@@ -282,7 +282,6 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_same_topic("same topic")
         result = self.driver.find_element(By.CLASS_NAME, "ant-typography text-canRed font-medium text-base !mb-2").text
-        print(result)
         assert "A Topic with this exact name already exists!" in result
 
     def test_create_same_topic_name_error_link(self):
