@@ -181,7 +181,7 @@ class TestPages:
         result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
         assert "Please input valid phone number!" in result
 
-        def test_click_on_login_button(self):
+    def test_click_on_login_button(self):
         print("\n" + str(test_cases('TC_CLICK_ON_LOGIN_BUTTON')))
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button()
