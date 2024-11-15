@@ -234,7 +234,88 @@ class TestPages:
         result = self.driver.find_element(By.ID, "resent-otp-btn").text
         assert "Resend OTP" in result
 
+                # ----- CREATE TOPIC Test Cases Start -----
 
+    # TC_CLICK_CREATE_TOPIC_WITH_USER_LOGIN
+    def test_click_create_new_topic_page_button(self):
+        print("\n" + str(test_cases('TC_CLICK_CREATE_TOPIC_WITH_USER_LOGIN')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        result = self.driver.current_url
+        assert "/create/topic" in result
+
+    # TC_CLICK_CREATE_TOPIC_WITHOUT_USER_LOGIN
+    def test_click_create_topic_without_user_login(self):
+        print("\n" + str(test_cases('TC_CLICK_CREATE_TOPIC_WITHOUT_USER_LOGIN')))
+        self.driver.maximize_window()
+        self.driver.implicitly_wait(30)
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button_without_login()
+        result = self.driver.current_url
+        assert "/login?returnUrl=%2Fcreate%2Ftopic" in result
+
+    # TC_CREATE_TOPIC_WITH_BLANK_TOPIC_NAME
+    def test_create_topic_with_blank_topic_name(self):
+        print("\n" + str(test_cases('TC_CREATE_TOPIC_WITH_BLANK_TOPIC_NAME')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_blank_topic()
+        result = self.driver.find_element(By.ID, "create_new_topic_topic_name_help").text
+        assert "Enter a valid Topic Name" in result
+
+    # TC_CREATE_NEW_TOPIC_WITH_VALID_DATA
+    def test_create_topic_name_with_valid_data(self):
+        print("\n" + str(test_cases('TC_CREATE_TOPIC_WITH_VALID_DATA')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        result = self.driver.current_url
+        assert "1-Agreement" in result
+
+    def test_create_same_topic_name_with_valid_data(self):
+        print("\n" + str(test_cases('TC_CREATE_TOPIC_WITH_VALID_DATA')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_same_topic("same topic")
+        result = self.driver.find_element(By.CLASS_NAME, "ant-typography text-canRed font-medium text-base !mb-2").text
+        print(result)
+        assert "A Topic with this exact name already exists!" in result
+
+    def test_create_same_topic_name_error_link(self):
+        print("\n" + str(test_cases('TC_CREATE_TOPIC_WITH_VALID_DATA')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("new summary", "same topic", DEFAULT_NAMESPACE)
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div/div/div/div/div[2]/form/div[1]/div[1]/a").click()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/span[2]").text
+        assert "same topic" in result
+    # TC_CREATE_NEW_TOPIC_WITH_SPECIAL_CHARS
+    def test_create_topic_with_special_chars(self):
+        print("\n", str(test_cases('TC_CREATE_NEW_TOPIC_WITH_SPECIAL_CHARS')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_special_chars("New Topic&^&#$(# " + add_name)
+        result = self.driver.current_url
+        assert "topic" in result
+
+    # TC_CREATE_NEW_WITHOUT_MANDATORY_FIELDS_DATA
+    def test_create_topic_without_entering_mandatory_fields(self):
+        print("\n", str(test_cases('TC_CREATE_NEW_WITHOUT_MANDATORY_FIELDS_DATA')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_without_entering_mandatory_fields(" ")
+        result = self.driver.current_url        
+        assert "create/topic" in result
+    
     def teardown_method(self):
 
         self.driver.close()
