@@ -315,6 +315,65 @@ class TestPages:
         result = self.driver.current_url        
         assert "create/topic" in result
     
+    # TC_LOAD_CREATE_CAMP_PAGE
+    def test_load_create_camp_page(self):
+        print("\n" + str(test_cases('TC_LOAD_CREATE_CAMP_PAGE')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page()
+        result = self.driver.current_url
+        assert "/camp/create/" in result
+        # TC_CREATE_CAMP_WITH_VALID_DATA
+    def test_create_camp_with_valid_data(self):
+        print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_VALID_DATA')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        result = self.driver.current_url
+        assert "topic" in result
+
+    # TC_CREATE_CAMP_WITH_BLANK_CAMP_NAME
+    def test_create_camp_with_blank_camp_name(self):
+        print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_BLANK_CAMP_NAME')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_blank_camp_name(CREATE_CAMP_LIST_2)
+        result = self.driver.find_element(By.ID, "create_new_camp_camp_name_help").text
+        assert "Please enter camp name!" in result
+
+    # TC_CREATE_CAMP_WITH_DUPLICATE_CAMP_NAME
+    def test_create_camp_with_duplicate_camp_name(self):
+        print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_DUPLICATE_CAMP_NAME')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_duplicate_camp_name(CREATE_CAMP_LIST_5)
+        result = self.driver.current_url
+        assert "/camp/create/" in result
+
+    # TC_CREATE_CAMP_WITH_INVALID_CAMP_ABOUT_URL
+    def test_create_camp_with_invalid_camp_about_url(self):
+        print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_INVALID_CAMP_ABOUT_URL')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_duplicate_camp_name(CREATE_CAMP_LIST_4)
+        result = self.driver.current_url
+        assert "/camp/create/" in result
+    
     def teardown_method(self):
 
         self.driver.close()
