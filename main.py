@@ -374,6 +374,16 @@ class TestPages:
         result = self.driver.current_url
         assert "/camp/create/" in result
     
+    # TC_CREATE_CAMP_WITHOUT_ENTERING_DATA_IN_MANDATORY_FIELDS
+    def test_create_camp_without_entering_data_in_mandatory_fields(self):
+        print("\n" + str(test_cases('TC_CREATE_CAMP_WITHOUT_ENTERING_DATA_IN_MANDATORY_FIELDS')))
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_duplicate_camp_name(CREATE_CAMP_LIST_2)
+        result = self.driver.current_url
+        assert "/camp/create/" in result
     def teardown_method(self):
 
         self.driver.close()
