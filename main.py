@@ -461,6 +461,105 @@ class TestPages:
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[3]/div/div/div/div/div/button[2]/span[1]").text
         assert "Publish Statement" in result
     
+   def test_click_create_thread_button(self):
+        print("\n" + str(test_cases('TC_CLICK_CREATE_THREAD_BUTTON')))
+        self.login_to_canonizer_app()
+        CanonizerCampForumPage(self.driver).load_camp_forum_page(DEFAULT_TOPIC)
+        CanonizerCampForumPage(self.driver).click_create_thread_button()
+        result = self.driver.current_url
+        assert "/threads/create" in result
+
+    # TC_CREATE_THREAD_WITH_VALID_DATA
+    def test_create_thread_with_valid_data(self):
+        print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_VALID_DATA')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampForumPage(self.driver).create_thread_with_valid_data()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        assert "test" in result
+
+    # TC_CREATE_THREAD_WITH_BLANK_TITLE
+    def test_create_thread_with_blank_title(self):
+        print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_BLANK_TITLE')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampForumPage(self.driver).create_thread_with_blank_title_name()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        assert "test" in result
+
+    # TC_CREATE_THREAD_WITH_SPECIAL_CHARS
+    def test_create_thread_with_special_chars(self):
+        print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_SPECIAL_CHARS')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampForumPage(self.driver).create_thread_with_special_chars()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        assert "test" in result
+
+    # TC_CREATE_THREAD_WITH_BLANK_MANDATORY_FIELDS
+    def test_create_thread_with_blank_mandatory_fields(self):
+        print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_BLANK_MANDATORY_FIELDS')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampForumPage(self.driver).create_thread_with_blank_mandatory_fields()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        assert "test" in result
+
+    # TC_CREATE_THREAD_WITH_DUPLICATE_TITLE
+    def test_create_thread_with_duplicate_title(self):
+        print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_DUPLICATE_TITLE')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampForumPage(self.driver).create_thread_with_duplicate_title()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        assert "test" in result
+
+    # TC_CREATE_THREAD_WITH_VALID_DATA_WITH_ENTER_KEY
+    def test_create_thread_with_valid_data_with_enter_key(self):
+        print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_VALID_DATA_WITH_ENTER_KEY')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampForumPage(self.driver).create_thread_with_valid_data_with_enter_key()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        assert "test" in result
+
+    # TC_CREATE_THREAD_WITH_TRAILING_SPACES
+    def test_create_thread_with_trailing_spaces(self):
+        print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_TRAILING_SPACES')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampForumPage(self.driver).create_thread_with_trailing_spaces()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        assert "test" in result
+    
     def teardown_method(self):
 
         self.driver.close()
