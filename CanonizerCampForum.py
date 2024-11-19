@@ -108,9 +108,7 @@ class CanonizerCampForumPage(Page):
         link = self.driver.current_url
         new_link = link.replace("statement/history", "topic")
         self.driver.get(new_link)
-        print("clicking on start thread")
         self.click_start_thread_button()
-        print("start thread form opened")
         self.create_thread(title)
 
         return CanonizerCampForumPage(self.driver)
@@ -120,7 +118,6 @@ class CanonizerCampForumPage(Page):
         link = self.driver.current_url
         new_link = link.replace("statement/history", "topic")
         self.driver.get(new_link)
-        print("clciking on start thread")
         self.click_start_thread_button()
         self.create_thread('')
         return CanonizerCampForumPage(self.driver)
@@ -129,7 +126,6 @@ class CanonizerCampForumPage(Page):
         link = self.driver.current_url
         new_link = link.replace("statement/history", "topic")
         self.driver.get(new_link)
-        print("clciking on start thread")
         self.click_start_thread_button()
         self.create_thread("test @$#@$#@$")
         return CanonizerCampForumPage(self.driver)
@@ -138,7 +134,6 @@ class CanonizerCampForumPage(Page):
         link = self.driver.current_url
         new_link = link.replace("statement/history", "topic")
         self.driver.get(new_link)
-        print("clciking on start thread")
         self.click_start_thread_button()
         self.create_thread('')
         return CanonizerCampForumPage(self.driver)
@@ -147,7 +142,6 @@ class CanonizerCampForumPage(Page):
         link = self.driver.current_url
         new_link = link.replace("statement/history", "topic")
         self.driver.get(new_link)
-        print("clciking on start thread")
         self.click_start_thread_button()
         self.create_thread('')
         return CanonizerCampForumPage(self.driver)
@@ -156,7 +150,6 @@ class CanonizerCampForumPage(Page):
         link = self.driver.current_url
         new_link = link.replace("statement/history", "topic")
         self.driver.get(new_link)
-        print("clciking on start thread")
         self.click_start_thread_button()
         self.create_thread('')
         return CanonizerCampForumPage(self.driver)
@@ -165,7 +158,6 @@ class CanonizerCampForumPage(Page):
         link = self.driver.current_url
         new_link = link.replace("statement/history", "topic")
         self.driver.get(new_link)
-        print("clciking on start thread")
         self.click_start_thread_button()
         self.create_thread('       test')
         return CanonizerCampForumPage(self.driver)
