@@ -81,9 +81,7 @@ class CanonizerCampForumPage(Page):
 
     def click_start_thread_button(self):
         self.driver.implicitly_wait(30)
-        time.sleep(10)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[4]/div/div/div/button/span").click()
-        time.sleep(10)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/div[2]/div/div/button/span[1]").click()
         return CanonizerCampForumPage(self.driver)
 
