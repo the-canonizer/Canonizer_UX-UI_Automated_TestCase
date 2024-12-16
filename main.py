@@ -560,7 +560,65 @@ class TestPages:
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
         assert "test" in result
     
-    def teardown_method(self):
+   def test_browse_start_topic(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "create-topic-text").click()
+        result = self.driver.current_url
+        assert "/create/topic" in result
+
+    def test_upload_files(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "menu-item-2").click()
+        result = self.driver.current_url
+        assert "/uploadFile" in result
+
+    def test_browse_videos(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "menu-item-6").click()
+        result = self.driver.current_url
+        assert "/videos" in result
+
+    def test_browse_help(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "menu-item-4").click()
+        result = self.driver.current_url
+        assert "/topic/132-Help/1-Agreement?is_tree_open=1" in result
+
+    def test_browse_notification(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[11]/span/span").click()
+        result = self.driver.find_element(By.ID, "notification-title").text
+        assert "notifications" in result
+
+    def test_browse_profile_setting(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "profile_link").click()
+        result = self.driver.find_element(By.ID, "link-profile-info").text
+        assert "Account Settings" in result
+
+    def test_browse_profile_setting_account_setting(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "profile_link").click()
+        self.driver.find_element(By.ID, "link-profile-info").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/settings?tab=profile_info" in result
+
+    def test_browse_profile_setting_supported_camps(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "profile_link").click()
+        self.driver.find_element(By.ID, "link-supported-camps").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/settings?tab=direct_supported_camps" in result 
+   
+   def teardown_method(self):
 
         self.driver.close()
 
