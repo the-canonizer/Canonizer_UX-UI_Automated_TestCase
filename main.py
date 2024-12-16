@@ -617,6 +617,77 @@ class TestPages:
         self.driver.find_element(By.ID, "link-supported-camps").click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/settings?tab=direct_supported_camps" in result 
+
+   def test_footer_browse_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-explore-link-1").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/browse" in result
+
+
+    def test_footer_create_topic_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-explore-link-3").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/create/topic" in result
+
+    def test_footer_upload_file_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-explore-link-5").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/uploadFile" in result
+
+    def test_footer_sitemap_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-explore-link-10").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/sitemap" in result
+
+    def test_footer_videos_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-explore-link-13").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/videos" in result
+
+    def test_footer_help_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-learn-more-link-4").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1" in result
+
+    def test_footer_white_paper_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-learn-more-link-6").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/files/2012_amplifying_final.pdf" in result
+
+    def test_footer_jobs_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-learn-more-link-8").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/topic/6-Canonizer-Jobs/1-Agreement?is_tree_open=1" in result
+
+    def test_footer_privacy_policy_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-learn-more-link-9").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/privacy-policy" in result
+
+    def test_footer_term_and_services_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-learn-more-link-10").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/terms-and-services" in result
    
    def teardown_method(self):
 
