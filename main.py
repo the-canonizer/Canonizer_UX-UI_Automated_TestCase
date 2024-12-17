@@ -689,7 +689,14 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/terms-and-services" in result
    
-   def teardown_method(self):
+    def test_footer_upload_file_button(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.find_element(By.ID, "footer-explore-link-5").click()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/uploadFile" in result 
+
+  def teardown_method(self):
 
         self.driver.close()
 
