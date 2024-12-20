@@ -314,7 +314,126 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_without_entering_mandatory_fields(" ")
         result = self.driver.current_url        
         assert "create/topic" in result
-    
+    # ----- UPDATE TOPIC Test Cases Start -----
+
+    # TC_LOAD_TOPIC_HISTORY_PAGE
+    def test_load_topic_history_page(self):
+        print("\n" + str(test_cases('TC_LOAD_TOPIC_HISTORY_PAGE')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        time.sleep(5)
+        CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
+        time.sleep(5)
+        result = self.driver.find_element(By.ID, "header-paragraph").text
+        assert "Update Topic" in result
+
+    # TC_VERIFY_TOPIC_NAME_ON_TOPIC_HISTORY_PAGE
+    def test_verify_topic_name_on_topic_history_page(self):
+        print("\n" + str(test_cases('TC_VERIFY_TOPIC_NAME_ON_TOPIC_HISTORY_PAGE')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        time.sleep(5)
+        CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
+        time.sleep(5)
+        assert "/topic/history/" in result.get_url()
+
+    # TC_VERIFY_SUBMITTER_NICK_NAME_LINK_ON_USER_PROFILE
+    def test_verify_submitter_nick_name_link_on_user_profile(self):
+        print("\n" + str(test_cases('TC_VERIFY_SUBMITTER_NICK_NAME_LINK_ON_USER_PROFILE')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        time.sleep(5)
+        CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
+        time.sleep(5)
+        assert "/user/supports/" in result.get_url()
+
+    # TC_VERIFY_SUBMIT_TOPIC_UPDATE_BUTTON
+    def test_verify_submit_topic_update_button(self):
+        print("\n" + str(test_cases('TC_VERIFY_SUBMIT_TOPIC_UPDATE_BUTTON')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        time.sleep(5)
+        CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
+        time.sleep(5)
+        assert "manage/topic/" in result.get_url()
+
+    # TC_UPDATE_TOPIC_WITH_DUPLICATE_NAME
+    def test_update_topic_with_duplicate_name(self):
+        print("\n" + str(test_cases('TC_UPDATE_TOPIC_WITH_DUPLICATE_NAME')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        time.sleep(5)
+        CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
+        time.sleep(5)
+        assert "manage/topic/" in result.get_url()
+
+    # TC_VERIFY_CANCEL_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE
+    def test_verify_cancel_button_functionality_on_topic_update_page(self):
+        print("\n" + str(test_cases('TC_VERIFY_CANCEL_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        time.sleep(5)
+        CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
+        time.sleep(5)
+        assert "/topic/history/" in result.get_url()
+
+    # TC_VERIFY_PREVIEW_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE
+    def test_verify_preview_button_functionality_on_topic_update_page(self):
+        print("\n" + str(test_cases('TC_VERIFY_PREVIEW_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        time.sleep(5)
+        CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
+        time.sleep(5)
+
+    # TC_VERIFY_SUBMITTER_NICK_NAME_ON_PREVIEW_MODAL
+    def test_verify_submitter_nick_name_on_preview_modal(self):
+        print("\n" + str(test_cases('TC_VERIFY_SUBMITTER_NICK_NAME_ON_PREVIEW_MODAL')))
+        self.login_to_canonizer_app()
+        CanonizerUpdateTopicPage(self.driver).load_topic_history_page(DEFAULT_TOPIC) \
+            .verify_submitter_nick_name_on_preview_modal()
+
+    # TC_VERIFY_CANCEL_BUTTON_ON_PREVIEW_MODAL
+    def test_verify_cancel_button_on_preview_modal(self):
+        print("\n" + str(test_cases('TC_VERIFY_CANCEL_BUTTON_ON_PREVIEW_MODAL')))
+        self.login_to_canonizer_app()
+        result = CanonizerUpdateTopicPage(self.driver).load_topic_history_page(DEFAULT_TOPIC) \
+            .verify_cancel_button_on_preview_modal()
+        assert "/manage/topic/" in result.get_url()
+
+    # TC_UPDATE_TOPIC_NAME_AND_VERIFY_SUBMIT_UPDATE_BUTTON
+    def test_update_topic_name_and_verify_submit_update_button(self):
+        print("\n" + str(test_cases('TC_UPDATE_TOPIC_NAME_AND_VERIFY_SUBMIT_UPDATE_BUTTON')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        time.sleep(5)
+        CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
+        time.sleep(5)
+        assert "topic/history/" in result.get_url()
     # TC_LOAD_CREATE_CAMP_PAGE
     def test_load_create_camp_page(self):
         print("\n" + str(test_cases('TC_LOAD_CREATE_CAMP_PAGE')))
