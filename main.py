@@ -503,7 +503,16 @@ class TestPages:
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_duplicate_camp_name(CREATE_CAMP_LIST_2)
         result = self.driver.current_url
         assert "/camp/create/" in result
-    
+    def test_load_camp_manage_edit_page(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerEditCampPage(self.driver).load_camp_manage_edit_page()
+        result = self.driver.current_url
+        assert "/camp/history/" in result
      # TC_LOAD_ADD_NEW_CAMP_STATEMENT_PAGE
 
     def test_camp_statement_button(self):
