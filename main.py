@@ -588,6 +588,85 @@ class TestPages:
         CanonizerCampStatementPage(self.driver).add_camp_statement_with_blank_data()
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[3]/div/div/div/div/div/button[2]/span[1]").text
         assert "Publish Statement" in result
+        
+        #EDIT_CAMP_SATEMENT
+   def test_load_edit_camp_statement(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampStatementPage(self.driver).add_camp_statement()
+        CanonizerCampStatementPage(self.driver).load_edit_camp_statement()
+        result = self.driver.current_url
+        assert "manage" in result
+
+    def test_edit_camp_statement(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampStatementPage(self.driver).add_camp_statement()
+        CanonizerCampStatementPage(self.driver).load_edit_camp_statement()
+        CanonizerCampStatementPage(self.driver).edit_camp_statement()
+        result = self.driver.current_url
+        assert "statement/history" in result
+    def test_update_camp_statement_with_mandatory_field(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampStatementPage(self.driver).add_camp_statement()
+        CanonizerCampStatementPage(self.driver).load_edit_camp_statement()
+        CanonizerCampStatementPage(self.driver).update_camp_statement_with_mandatory_field()
+        result = self.driver.current_url
+        assert "statement/history" in result
+
+    def test_edit_camp_statement_with_trailing_spaces(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampStatementPage(self.driver).add_camp_statement()
+        CanonizerCampStatementPage(self.driver).load_edit_camp_statement()
+        CanonizerCampStatementPage(self.driver).edit_camp_statement_with_trailing_spaces()
+        result = self.driver.current_url
+        assert "statement/history" in result
+
+    def test_edit_camp_statement_with_blank_data(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampStatementPage(self.driver).add_camp_statement()
+        CanonizerCampStatementPage(self.driver).load_edit_camp_statement()
+        CanonizerCampStatementPage(self.driver).edit_camp_statement_with_blank_data()
+        result = self.driver.current_url
+        assert "statement/history" in result
+
+    def test_compare_camp_statement(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampStatementPage(self.driver).add_camp_statement()
+        CanonizerCampStatementPage(self.driver).load_edit_camp_statement()
+        CanonizerCampStatementPage(self.driver).update_camp_statement_with_mandatory_field()
+        CanonizerCampStatementPage(self.driver).compare_camp_statement()
+        result = self.driver.current_url
+
+        assert "compare" in result
     
    def test_click_create_thread_button(self):
         print("\n" + str(test_cases('TC_CLICK_CREATE_THREAD_BUTTON')))
