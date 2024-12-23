@@ -21,11 +21,8 @@ class CanonizerCreateCampPage(Page):
         self.driver = webdriver.Chrome()
 
     def load_create_camp_page(self):
-        print("came in load create camp page")
-        self.driver.implicitly_wait(10)
-        time.sleep(10)
+        self.driver.implicitly_wait(30)
         self.find_element(*CreateCampIdentifiers.CREATE_CAMP_PAGE).click()
-        time.sleep(10)
         return CanonizerCreateCampPage(self.driver)
 
 
@@ -69,12 +66,14 @@ class CanonizerCreateCampPage(Page):
         self.driver.implicitly_wait(10)
         self.find_element(*CreateCampIdentifiers.CREATE_CAMP_BUTTON).click()
 
+
+
     def create_camp(self, *args):
         self.driver.implicitly_wait(10)
         args = list(args[0])
+        print("created")
         self.enter_camp_name(args[2])
         self.click_create_camp_button()
-    
     def create_camp2(self, *args):
         args = list(args[0])
         self.enter_nick_name(args[0])
@@ -84,13 +83,11 @@ class CanonizerCreateCampPage(Page):
         self.enter_note(args[4])
         self.enter_camp_about_url(args[5])
         self.click_create_camp_button()
-    
     def create_camp_with_valid_data(self, create_camp_list1):
         self.driver.implicitly_wait(10)
+        print("valid")
         self.create_camp(create_camp_list1)
-
         return CanonizerCreateCampPage(self.driver)
-    
     def create_camp2_with_valid_data(self, create_camp_list1):
         self.create_camp2(create_camp_list1)
         return CanonizerCreateCampPage(self.driver)
@@ -107,7 +104,6 @@ class CanonizerCreateCampPage(Page):
     def create_camp_with_duplicate_camp_name(self, create_camp_list_5):
         self.driver.implicitly_wait(10)
         self.create_camp(create_camp_list_5)
-        time.sleep(10)
         return CanonizerCreateCampPage(self.driver)
 
 
@@ -135,30 +131,18 @@ class CanonizerEditCampPage(Page):
         self.action = ActionChains(self.driver)
 
     def load_camp_manage_edit_page(self):
-        self.driver.implicitly_wait(10)
-        time.sleep(10)
-        print("clicking on camp")
-        self.hover(By.XPATH, "/html/body/div[1]/section/div[2]/div[1]/div/div/div/div/div[1]/div[2]/div/div/div/a[2]/span/div/span[1]")
-        #self.driver.find_element(By.XPATH, "/html/body/div[1]/section/div[2]/div[1]/div/div/div/div/div[1]/div[2]/div/div/div/a[2]/span/div/span[1]").click()
-        print("clicking on camp")
-        time.sleep(10)
-        edit_link = self.driver.current_url
-        new_link = edit_link.replace("topic", "camp/history")
-        print(new_link)
-        self.driver.get(new_link)
-        time.sleep(10)
-        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div/div[1]/button/span").click()
-        #self.find_element(*CreateCampIdentifiers.MANAGE_EDIT_CAMP_BUTTON).click()
-        time.sleep(10)
-        print("Eit Camp loaded")
-
-        return CanonizerEditCampPage(self.driver)
+        self.driver.implicitly_wait(30)
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[2]/div[2]/a/span/img").click()
+        time.sleep(5)
+        self.driver.find_element(By.ID, "threedot_dropdown_manage_topic_btn__menu_item_text").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/button/span").click()
+        time.sleep(5)
 
     def submit_camp_update_with_valid_name(self):
         self.driver.implicitly_wait(10)
         self.driver.find_element(By.ID, "create_new_camp_camp_name").send_keys("camp changed")
         self.driver.find_element(By.ID, "crate-camp-btn").click()
-        time.sleep(10)
         return CanonizerEditCampPage(self.driver)
     def verify_submitter_nick_name_on_camp_history_page(self):
         self.load_camp_manage_edit_page()
@@ -401,38 +385,3 @@ class CanonizerEditCampPage(Page):
             return CanonizerEditCampPage(self.driver)
         else:
             print("Error not found or is not matching")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
