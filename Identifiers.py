@@ -50,10 +50,10 @@ class RegistrationPageIdentifiers(object):
 class LoginPageIdentifiers(object):
     EMAIL_ASTRK = (By.XPATH, '/html/body/div[3]/div/div[2]/div/div[2]/div/div/div/section/div/div[1]/div/form/div[1]/div/div[1]/label/span')
     PASSWORD_ASTRK = (By.XPATH, '/html/body/div[3]/div/div[2]/div/div[2]/div/div/div/section/div/div[1]/div/form/div[2]/div/div[1]/label/span')
-    LOGIN_PAGE_BUTTON = (By.ID, 'already-text-link')
+    LOGIN_PAGE_BUTTON = (By.ID, 'menu-item-19')
     EMAIL = (By.ID, 'login_form_username')
     PASSWORD = (By.ID, 'login_form_password')
-    SUBMIT = (By.ID, 'login-btn')
+    SUBMIT = (By.ID, 'login-submit-btn')
     CLOSE_BUTTON = (By.ID, 'modal-close-btn')
     CHECK_BOX = (By.ID, 'login_form_remember')
     INVALID_EMAIL_TITLE = (By.XPATH, '/html/body/div[3]/div/div[2]/div/div[2]/div/div/div/section/div/div[1]/div/form/div[1]/div[1]/div[2]/div[2]/div[1]/div')
@@ -350,7 +350,7 @@ class CreateCampIdentifiers(object):
     CAMP_ABOUT_URL = (By.ID, 'create_new_camp_camp_about_url')
     KEYWORDS = (By.ID, 'create_new_camp_key_words')
     CAMP_ABOUT_NICK_NAME = (By.XPATH, '(//div[@class="ant-select-selector"])[3]')
-    CREATE_CAMP_BUTTON = (By.ID, 'crate-camp-btn')
+    CREATE_CAMP_BUTTON = (By.ID, 'create-camp-btn')
     CREATE_CAMP_PAGE = (By.XPATH, "/html/body/div[1]/section/div[2]/div[1]/div/button/span")
     CAMP_CANCEL_BUTTON = (By.ID, 'cancel-btn')
     TOPIC_PAGE_TITLE = (By.XPATH, '//span[text()="Camp created successfully."]')
@@ -433,7 +433,7 @@ class CampStatementIdentifiers(object):
     EDIT_SUMMARY = (By.ID, 'edit_summary')
     SUBMIT_STATEMENT_BUTTON = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[3]/div/div/div/div/div/button[2]/span[1]")
     UPDATE_CANCEL_BUTTON = (By.ID, "update-cancel-btn")
-    STATEMENT_TEXT = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[2]/div/div/div[2]/div/div/div/div[2]/div[2]/div")
+    STATEMENT_TEXT = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[2]/div/div/div/div/div/div/div[2]/div[2]/div")
     CANCEL_BUTTON = (By.XPATH, '//button[contains(@class,"ant-btn ant-btn-ghost")]')
     CAMP_STATEMENT_HISTORY = (By.XPATH, '//h4[@class="ant-typography"]')
     NICK_NAME_ASTERISK = (By.XPATH, '//span[@class="required"]')
@@ -454,8 +454,9 @@ class CampStatementIdentifiers(object):
     OLD = (By.XPATH, '//div[@id="__next"]/div[1]/div[3]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]')
     COMPARE_STATEMENT2 = (By.XPATH, '//div[@id="__next"]/div[1]/div[3]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[1]/label[1]/span[2]')
     COMPARE_STATEMENT1 = (By.XPATH, '(//label[@class="ant-checkbox-wrapper campHistory_campSelectCheckbox__NNUPk"]//span)[3]')
-    COMPARE_STATEMENT_BUTTON = (By.ID, 'compare-statement')
+    COMPARE_STATEMENT_BUTTON = (By.ID, 'history-page-compare-button')
     STATEMENT_COMPARE_HISTORY_TITLE = (By.XPATH, '//div[@class="UI_filterOt___p9MH"]//h4[1]')
+    PUBLISH_BUTTON = (By.ID, "publish-button")
 
 
 class CampHistoryIdentifiers(object):
@@ -567,7 +568,7 @@ class BrowsePageIdentifiers(object):
     Class to hold the Browse Page Identifiers
     """
     BROWSE = (By.XPATH, '/html/body/div[1]/div/header/div[2]/nav/ul/li[1]/a')
-    ONLY_MY_TOPICS = (By.CLASS_NAME, 'ant-checkbox-input')
+    ONLY_MY_TOPICS = (By.ID, 'browse-only-my-topics')
     NAMESPACE = (By.XPATH, "/html/body/div[1]/section/section/main/div/form/div/div[1]/div[1]/div/div/div/div/div[2]/div/span[2]")
     GENERAL = (By.ID, 'name-space-1')
     SELECTED_TITLE = (By.XPATH, "/html/body/div[1]/div/div[2]/div/div/div/div/div/div[1]/div[1]/div/div[1]/div/span[2]")
@@ -641,9 +642,3 @@ class CanonizerFooterIdentifiers(object):
     FOOTER_WHITEPAPER = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[2]/a/i")
     FOOTER_BLOG = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[3]/a/i")
     FOOTER_JOBS = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[4]/a/i")
-
-
-
-
-
-
