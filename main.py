@@ -766,6 +766,30 @@ class TestPages:
         CanonizerCampForumPage(self.driver).create_thread_with_trailing_spaces()
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
         assert "test" in result
+    def test_load_edit_thread_page(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampForumPage(self.driver).create_thread_with_valid_data()
+        CanonizerCampForumPage(self.driver).load_edit_thread_page()
+
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        assert "test" in result
+
+    def test_edit_thread(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampForumPage(self.driver).create_thread_with_valid_data()
+        CanonizerCampForumPage(self.driver).edit_thread()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        assert "test" in result
     
    def test_browse_start_topic(self):
         self.driver.implicitly_wait(30)
