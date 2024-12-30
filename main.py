@@ -898,7 +898,20 @@ class TestPages:
         result = self.driver.current_url
         assert "/1-Agreement" in result
 
-def test_browse_start_topic(self):
+   def test_eventline(self):
+        print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_VALID_DATA')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[2]/div[2]/a/span/img").click()
+        self.driver.find_element(By.ID, "threedot_dropdown_event_line_menu_item_link").click()
+        time.sleep(5)
+        result = self.driver.current_url
+        assert "eventline" in result
+   
+
+   def test_browse_start_topic(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(By.ID, "create-topic-text").click()
