@@ -791,7 +791,114 @@ class TestPages:
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
         assert "test" in result
     
-   def test_browse_start_topic(self):
+# TC_LOAD_ADD_NEWS_FEED_PAGE
+    def test_load_add_news_page(self):
+        print("\n" + str(test_cases('TC_LOAD_ADD_NEWS_FEED_PAGE')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerAddNewsPage(self.driver).load_add_news_page()
+        result = self.driver.current_url
+        assert "/addnews/" in result
+
+    # TC_ADD_NEWS_PAGE_MANDATORY_FIELDS_ARE_MARKED_WITH_ASTERISK
+    def test_add_news_page_mandatory_fields_are_marked_with_asterisk(self):
+        print("\n" + str(test_cases('TC_ADD_NEWS_PAGE_MANDATORY_FIELDS_ARE_MARKED_WITH_ASTERISK')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerAddNewsPage(self.driver).load_add_news_page()
+        CanonizerAddNewsPage(self.driver).add_news_page_mandatory_fields_are_marked_with_asterisk()
+        assert CanonizerAddNewsPage(self.driver).load_add_news_page(DEFAULT_TOPIC).add_news_page_mandatory_fields_are_marked_with_asterisk()
+
+    # TC_CREATE_NEWS_WITH_VALID_DATA
+    def test_create_news_with_valid_data(self):
+        print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_VALID_DATA')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerAddNewsPage(self.driver).load_add_news_page()
+        CanonizerAddNewsPage(self.driver).create_news_with_valid_data("https://www.google.com/", "Test News")
+        result = self.driver.current_url
+        assert "/1-Agreement" in result
+
+    # TC_CREATE_NEWS_WITH_BLANK_DISPLAY_TEXT
+    def test_create_news_with_blank_display_text(self):
+        print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_BLANK_DISPLAY_TEXT')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerAddNewsPage(self.driver).load_add_news_page().create_news_with_valid_data("https://www.google.com/", "   ")
+        result = self.driver.find_element(By.ID, "display_text_help").text
+        assert "Display text is required" in result
+
+    # TC_CREATE_NEWS_WITH_BLANK_LINK
+    def test_create_news_with_blank_link(self):
+        print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_BLANK_LINK')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerAddNewsPage(self.driver).load_add_news_page().create_news_with_valid_data("  ", " News Test  ")
+        result = self.driver.find_element(By.ID, "link_help").text
+        assert "Link is required." in result
+    # TC_NEW_FEED_WITH_BLANK_FIELDS
+    def test_create_new_with_blank_fields(self):
+        print("\n", str(test_cases('TC_NEW_FEED_WITH_BLANK_FIELDS')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerAddNewsPage(self.driver).load_add_news_page().create_news_with_valid_data("  ", "   ")
+        result = self.driver.find_element(By.ID, "link_help").text
+        assert "Link is required." in result
+
+    # TC_CLICK_ADD_NEWS_CANCEL_BUTTON
+    def test_click_add_news_cancel_button(self):
+        print("\n" + str(test_cases('TC_CLICK_ADD_NEWS_CANCEL_BUTTON')))
+        self.login_to_canonizer_app()
+        CanonizerAddNewsPage(self.driver).load_add_news_page(DEFAULT_TOPIC).click_add_news_cancel_button()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/span[1]").text
+        assert "Topic :" in result
+
+    # TC_CREATE_NEWS_WITH_INVALID_LINK_FORMAT
+    def test_create_news_with_invalid_link_format(self):
+        print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_INVALID_LINK_FORMAT')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerAddNewsPage(self.driver).load_add_news_page().create_news_with_valid_data("https     ", "     News Test")
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[2]/form/div[1]/div[2]/span").text
+        assert "Link is invalid. (Example: https://www.example.com?post=1234)." in result
+
+    # TC_CREATE_NEWS_WITH_ENTER_KEY
+
+
+    # TC_CREATE_NEWS_WITH_DUPLICATE_DATA
+    def test_create_news_with_duplicate_data(self):
+        print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_DUPLICATE_DATA')))
+        self.login_to_canonizer_app()
+        CanonizerAddNewsPage(self.driver).load_add_news_page(DEFAULT_TOPIC).create_news_with_duplicate_data("Test automated news", "https://www.google.com/")
+        result = self.driver.find_element(By.ID, "add-camp-statement-btn").text
+        assert "Manage/Edit Camp Statement" not in result
+
+    # TC_CREATE_NEWS_WITH_TRAILING_SPACES
+    def test_create_news_with_trailing_spaces(self):
+        print("\n", str(test_cases("TC_CREATE_NEWS_WITH_TRAILING_SPACES")))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerAddNewsPage(self.driver).load_add_news_page().create_news_with_valid_data("https://www.google.com     ", "     News Test")
+        result = self.driver.current_url
+        assert "/1-Agreement" in result
+
+def test_browse_start_topic(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(By.ID, "create-topic-text").click()
