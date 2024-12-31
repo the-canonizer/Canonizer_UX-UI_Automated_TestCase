@@ -589,8 +589,19 @@ class TestPages:
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[3]/div/div/div/div/div/button[2]/span[1]").text
         assert "Publish Statement" in result
         
-        #EDIT_CAMP_SATEMENT
-   def test_load_edit_camp_statement(self):
+    def test_camp_statement_template(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        campname = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/div[2]/div[1]/nav/ol/li[4]/span[1]/div/a").text
+        self.driver.find_element(By.ID, "add-camp-statement-btn").click()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[2]/div/div/div/div/div/div/div[2]/div[2]/div/h2").text
+        assert campname in result
+       #EDIT_CAMP_SATEMENT
+    def test_load_edit_camp_statement(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
