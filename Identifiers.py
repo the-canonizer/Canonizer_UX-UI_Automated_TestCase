@@ -45,6 +45,7 @@ class RegistrationPageIdentifiers(object):
     PASSWORD_ASTRK = (By.XPATH, '(//span[@class = "required"])[4]')
     CONFIRM_PASSWORD_ASTRK = (By.XPATH, '(//span[@class = "required"])[5]')
     REGISTRATION_TITLE = (By.ID, "registration-title")
+    JOIN_NOW = (By.ID, "join-canonizer-text")
 
 
 class LoginPageIdentifiers(object):
