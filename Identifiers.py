@@ -396,7 +396,7 @@ class CreateCampIdentifiers(object):
 class AddNewsIdentifiers(object):
     ADD_NEWS_LINK = (By.XPATH, '/html/body/div[3]/div/div/ul/li[1]/span/a')
     ADD_NEWS_PAGE_TITLE = (By.XPATH, '//div[text()="Add News"]')
-    DISPLAY_TEXT = (By.ID, 'display_text')
+    DISPLAY_TEXT = (By.ID, 'display-text-input')
     LINK = (By.ID, 'link')
     NICKNAME = (By.XPATH, '//span[@title="sania_talentelgia"]')
     CREATE_NEWS_BUTTON = (By.ID, 'create-news-btn')
@@ -431,7 +431,7 @@ class CampStatementIdentifiers(object):
     CAMP_STATEMENT_ASTERISK1 = (By.XPATH, "/html/body/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/form/div/div[1]/div/div/div[1]/label/span")
     CAMP_STATEMENT_ASTERISK2 = (By.XPATH, "/html/body/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/form/div/div[2]/div/div/div[1]/label/span")
     EDIT_SUMMARY = (By.ID, 'edit_summary')
-    SUBMIT_STATEMENT_BUTTON = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[3]/div/div/div/div/div/button[2]/span[1]")
+    SUBMIT_STATEMENT_BUTTON = (By.ID, "publish-button")
     UPDATE_CANCEL_BUTTON = (By.ID, "update-cancel-btn")
     STATEMENT_TEXT = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[2]/div/div/div/div/div/div/div[2]/div[2]/div")
     CANCEL_BUTTON = (By.XPATH, '//button[contains(@class,"ant-btn ant-btn-ghost")]')
@@ -642,3 +642,9 @@ class CanonizerFooterIdentifiers(object):
     FOOTER_WHITEPAPER = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[2]/a/i")
     FOOTER_BLOG = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[3]/a/i")
     FOOTER_JOBS = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[4]/a/i")
+
+
+
+
+
+
