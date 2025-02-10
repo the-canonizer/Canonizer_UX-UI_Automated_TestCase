@@ -79,6 +79,10 @@ class CanonizerRegisterPage(Page):
         self.enter_password(args[4])
         self.enter_confirm_password(args[5])
         self.click_register_now_button()
+    
+    def join_now(self):
+
+        self.find_element(*RegistrationPageIdentifiers.JOIN_NOW).click()
 
     def registration_with_valid_credential(self, reg_list_17):
         self.register(reg_list_17[0], reg_list_17[1], reg_list_17[2], reg_list_17[3], reg_list_17[4], reg_list_17[5])
