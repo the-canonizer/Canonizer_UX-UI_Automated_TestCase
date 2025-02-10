@@ -83,10 +83,10 @@ class TestPages:
         self.login_to_canonizer_app()
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/div[2]/section/div/button/span[1]").text
         assert "Browse More" in result
-    def test_click_on_register_button(self):
+    def test_click_on_join_now(self):
         print("\n" + str(test_cases('TC_CLICK_ON_REGISTER_BUTTON')))
         self.driver.implicitly_wait(30)
-        CanonizerRegisterPage(self.driver).click_on_register_button()
+        CanonizerRegisterPage(self.driver).join_now()
 
         result = self.driver.find_element(*RegistrationPageIdentifiers.REGISTRATION_TITLE).text
         assert "Create your account" in result
