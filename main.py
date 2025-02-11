@@ -1365,7 +1365,29 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" not in result
 
-  def teardown_method(self):
+    def test_statement_image_more_than_5mb(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/manage/statement/8215-update")
+        image_statement = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/10mb.jpg"
+        upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
+        upload_image.send_keys(image_statement)
+
+        result = self.driver.find_element(By.CLASS_NAME, "ant-modal-title").text
+        assert "Alert: Image size exceed" in result
+
+    def test_statement_image_more_than_5mb_note(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/manage/statement/8215-update")
+        result = self.driver.find_element(By.ID, "nickanme_note").text
+
+        assert "Note: You can drag and drop image files into the editor. The maximum allowed file size is 5 MB." in result
+
+    
+    def teardown_method(self):
 
         self.driver.close()
 
