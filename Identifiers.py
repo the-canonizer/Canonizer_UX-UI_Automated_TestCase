@@ -336,6 +336,16 @@ class HomePageIdentifiers(object):
     CANONIZER_LOGO = (By.XPATH, '//*[@id="__next"]/div/footer/div[1]/div/div[1]/div/a/span/img')
     SUPPORT_CANONIZER = (By.XPATH, 'icon-envelope')
     ALGORITHM_DROP_DOWN = (By.XPATH,'//div[contains(@class,"ant-select ant-select-lg")]//div')
+    FOOTER_UPLOAD = (By.ID, "footer-explore-link-5")
+    FOOTER_BROWSE = (By.ID, "footer-explore-link-1")
+    FOOTER_CREATE_TOPIC = (By.ID, "footer-explore-link-3")
+    FOOTER_SITE_MAP =(By.ID, "footer-explore-link-10")
+    FOOTER_VIDEOS = (By.ID, "footer-explore-link-13")
+    FOOTER_HELP = (By.ID, "footer-learn-more-link-4")
+    FOOTER_WHITE_PAPER = (By.ID, "footer-learn-more-link-6")
+    FOOTER_JOBS = (By.ID, "footer-learn-more-link-8")
+    FOOTER_PRIVACY = (By.ID, "footer-learn-more-link-9")
+    FOOTER_TERM_CONDITION = (By.ID, "footer-learn-more-link-10")
 
 
 class CreateCampIdentifiers(object):
