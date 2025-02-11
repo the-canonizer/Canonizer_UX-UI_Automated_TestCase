@@ -1264,7 +1264,8 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(By.ID, "footer-explore-link-1").click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_BROWSE).click()
+
         #time.sleep(60) one minute hold
         self.driver.refresh()
 
@@ -1279,7 +1280,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(By.ID, "footer-explore-link-3").click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_CREATE_TOPIC.click()
         #time.sleep(60) one minute hold
         self.driver.refresh()
 
@@ -1290,7 +1291,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(By.ID, "footer-explore-link-5").click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_UPLOAD.click()
         #time.sleep(60) one minute hold
         self.driver.refresh()
 
@@ -1301,7 +1302,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(By.ID, "footer-explore-link-13").click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_VIDEOS.click()
         #time.sleep(60) one minute hold
         self.driver.refresh()
 
@@ -1312,7 +1313,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(By.ID, "footer-learn-more-link-4").click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_HELP.click()
         #time.sleep(60) one minute hold
         self.driver.refresh()
 
@@ -1323,7 +1324,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(By.ID, "footer-learn-more-link-6").click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_WHITE_PAPER.click()
         #time.sleep(60) one minute hold
         self.driver.refresh()
         old_window = self.driver.current_window_handle
@@ -1335,7 +1336,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(By.ID, "footer-learn-more-link-9").click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_PRIVACY.click()
         #time.sleep(60) one minute hold
         self.driver.refresh()
 
@@ -1346,7 +1347,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(By.ID, "footer-learn-more-link-9").click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_TERM_CONDITION.click()
         #time.sleep(60) one minute hold
         self.driver.refresh()
 
