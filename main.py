@@ -13,6 +13,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
 from selenium.common.exceptions import TimeoutException
+from Identifiers *
 
 
 from Config import *
