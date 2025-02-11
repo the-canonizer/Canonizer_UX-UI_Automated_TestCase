@@ -324,9 +324,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
-        time.sleep(5)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        time.sleep(5)
         result = self.driver.find_element(By.ID, "header-paragraph").text
         assert "Update Topic" in result
 
@@ -338,9 +336,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
-        time.sleep(5)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        time.sleep(5)
         assert "/topic/history/" in result.get_url()
 
     # TC_VERIFY_SUBMITTER_NICK_NAME_LINK_ON_USER_PROFILE
@@ -351,9 +347,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
-        time.sleep(5)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        time.sleep(5)
         assert "/user/supports/" in result.get_url()
 
     # TC_VERIFY_SUBMIT_TOPIC_UPDATE_BUTTON
@@ -364,9 +358,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
-        time.sleep(5)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        time.sleep(5)
         assert "manage/topic/" in result.get_url()
 
     # TC_UPDATE_TOPIC_WITH_DUPLICATE_NAME
@@ -377,9 +369,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
-        time.sleep(5)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        time.sleep(5)
         assert "manage/topic/" in result.get_url()
 
     # TC_VERIFY_CANCEL_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE
@@ -390,9 +380,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
-        time.sleep(5)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        time.sleep(5)
         assert "/topic/history/" in result.get_url()
 
     # TC_VERIFY_PREVIEW_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE
@@ -403,9 +391,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
-        time.sleep(5)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        time.sleep(5)
 
     # TC_VERIFY_SUBMITTER_NICK_NAME_ON_PREVIEW_MODAL
     def test_verify_submitter_nick_name_on_preview_modal(self):
@@ -430,9 +416,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
-        time.sleep(5)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        time.sleep(5)
         assert "topic/history/" in result.get_url()
     # TC_LOAD_CREATE_CAMP_PAGE
     def test_load_create_camp_page(self):
