@@ -1042,6 +1042,329 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/uploadFile" in result 
 
+    def test_authentication_expiry_for_create_topic(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+       
+        self.driver.get("https://ux-dev.canonizer.com/create/topic")
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_expiry_for_create_camp(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        topic_url = self.driver.current_url
+        camp_url = topic_url.replace("topic", "camp/create")
+        self.driver.get(camp_url)
+        #time.sleep(60) one minute hold
+        self.driver.get(camp_url)
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_expiry_for_create_statement(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        topic_url = self.driver.current_url
+        statement_url = topic_url.replace("topic", "create/statement")
+        self.driver.get(statement_url)
+        #time.sleep(60) one minute hold
+        self.driver.get(statement_url)
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+
+    def test_authentication_expiry_for_upload_file(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.get("https://ux-dev.canonizer.com/uploadFile")
+        #time.sleep(60) one minute hold
+        self.driver.get("https://ux-dev.canonizer.com/uploadFile")
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_expiry_for_account_setting(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        time.sleep(5)
+
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=profile_info")
+        #time.sleep(60) one minute hold
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=profile_info")
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+
+    def test_authentication_expiry_for_supported_camp(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=direct_supported_camps")
+        #time.sleep(60) one minute hold
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=direct_supported_camps")
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_expiry_for_nicknames(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=nick_name")
+        #time.sleep(60) one minute hold
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=nick_name")
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_expiry_for_user_preference(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=user_preferences")
+        #time.sleep(60) one minute hold
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=user_preferences")
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_expiry_for_direct_supported_camp(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=direct_supported_camps")
+        #time.sleep(60) one minute hold
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=direct_supported_camps")
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_expiry_for_delegate_supported_camp(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=delegate_supported_camp")
+        #time.sleep(60) one minute hold
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=delegate_supported_camp")
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_expiry_for_subscriptions(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=subscriptions")
+        #time.sleep(60) one minute hold
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=subscriptions")
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_social_oauth_verification(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=social_oauth_verification")
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_change_password(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/settings?tab=change_password")
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_add_news(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        topic_url = self.driver.current_url
+        statement_url = topic_url.replace("topic", "addnews")
+        self.driver.get(statement_url)
+        #time.sleep(60) one minute hold
+        self.driver.get(statement_url)
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_homepage(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+
+    def test_authentication_notification_page(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/notifications")
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_header_browse_pge(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/browse")
+        self.driver.refresh()
+
+        try:
+          button=self.driver.find_element(By.ID, "browse-only-my-topics")
+          result = "fail"
+        except NoSuchElementException:
+          result = "pass"
+        assert "pass" in result
+
+    def test_authentication_header_videos(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.get("https://ux-dev.canonizer.com/videos")
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_header_help(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        #time.sleep(60) one minute hold
+
+        self.driver.get("https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1")
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_footer_browse(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.find_element(By.ID, "footer-explore-link-1").click()
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        try:
+          button=self.driver.find_element(By.ID, "browse-only-my-topics")
+          result = "fail"
+        except NoSuchElementException:
+          result = "pass"
+        assert "pass" in result
+
+    def test_authentication_footer_create_topic(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.find_element(By.ID, "footer-explore-link-3").click()
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_footer_upload_file(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.find_element(By.ID, "footer-explore-link-5").click()
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+    def test_authentication_footer_videos(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.find_element(By.ID, "footer-explore-link-13").click()
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/videos" in result
+
+    def test_authentication_footer_help(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.find_element(By.ID, "footer-learn-more-link-4").click()
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1" in result
+
+    def test_authentication_footer_white_paper(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.find_element(By.ID, "footer-learn-more-link-6").click()
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+        old_window = self.driver.current_window_handle
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/files/2012_amplifying_final.pdf" in result
+
+    def test_authentication_footer_policy(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.find_element(By.ID, "footer-learn-more-link-9").click()
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/privacy-policy" in result
+
+    def test_authentication_footer_terms_and_services(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.find_element(By.ID, "footer-learn-more-link-9").click()
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/terms-and-services" in result
+
+
+
+    def test_authentication_topic_history(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get("https://ux-dev.canonizer.com/topic/history/6669-Test-dlkskndlksndl")
+        #time.sleep(60) one minute hold
+        self.driver.refresh()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" not in result
+
   def teardown_method(self):
 
         self.driver.close()
