@@ -497,7 +497,7 @@ class TestPages:
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerEditCampPage(self.driver).load_camp_manage_edit_page()
         result = self.driver.current_url
-        assert "/camp/history/" in result
+        assert "manage/camp" in result
 
 
     # TC_UPDATE_CAMP_WITH_INVALID_URL
