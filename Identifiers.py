@@ -137,6 +137,14 @@ class ProfileInfoIdentifiersPage(object):
     ADDRESS_LINE = (By.ID, 'selectAddress_1')
     ALGORITHM_FIELD = (By.XPATH, '/html/body/div[2]/div/div/div/div[2]/div[1]/div/div/div[5]/div')
     ALGORITHM_DROP_DOWN = (By.XPATH, '(//div[@class="ant-select-item-option-content"])[1]')
+    UPLOAD_IMAGE_OK = (By.ID, "profileUpdate")
+    SAVE_PROFILE_CHANGES = (By.ID, "profileUpdate")
+    IMAGE_UPLOADED_SUCCESFULLY = (By.CLASS_NAME, "ant-message-notice")
+    VIEW_IMAGE = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[1]/div/div/div/div/div[1]/div[1]/span[1]/div/div[1]/div/span/a/span/svg")
+    VIEW_IMAGE_POP_UP = (By.ID, "rc_unique_0")
+    DELETE_PROFILE_IMAGE = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[1]/div/div/div/div/div[1]/div[1]/span[1]/div/div[1]/div/span/button/span/svg")
+    IMAGE_DELETED_POP_UP = (By.XPATH, "/html/body/div[4]/div/div/div/div/div/span[2]")
+    NO_IMAGE_ALPHABET = (By.CLASS_NAME, "/html/body/div[1]/section/header/div/nav/ul/li[12]/div[1]/a/div/div[1]/span/span")
 
 
 class CanonizerSupportCampIdentifiersPage(object):
@@ -162,6 +170,7 @@ class CanonizerSupportCampIdentifiersPage(object):
     AGREEMENT_DIRECT_SUPPORT_LINK = (By.XPATH,'//a[@class="DirectSupportedCamps_Bluecolor__Q2ZFH"]')
     TOPIC_LINK = (By.XPATH, '//div[@class="DirectSupportedCamps_card_heading_title__qF4nl"]//a')
     DIRECT_SUPPORTED_CAMP_LINK = (By.XPATH, '//span[@class="treeListItemTitle topicDetails_treeListItemTitle__G91mC"]//a[1]')
+ 
 
 
 class CanonizerChangePasswordIdentifierPage(object):
