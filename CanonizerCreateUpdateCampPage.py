@@ -133,11 +133,8 @@ class CanonizerEditCampPage(Page):
     def load_camp_manage_edit_page(self):
         self.driver.implicitly_wait(30)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[2]/div[2]/a/span/img").click()
-        time.sleep(5)
-        self.driver.find_element(By.ID, "threedot_dropdown_manage_topic_btn__menu_item_text").click()
-        time.sleep(5)
-        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/button/span").click()
-        time.sleep(5)
+        self.driver.find_element(By.ID, "threedot_dropdown_manage_camp_btn__menu_item_text").click()
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div/div[1]/button/span").click()
 
     def submit_camp_update_with_valid_name(self):
         self.driver.implicitly_wait(10)
