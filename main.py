@@ -1006,6 +1006,34 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.IMAGE_UPLOADED_SUCCESFULLY).text
         assert "Profile updated successfully" in result
 
+    def test_view_profile_picture(self):
+        self.login_to_canonizer_app()
+        self.driver.get("https://ux-dev.canonizer.com/settings")
+        self.driver.find_element(*ProfileInfoIdentifiersPage.VIEW_IMAGE).click()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.VIEW_IMAGE_POP_UP).text
+        assert "Profile picture" in result
+
+    def test_delete_profile_picture(self):
+        self.login_to_canonizer_app()
+        self.driver.get("https://ux-dev.canonizer.com/settings")
+        self.driver.find_element(*ProfileInfoIdentifiersPage.DELETE_PROFILE_IMAGE).click()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.IMAGE_DELETED_POP_UP).text
+        assert "Image Deleted" in result
+
+    def test_delete_profile_picture(self):
+        self.login_to_canonizer_app()
+        self.driver.get("https://ux-dev.canonizer.com/settings")
+        self.driver.find_element(*ProfileInfoIdentifiersPage.DELETE_PROFILE_IMAGE).click()
+        self.driver.find_element(*ProfileInfoIdentifiersPage.DELETE_PROFILE_IMAGE).click()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.IMAGE_DELETED_POP_UP).text
+        assert "Image Deleted" not in result
+
+    def test_alphabets_for_no_profile_image(self):
+        self.login_to_canonizer_app()
+        self.driver.get("https://ux-dev.canonizer.com/settings")
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.NO_IMAGE_ALPHABET).text
+        assert "AR" in result
+
    def test_footer_browse_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
