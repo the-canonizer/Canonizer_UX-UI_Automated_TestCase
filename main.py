@@ -1445,7 +1445,7 @@ class TestPages:
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
         upload_image.send_keys(image_statement)
 
-        result = self.driver.find_element(By.CLASS_NAME, "ant-modal-title").text
+        result = self.driver.find_element(*CampStatementIdentifiers.IMAGE_SIZE_EXCEEDED).text
         assert "Alert: Image size exceed" in result
 
     def test_statement_image_more_than_5mb_note(self):
@@ -1453,7 +1453,7 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get("https://ux-dev.canonizer.com/manage/statement/8215-update")
-        result = self.driver.find_element(By.ID, "nickanme_note").text
+        result = self.driver.find_element(*CampStatementIdentifiers.IMAGE_SIZE_NOTE).text
 
         assert "Note: You can drag and drop image files into the editor. The maximum allowed file size is 5 MB." in result
 
