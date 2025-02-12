@@ -993,7 +993,18 @@ class TestPages:
         self.driver.find_element(By.ID, "profile_link").click()
         self.driver.find_element(By.ID, "link-supported-camps").click()
         result = self.driver.current_url
-        assert "https://ux-dev.canonizer.com/settings?tab=direct_supported_camps" in result 
+        assert "https://ux-dev.canonizer.com/settings?tab=direct_supported_camps" in result
+
+    def test_upload_profile_picture(self):
+        self.login_to_canonizer_app()
+        self.driver.get("https://ux-dev.canonizer.com/settings")
+        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/10mb.jpg"
+        upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
+        upload_image.send_keys(image)
+        self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_IMAGE_OK).click()
+        self.driver.find_element(*ProfileInfoIdentifiersPage.SAVE_PROFILE_CHANGES).click()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.IMAGE_UPLOADED_SUCCESFULLY).text
+        assert "Profile updated successfully" in result
 
    def test_footer_browse_button(self):
         self.driver.implicitly_wait(30)
