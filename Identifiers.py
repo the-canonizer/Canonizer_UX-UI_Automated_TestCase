@@ -477,6 +477,8 @@ class CampStatementIdentifiers(object):
     COMPARE_STATEMENT_BUTTON = (By.ID, 'history-page-compare-button')
     STATEMENT_COMPARE_HISTORY_TITLE = (By.XPATH, '//div[@class="UI_filterOt___p9MH"]//h4[1]')
     PUBLISH_BUTTON = (By.ID, "publish-button")
+    IMAGE_SIZE_EXCEEDED = (By.CLASS_NAME, "ant-modal-title")
+    IMAGE_SIZE_NOTE = (By.ID, "nickanme_note")
 
 
 class CampHistoryIdentifiers(object):
