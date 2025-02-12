@@ -931,7 +931,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[2]/div[2]/a/span/img").click()
-        self.driver.find_element(By.ID, "threedot_dropdown_event_line_menu_item_link").click()
+        self.driver.find_element(*BrowsePageIdentifiers.EVENTLINE).click()
         time.sleep(5)
         result = self.driver.current_url
         assert "eventline" in result
@@ -940,28 +940,28 @@ class TestPages:
    def test_browse_start_topic(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.find_element(By.ID, "create-topic-text").click()
+        self.driver.find_element(*BrowsePageIdentifiers.START_TOPIC).click()
         result = self.driver.current_url
         assert "/create/topic" in result
 
     def test_upload_files(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.find_element(By.ID, "menu-item-2").click()
+        self.driver.find_element(*BrowsePageIdentifiers.UPLOAD_FILES).click()
         result = self.driver.current_url
         assert "/uploadFile" in result
 
     def test_browse_videos(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.find_element(By.ID, "menu-item-6").click()
+        self.driver.find_element(*BrowsePageIdentifiers.VIDEOS).click()
         result = self.driver.current_url
         assert "/videos" in result
 
     def test_browse_help(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.find_element(By.ID, "menu-item-4").click()
+        self.driver.find_element(*BrowsePageIdentifiers.HELP).click()
         result = self.driver.current_url
         assert "/topic/132-Help/1-Agreement?is_tree_open=1" in result
 
@@ -969,29 +969,29 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[11]/span/span").click()
-        result = self.driver.find_element(By.ID, "notification-title").text
+        result = self.driver.find_element(*BrowsePageIdentifiers.NOTIFICATIONS).text
         assert "notifications" in result
 
     def test_browse_profile_setting(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.find_element(By.ID, "profile_link").click()
-        result = self.driver.find_element(By.ID, "link-profile-info").text
+        self.driver.find_element(*BrowsePageIdentifiers.PROFILE_LINK).click()
+        result = self.driver.find_element(*BrowsePageIdentifiers.PROFILE_SETTING).text
         assert "Account Settings" in result
 
     def test_browse_profile_setting_account_setting(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.find_element(By.ID, "profile_link").click()
-        self.driver.find_element(By.ID, "link-profile-info").click()
+        self.driver.find_element(*BrowsePageIdentifiers.PROFILE_LINK).click()
+        self.driver.find_element(*BrowsePageIdentifiers.PROFILE_LINK_INFO).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/settings?tab=profile_info" in result
 
     def test_browse_profile_setting_supported_camps(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.find_element(By.ID, "profile_link").click()
-        self.driver.find_element(By.ID, "link-supported-camps").click()
+        self.driver.find_element(*BrowsePageIdentifiers.PROFILE_LINK).click()
+        self.driver.find_element(*BrowsePageIdentifiers.SUPPORTED_CAMP).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/settings?tab=direct_supported_camps" in result
 
