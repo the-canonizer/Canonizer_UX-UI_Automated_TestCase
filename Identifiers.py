@@ -637,6 +637,16 @@ class BrowsePageIdentifiers(object):
     #TITLE = (By.XPATH, '/html/body/div[1]/div[1]/h1')
     TITLE = (By.XPATH, '/html[1]/body[1]/div[1]/div[1]/header[1]/div[1]/a[1]/span[1]/img[1]')
     HEADING = (By.XPATH, '//*[@id="__next"]/div/div[3]/div/div/div/div/div/div[1]/div/div/div[1]/div/h3/text()')
+    EVENTLINE = (By.ID, "threedot_dropdown_event_line_menu_item_link")
+    START_TOPIC = (By.ID, "create-topic-text")
+    UPLOAD_FILES = (By.ID, "menu-item-2")
+    VIDEOS = (By.ID, "menu-item-6")
+    HELP = (By.ID, "menu-item-4")
+    NOTIFICATION = (By.ID, "notification-title")
+    PROFILE_SETTING = (By.ID, "link-profile-info")
+    PROFILE_LINK = (By.ID, "profile_link")
+    PROFILE_LINK_INFO = (By.ID, "link-profile-info")
+    SUPPORTED_CAMP = (By.ID, "link-supported-camps")
     
 class UploadFileIdentifiers(object):
     """
