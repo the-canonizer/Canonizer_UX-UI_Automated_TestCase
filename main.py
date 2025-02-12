@@ -498,6 +498,36 @@ class TestPages:
         CanonizerEditCampPage(self.driver).load_camp_manage_edit_page()
         result = self.driver.current_url
         assert "/camp/history/" in result
+
+
+    # TC_UPDATE_CAMP_WITH_INVALID_URL
+    def test_submit_camp_update_with_invalid_url(self):
+        self.login_to_canonizer_app()
+        result = CanonizerEditCampPage(self.driver).load_topic_detail_page(DEFAULT_TOPIC)\
+            .submit_camp_update_with_invalid_url(INVALID_CAMP_ABOUT_URL)
+        assert "/manage/camp/" in result.get_url()
+
+    # TC_UPDATE_CAMP_WITH_DUPLICATE_CAMP_NAME
+    def test_update_camp_with_duplicate_camp_name(self):
+        self.login_to_canonizer_app()
+        result = CanonizerEditCampPage(self.driver).load_topic_detail_page(DEFAULT_TOPIC)\
+            .update_camp_with_duplicate_camp_name(DUPLICATE_CAMP_NAME)
+        assert "/manage/camp/" in result.get_url()
+
+
+    # TC_VERIFY_CANCEL_BUTTON_FUNCTIONALITY_ON_CAMP_UPDATE_PAGE
+    def test_verify_cancel_button_functionality_on_camp_update_page(self):
+        self.login_to_canonizer_app()
+        result = CanonizerEditCampPage(self.driver).load_topic_detail_page(DEFAULT_TOPIC)\
+            .verify_cancel_button_functionality_on_camp_update_page()
+        assert "/camp/history/" in result.get_url()
+
+    # TC_VERIFY_PREVIEW_BUTTON_FUNCTIONALITY_ON_CAMP_UPDATE_PAGE
+    def test_verify_preview_button_functionality_on_camp_update_page(self):
+        self.login_to_canonizer_app()
+        result = CanonizerEditCampPage(self.driver).load_topic_detail_page(DEFAULT_TOPIC) \
+            .verify_preview_button_functionality_on_camp_update_page()
+        assert "/manage/camp/" in result.get_url()
      # TC_LOAD_ADD_NEW_CAMP_STATEMENT_PAGE
 
     def test_camp_statement_button(self):
