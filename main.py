@@ -932,7 +932,6 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[2]/div[2]/a/span/img").click()
         self.driver.find_element(*BrowsePageIdentifiers.EVENTLINE).click()
-        time.sleep(5)
         result = self.driver.current_url
         assert "eventline" in result
    
