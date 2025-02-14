@@ -46,6 +46,14 @@ class RegistrationPageIdentifiers(object):
     CONFIRM_PASSWORD_ASTRK = (By.XPATH, '(//span[@class = "required"])[5]')
     REGISTRATION_TITLE = (By.ID, "registration-title")
     JOIN_NOW = (By.ID, "join-canonizer-text")
+    OTP_SENT = (By.ID, "otp-note-text")
+    FIRST_NAME_VALIDATION = (By.CLASS_NAME, "ant-form-item-explain-error")
+    EMAIL_VALIDATION = (By.CLASS_NAME, "ant-form-item-explain-error")
+    LAST_NAME_VALIDATION = (By.CLASS_NAME, "ant-form-item-explain-error")
+    PASSWORD_VALIDATION = (By.CLASS_NAME, "ant-form-item-explain-error")
+    PASSWORD_TYPE_VALIDATION = (By.CLASS_NAME, "ant-form-item-explain-error")
+    VALID_EMAIL = (By.CLASS_NAME, "ant-form-item-explain-error")
+    VALID_PHONE_NUMBER = (By.CLASS_NAME, "ant-form-item-explain-error")
 
 
 class LoginPageIdentifiers(object):
