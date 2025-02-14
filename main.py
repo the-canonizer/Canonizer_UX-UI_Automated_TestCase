@@ -100,14 +100,14 @@ class TestPages:
     def test_registration_with_valid_credential(self):
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_17)
-        result = self.driver.find_element(By.ID, "otp-note-text").text
+        result = self.driver.find_element(*RegistrationPageIdentifiers.OTP_SENT).text
         assert "Note : Registration code has been sent to your registered email address." in result
 
     def test_registration_first_name_with_spaces(self):
         print("\n" + str(test_cases('TC_REGISTER_WITH_BLANK_SPACES_FIRST_NAME')))
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_18)
-        result = self.driver.find_element(By.ID, "otp-note-text").text
+        result = self.driver.find_element(*RegistrationPageIdentifiers.OTP_SENT).text
         assert "Note : Registration code has been sent to your registered email address." in result
 
     # TC_REGISTER_WITH_BLANK_FIRST_NAME
@@ -115,7 +115,7 @@ class TestPages:
         print("\n" + str(test_cases('TC_REGISTER_WITH_BLANK_FIRST_NAME')))
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_3)
-        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        result = self.driver.find_element(*RegistrationPageIdentifiers.FIRST_NAME_VALIDATION).text
         assert "Please input your first name!" in result
 
     # TC_REGISTRATION_WITH_BLANK_EMAIL
@@ -123,7 +123,7 @@ class TestPages:
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_BLANK_EMAIL')))
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_5)
-        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        result = self.driver.find_element(*RegistrationPageIdentifiers.EMAIL_VALIDATION).text
         assert "Please input your E-mail!" in result
 
     # TC_REGISTER_WITH_BLANK_LAST_NAME
@@ -131,7 +131,7 @@ class TestPages:
         print("\n" + str(test_cases('TC_REGISTER_WITH_BLANK_LAST_NAME')))
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_4)
-        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        result = self.driver.find_element(*RegistrationPageIdentifiers.LAST_NAME_VALIDATION).text
         assert "Please input your last name!" in result
 
     # TC_REGISTRATION_WITH_BLANK_PASSWORD
@@ -139,7 +139,7 @@ class TestPages:
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_BLANK_PASSWORD')))
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_6)
-        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        result = self.driver.find_element(*RegistrationPageIdentifiers.PASSWORD_VALIDATION).text
         assert "Please input your password!" in result
 
     # TC_REGISTRATION_WITH_INVALID_PASSWORD_LENGTH
@@ -147,7 +147,7 @@ class TestPages:
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_INVALID_PASSWORD_LENGTH')))
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_7)
-        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        result = self.driver.find_element(*RegistrationPageIdentifiers.PASSWORD_TYPE_VALIDATION).text
         assert "Password must contain small, capital letter, number and special character like Abc@1234." in result
 
     # TC_REGISTER_WITH_BLANK_SPACES_FIRST_NAME
@@ -157,7 +157,7 @@ class TestPages:
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_INVALID_EMAIL')))
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_14)
-        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        result = self.driver.find_element(*RegistrationPageIdentifiers.VALID_EMAIL).text
         assert "Please enter a valid email address." in result
 
     # TC_CHECK_LOGIN_PAGE_OPEN_CLICK_ON_LOGIN_HERE_LINK
@@ -171,7 +171,7 @@ class TestPages:
         print("\n" + str(test_cases('TC_VERIFY_THE_FUNCTIONALITY_OF_REGISTRATION_WITH_MANDATORY_FIELDS')))
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_15)
-        result = self.driver.find_element(By.ID, "otp-note-text").text
+        result = self.driver.find_element(*RegistrationPageIdentifiers.OTP_SENT).text
         assert "Note : Registration code has been sent to your registered email address." in result
 
     # TC_VERIFY_THE_FUNCTIONALITY_OF_REGISTRATION_WITH_MOBILE_NUMBER_FIELDS
@@ -179,7 +179,7 @@ class TestPages:
         print("\n" + str(test_cases('TC_VERIFY_THE_FUNCTIONALITY_OF_REGISTRATION_WITH_MOBILE_NUMBER_FIELDS')))
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_16)
-        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        result = self.driver.find_element(*RegistrationPageIdentifiers.VALID_PHONE_NUMBER).text
         assert "Please input valid phone number!" in result
 
     def test_click_on_login_button(self):
