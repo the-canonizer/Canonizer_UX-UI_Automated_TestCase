@@ -451,7 +451,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_blank_camp_name(CREATE_CAMP_LIST_2)
-        result = self.driver.find_element(By.ID, "create_new_camp_camp_name_help").text
+        result = self.driver.find_element(*CreateCampIdentifiers.CAMP_NAME_VALIDATION).text
         assert "Please enter camp name!" in result
 
     # TC_CREATE_CAMP_WITH_DUPLICATE_CAMP_NAME
