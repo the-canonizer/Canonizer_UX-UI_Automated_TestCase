@@ -430,6 +430,7 @@ class CreateCampIdentifiers(object):
     COMPARE_CAMP1 = (By.XPATH, '//ins[@class="diffmod"]')
     COMPARE_CAMP2 = (By.XPATH, '(//ins[@class="diffmod"])[2]')
     CANCEL_TITLE = (By.XPATH, '/html/body/div/div/div[2]/div/div[1]/div[2]/div[1]/div/div[1]/span/h3')
+    CAMP_NAME_VALIDATION = (By.ID, "create_new_camp_camp_name_help")
 
 class AddNewsIdentifiers(object):
     ADD_NEWS_LINK = (By.XPATH, '/html/body/div[3]/div/div/ul/li[1]/span/a')
