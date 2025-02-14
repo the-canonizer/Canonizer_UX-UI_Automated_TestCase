@@ -790,7 +790,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampForumPage(self.driver).create_thread_with_trailing_spaces()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
     def test_load_edit_thread_page(self):
         self.driver.implicitly_wait(30)
