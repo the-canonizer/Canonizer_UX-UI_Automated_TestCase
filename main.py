@@ -537,7 +537,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
-        result = self.driver.find_element(By.ID, "add-camp-statement-btn").text
+        result = self.driver.find_element(*CampStatementIdentifiers.ADD_STATEMENT_BUTTON).text
         assert "Add Statement" in result
     def test_load_camp_statement_page(self):
         self.driver.implicitly_wait(30)
@@ -547,7 +547,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampStatementPage(self.driver).click_add_camp_statement()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/header/div[1]").text
+        result = self.driver.find_element(*CampStatementIdentifiers.ADDING_CAMP_STATEMENT_POP_UP).text
         assert "Adding Camp Statement" in result
 
     def test_add_camp_statement_with_valid_data(self):
@@ -558,7 +558,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampStatementPage(self.driver).add_camp_statement()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button[1]/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.EDIT_BASED_ON_THIS).text
         assert "Edit Based On This" in result
     def test_add_camp_statement_page_with_asterisk(self):
         self.driver.implicitly_wait(30)
@@ -568,7 +568,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampStatementPage(self.driver).add_camp_statement_asterisk()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button[1]/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.EDIT_BASED_ON_THIS).text
         assert "Edit Based On This" in result
 
     def test_add_camp_statement_without_mandatory_field(self):
@@ -579,7 +579,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampStatementPage(self.driver).add_camp_statement_without_mandatory_data()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[3]/div/div/div/div/div/button[2]/span[1]").text
+        result = self.driver.find_element(*CampStatementIdentifiers.PUBLISH_STATEMENT).text
         assert "Publish Statement" in result
 
     def test_add_camp_statement_with_trailing_spaces(self):
@@ -590,7 +590,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampStatementPage(self.driver).add_camp_statement_with_trailing_spaces()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button[1]/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.EDIT_BASED_ON_THIS).text
         assert "Edit Based On This" in result
 
     def test_add_camp_statement_with_blank_data(self):
@@ -601,7 +601,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampStatementPage(self.driver).add_camp_statement_with_blank_data()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[3]/div/div/div/div/div/button[2]/span[1]").text
+        result = self.driver.find_element(*CampStatementIdentifiers.PUBLISH_STATEMENT).text
         assert "Publish Statement" in result
         
     def test_camp_statement_template(self):
@@ -611,9 +611,9 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
-        campname = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/div[2]/div[1]/nav/ol/li[4]/span[1]/div/a").text
-        self.driver.find_element(By.ID, "add-camp-statement-btn").click()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[2]/div/div/div/div/div/div/div[2]/div[2]/div/h2").text
+        campname = self.driver.find_element(*CampStatementIdentifiers.CAMP_NAME_1).text
+        self.driver.find_element(*CampStatementIdentifiers.ADD_STATEMENT_BUTTON).click()
+        result = self.driver.find_element(*CampStatementIdentifiers.CAMP_NAME_2).text
         assert campname in result
        #EDIT_CAMP_SATEMENT
     def test_load_edit_camp_statement(self):
@@ -712,7 +712,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampForumPage(self.driver).create_thread_with_valid_data()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_BLANK_TITLE
@@ -725,7 +725,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampForumPage(self.driver).create_thread_with_blank_title_name()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_SPECIAL_CHARS
@@ -738,7 +738,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampForumPage(self.driver).create_thread_with_special_chars()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_BLANK_MANDATORY_FIELDS
@@ -751,7 +751,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampForumPage(self.driver).create_thread_with_blank_mandatory_fields()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_DUPLICATE_TITLE
@@ -764,7 +764,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampForumPage(self.driver).create_thread_with_duplicate_title()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_VALID_DATA_WITH_ENTER_KEY
@@ -777,7 +777,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampForumPage(self.driver).create_thread_with_valid_data_with_enter_key()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_TRAILING_SPACES
@@ -802,7 +802,7 @@ class TestPages:
         CanonizerCampForumPage(self.driver).create_thread_with_valid_data()
         CanonizerCampForumPage(self.driver).load_edit_thread_page()
 
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
 
     def test_edit_thread(self):
@@ -814,7 +814,7 @@ class TestPages:
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampForumPage(self.driver).create_thread_with_valid_data()
         CanonizerCampForumPage(self.driver).edit_thread()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").text
+        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
     
 # TC_LOAD_ADD_NEWS_FEED_PAGE
@@ -859,7 +859,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
         CanonizerAddNewsPage(self.driver).load_add_news_page().create_news_with_valid_data("https://www.google.com/", "   ")
-        result = self.driver.find_element(By.ID, "display_text_help").text
+        result = self.driver.find_element(*AddNewsIdentifiers.DISPLAY_TEXT_VALIDATION).text
         assert "Display text is required" in result
 
     # TC_CREATE_NEWS_WITH_BLANK_LINK
@@ -870,7 +870,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
         CanonizerAddNewsPage(self.driver).load_add_news_page().create_news_with_valid_data("  ", " News Test  ")
-        result = self.driver.find_element(By.ID, "link_help").text
+        result = self.driver.find_element(*AddNewsIdentifiers.LINK_VALIDATION).text
         assert "Link is required." in result
     # TC_NEW_FEED_WITH_BLANK_FIELDS
     def test_create_new_with_blank_fields(self):
@@ -880,7 +880,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
         CanonizerAddNewsPage(self.driver).load_add_news_page().create_news_with_valid_data("  ", "   ")
-        result = self.driver.find_element(By.ID, "link_help").text
+        result = self.driver.find_element(*AddNewsIdentifiers.LINK_VALIDATION).text
         assert "Link is required." in result
 
     # TC_CLICK_ADD_NEWS_CANCEL_BUTTON
@@ -888,7 +888,7 @@ class TestPages:
         print("\n" + str(test_cases('TC_CLICK_ADD_NEWS_CANCEL_BUTTON')))
         self.login_to_canonizer_app()
         CanonizerAddNewsPage(self.driver).load_add_news_page(DEFAULT_TOPIC).click_add_news_cancel_button()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/span[1]").text
+        result = self.driver.find_element(*AddNewsIdentifiers.TOPIC).text
         assert "Topic :" in result
 
     # TC_CREATE_NEWS_WITH_INVALID_LINK_FORMAT
@@ -899,7 +899,7 @@ class TestPages:
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
         CanonizerAddNewsPage(self.driver).load_add_news_page().create_news_with_valid_data("https     ", "     News Test")
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[2]/form/div[1]/div[2]/span").text
+        result = self.driver.find_element(*AddNewsIdentifiers.LINK_VALIDATION_NOTE).text
         assert "Link is invalid. (Example: https://www.example.com?post=1234)." in result
 
     # TC_CREATE_NEWS_WITH_ENTER_KEY
@@ -910,7 +910,7 @@ class TestPages:
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_DUPLICATE_DATA')))
         self.login_to_canonizer_app()
         CanonizerAddNewsPage(self.driver).load_add_news_page(DEFAULT_TOPIC).create_news_with_duplicate_data("Test automated news", "https://www.google.com/")
-        result = self.driver.find_element(By.ID, "add-camp-statement-btn").text
+        result = self.driver.find_element(*CampStatementIdentifiers.ADD_STATEMENT_BUTTON).text
         assert "Manage/Edit Camp Statement" not in result
 
     # TC_CREATE_NEWS_WITH_TRAILING_SPACES
@@ -967,7 +967,7 @@ class TestPages:
     def test_browse_notification(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[11]/span/span").click()
+        self.driver.find_element(*BrowsePageIdentifiers.NOTIFICATION_BELL).click()
         result = self.driver.find_element(*BrowsePageIdentifiers.NOTIFICATIONS).text
         assert "notifications" in result
 
@@ -1302,7 +1302,7 @@ class TestPages:
         self.driver.refresh()
 
         try:
-          button=self.driver.find_element(By.ID, "browse-only-my-topics")
+          button=self.driver.find_element(*BrowsePageIdentifiers.ONLY_MY_TOPICS)
           result = "fail"
         except NoSuchElementException:
           result = "pass"
