@@ -1151,9 +1151,9 @@ class TestPages:
     def test_authentication_expiry_for_upload_file(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.get("https://ux-dev.canonizer.com/uploadFile")
+        self.driver.get(UPLOAD_FILE_URL)
         #time.sleep(60) one minute hold
-        self.driver.get("https://ux-dev.canonizer.com/uploadFile")
+        self.driver.get(UPLOAD_FILE_URL)
 
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1163,9 +1163,9 @@ class TestPages:
         self.login_to_canonizer_app()
         time.sleep(5)
 
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=profile_info")
+        self.driver.get(ACCOUNT_SETTING_URL)
         #time.sleep(60) one minute hold
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=profile_info")
+        self.driver.get(ACCOUNT_SETTING_URL)
 
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1175,9 +1175,9 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=direct_supported_camps")
+        self.driver.get(SUPPORTED_CAMP_URL)
         #time.sleep(60) one minute hold
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=direct_supported_camps")
+        self.driver.get(SUPPORTED_CAMP_URL)
 
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1186,9 +1186,9 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=nick_name")
+        self.driver.get(NICKNAME_URL)
         #time.sleep(60) one minute hold
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=nick_name")
+        self.driver.get(NICKNAME_URL)
 
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1197,9 +1197,9 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=user_preferences")
+        self.driver.get(USER_PREFERENCE_URL)
         #time.sleep(60) one minute hold
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=user_preferences")
+        self.driver.get(USER_PREFERENCE_URL)
 
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1208,9 +1208,9 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=direct_supported_camps")
+        self.driver.get(DIRECT_SUPPORTED_CAMP_URL)
         #time.sleep(60) one minute hold
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=direct_supported_camps")
+        self.driver.get(DIRECT_SUPPORTED_CAMP_URL)
 
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1219,9 +1219,9 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=delegate_supported_camp")
+        self.driver.get(DELEGATE_SUPPORT_URL)
         #time.sleep(60) one minute hold
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=delegate_supported_camp")
+        self.driver.get(DELEGATE_SUPPORT_URL)
 
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1230,9 +1230,9 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=subscriptions")
+        self.driver.get(SUBSCRIPTION_URL)
         #time.sleep(60) one minute hold
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=subscriptions")
+        self.driver.get(SUBSCRIPTION_URL)
 
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1241,7 +1241,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=social_oauth_verification")
+        self.driver.get(SOCIAL_AUTH)
         #time.sleep(60) one minute hold
         self.driver.refresh()
 
@@ -1252,7 +1252,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=change_password")
+        self.driver.get(CHANGE_PASSWORD)
         #time.sleep(60) one minute hold
         self.driver.refresh()
 
@@ -1287,7 +1287,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get("https://ux-dev.canonizer.com/notifications")
+        self.driver.get(NOTIFICATION_URL)
         #time.sleep(60) one minute hold
         self.driver.refresh()
 
@@ -1298,7 +1298,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get("https://ux-dev.canonizer.com/browse")
+        self.driver.get(BROWSE_PAGE_URL)
         self.driver.refresh()
 
         try:
@@ -1311,7 +1311,7 @@ class TestPages:
     def test_authentication_header_videos(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.get("https://ux-dev.canonizer.com/videos")
+        self.driver.get(HEADER_VIDEOS)
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1322,7 +1322,7 @@ class TestPages:
         self.login_to_canonizer_app()
         #time.sleep(60) one minute hold
 
-        self.driver.get("https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1")
+        self.driver.get(HELP_URL)
         self.driver.refresh()
 
         result = self.driver.current_url
