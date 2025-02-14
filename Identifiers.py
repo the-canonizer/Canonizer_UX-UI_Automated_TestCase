@@ -119,6 +119,12 @@ class LoginPageIdentifiers(object):
     LINKEDIN_TITLE = (By.XPATH, '//*[@id="app__container"]/main/div[2]/div[2]')
     GITHUB_LINK = (By.ID, 'github-link')
     GITHUB_TITLE = (By.XPATH, '//*[@id="js-pjax-container"]/div/div[1]/h2')
+    LOGIN_BUTTON_HOMEPAGE = (By.ID, "login-btn")
+    START_TOPIC_BUTTON = (By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[1]/a/span[1]")
+    EMAIL_VALIDATION = (By.CLASS_NAME, "ant-form-item-explain-error")
+    PASSWORD_VALIDATION = (By.CLASS_NAME, "ant-form-item-explain-error")
+    VALID_EMAIL = (By.CLASS_NAME, "ant-form-item-explain-error")
+    RESEND_OTP = (By.ID, "resent-otp-btn")
 
 
 class ProfileInfoIdentifiersPage(object):
@@ -256,6 +262,10 @@ class CreateTopicIdentifiers(object):
     TOPIC_NAME_ASTERISK = (By.XPATH, '(//span[@class = "required"])[2]')
     NAMESPACE_ASTERISK = (By.XPATH, '(//span[@class = "required"])[3]')
     REFINE_BUTTON_FILTER = (By.XPATH, "/html/body/div[1]/section/div[2]/div[2]/div/div/div/div[1]/div[2]/button[2]")
+    VALID_TOPIC_NAME = (By.ID, "create_new_topic_topic_name_help")
+    SAME_TOPIC_NAME = (By.CLASS_NAME, "ant-typography text-canRed font-medium text-base !mb-2")
+    SAME_TOPIC_TITLE = (By.XPATH, "/html/body/div[1]/div/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/span[2]")
+    UPDATE_TOPIC_TITLE = (By.ID, "header-paragraph")
 
 
 class UpdateTopicIdentifiers(object):
