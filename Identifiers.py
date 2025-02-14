@@ -434,6 +434,10 @@ class AddNewsIdentifiers(object):
     EDIT_ICON = (By.ID, 'news-edit-btn')
     EDIT_NEWS_TITlE = (By.XPATH, '//div[@class="ant-card-head-wrapper"]//div[1]')
     EDIT_CANCEL_BUTTON = (By.ID, 'cancel-news-btn')
+    DISPLAY_TEXT_VALIDATION = (By.ID, "display_text_help")
+    LINK_VALIDATION = (By.ID, "link_help")
+    TOPIC = (By.XPATH, "/html/body/div[1]/div/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/span[1]")
+    LINK_VALIDATION_NOTE = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[2]/form/div[1]/div[2]/span")
 
 
 class LogoutIdentifiers(object):
@@ -479,6 +483,12 @@ class CampStatementIdentifiers(object):
     PUBLISH_BUTTON = (By.ID, "publish-button")
     IMAGE_SIZE_EXCEEDED = (By.CLASS_NAME, "ant-modal-title")
     IMAGE_SIZE_NOTE = (By.ID, "nickanme_note")
+    ADDING_CAMP_STATEMENT_POP_UP = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/header/div[1]")
+    EDIT_BASED_ON_THIS = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button[1]/span")
+    PUBLISH_STATEMENT = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[3]/div/div/div/div/div/button[2]/span[1]")
+    CAMP_NAME_1 = (By.XPATH, "/html/body/div[1]/section/div[2]/div[1]/nav/ol/li[4]/span[1]/div/a")
+    CAMP_NAME_2 = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[2]/div/div/div/div/div/div/div[2]/div[2]/div/h2")
+    TEST_CAMP = (By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span")
 
 
 class CampHistoryIdentifiers(object):
@@ -647,6 +657,7 @@ class BrowsePageIdentifiers(object):
     PROFILE_LINK = (By.ID, "profile_link")
     PROFILE_LINK_INFO = (By.ID, "link-profile-info")
     SUPPORTED_CAMP = (By.ID, "link-supported-camps")
+    NOTIFICATION_BELL = (By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[11]/span/span")
     
 class UploadFileIdentifiers(object):
     """
