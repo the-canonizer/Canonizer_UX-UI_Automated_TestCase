@@ -187,7 +187,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button()
-        result = self.driver.find_element(By.ID, "login-btn").text
+        result = self.driver.find_element(*LoginPageIdentifiers.LOGIN_BUTTON_HOMEPAGE).text
         assert "Log In" in result
 
 
@@ -197,7 +197,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_functionality_by_entering_the_registered_credential(DEFAULT_USER, DEFAULT_PASS)
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[1]/a/span[1]").text
+        result = self.driver.find_element(*LoginPageIdentifiers.START_TOPIC_BUTTON).text
         assert "Start a Topic" in result
 
     # TC_VERIFY_THE_LOGIN_WITH_BLANK_EMAIL
@@ -206,7 +206,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_blank_email("", DEFAULT_PASS)
-        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        result = self.driver.find_element(*LoginPageIdentifiers.EMAIL_VALIDATION).text
         assert "Please input your Email!" in result
 
     # TC_VERIFY_THE_LOGIN_WITH_BLANK_PASSWORD
@@ -215,7 +215,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_blank_password(DEFAULT_USER, "")
-        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        result = self.driver.find_element(*LoginPageIdentifiers.PASSWORD_VALIDATION).text
         assert "Please input your Password!" in result
 
     # TC_LOGIN_WITH_INVALID_EMAIL
@@ -223,7 +223,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_invalid_email_format(DEFAULT_INVALID_USER, DEFAULT_PASS)
-        result = self.driver.find_element(By.CLASS_NAME, "ant-form-item-explain-error").text
+        result = self.driver.find_element(*LoginPageIdentifiers.VALID_EMAIL).text
         assert "Input is not valid!" in result
 
     # TC_VERIFY_ONE_TIME_REQUEST_CODE_WITH_VALID_CREDENTIALS
@@ -232,7 +232,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_one_time_request_code_with_valid_credentials(DEFAULT_USER)
-        result = self.driver.find_element(By.ID, "resent-otp-btn").text
+        result = self.driver.find_element(*LoginPageIdentifiers.RESEND_OTP).text
         assert "Resend OTP" in result
 
                 # ----- CREATE TOPIC Test Cases Start -----
@@ -262,7 +262,7 @@ class TestPages:
         self.login_to_canonizer_app()
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_blank_topic()
-        result = self.driver.find_element(By.ID, "create_new_topic_topic_name_help").text
+        result = self.driver.find_element(*CreateTopicIdentifiers.VALID_TOPIC_NAME).text
         assert "Enter a valid Topic Name" in result
 
     # TC_CREATE_NEW_TOPIC_WITH_VALID_DATA
@@ -282,7 +282,7 @@ class TestPages:
         self.login_to_canonizer_app()
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_same_topic("same topic")
-        result = self.driver.find_element(By.CLASS_NAME, "ant-typography text-canRed font-medium text-base !mb-2").text
+        result = self.driver.find_element(*CreateTopicIdentifiers.SAME_TOPIC_NAME).text
         assert "A Topic with this exact name already exists!" in result
 
     def test_create_same_topic_name_error_link(self):
@@ -293,7 +293,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("new summary", "same topic", DEFAULT_NAMESPACE)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div/div/div/div/div[2]/form/div[1]/div[1]/a").click()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/span[2]").text
+        result = self.driver.find_element(*CreateTopicIdentifiers.SAME_TOPIC_TITLE).text
         assert "same topic" in result
     # TC_CREATE_NEW_TOPIC_WITH_SPECIAL_CHARS
     def test_create_topic_with_special_chars(self):
@@ -326,7 +326,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        result = self.driver.find_element(By.ID, "header-paragraph").text
+        result = self.driver.find_element(*CreateTopicIdentifiers.UPDATE_TOPIC_TITLE).text
         assert "Update Topic" in result
 
     # TC_VERIFY_TOPIC_NAME_ON_TOPIC_HISTORY_PAGE
