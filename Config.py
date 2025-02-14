@@ -12,6 +12,21 @@ DEFAULT_BASE_URL = "https://ux-dev.canonizer.com/"
 
 ARCHIVED_CAMP_URL = "https://development.canonizer.com/topic/861-can-1462-test/2-camp-1"
 ARCHIVED_EDIT_CAMP_URL = "https://development.canonizer.com/camp/history/861-can-1462-test/2-camp-1"
+UPLOAD_FILE_URL = "https://ux-dev.canonizer.com/uploadFile"
+ACCOUNT_SETTING_URL = "https://ux-dev.canonizer.com/settings?tab=profile_info"
+SUPPORTED_CAMP_URL = "https://ux-dev.canonizer.com/settings?tab=direct_supported_camps"
+NICKNAME_URL = "https://ux-dev.canonizer.com/settings?tab=nick_name"
+USER_PREFERENCE_URL = "https://ux-dev.canonizer.com/settings?tab=user_preferences"
+DIRECT_SUPPORTED_CAMP_URL = "https://ux-dev.canonizer.com/settings?tab=direct_supported_camps"
+DELEGATE_SUPPORT_URL = "https://ux-dev.canonizer.com/settings?tab=delegate_supported_camp"
+SUBSCRIPTION_URL = "https://ux-dev.canonizer.com/settings?tab=subscriptions"
+SOCIAL_AUTH = "https://ux-dev.canonizer.com/settings?tab=social_oauth_verification"
+CHANGE_PASSWORD = "https://ux-dev.canonizer.com/settings?tab=change_password"
+NOTIFICATION_URL = "https://ux-dev.canonizer.com/notifications"
+BROWSE_PAGE_URL = "https://ux-dev.canonizer.com/browse"
+VIDEOS_URL = "https://ux-dev.canonizer.com/videos"
+HELP_URL = "https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1"
+
 
 """
     Identify the Default Chrome Binary Location for different OS 
