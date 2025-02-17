@@ -272,6 +272,7 @@ class CreateTopicIdentifiers(object):
     SAME_TOPIC_NAME = (By.CLASS_NAME, "ant-typography text-canRed font-medium text-base !mb-2")
     SAME_TOPIC_TITLE = (By.XPATH, "/html/body/div[1]/div/div[3]/div/div[1]/div/div[1]/div/div/div/div[1]/span[2]")
     UPDATE_TOPIC_TITLE = (By.ID, "header-paragraph")
+    RECENT_TOPIC_NAME = (By.ID, "text-topic-camp-1")
 
 
 class UpdateTopicIdentifiers(object):
