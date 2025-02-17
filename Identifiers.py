@@ -159,6 +159,10 @@ class ProfileInfoIdentifiersPage(object):
     DELETE_PROFILE_IMAGE = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[1]/div/div/div/div/div[1]/div[1]/span[1]/div/div[1]/div/span/button/span/svg")
     IMAGE_DELETED_POP_UP = (By.XPATH, "/html/body/div[4]/div/div/div/div/div/span[2]")
     NO_IMAGE_ALPHABET = (By.CLASS_NAME, "/html/body/div[1]/section/header/div/nav/ul/li[12]/div[1]/a/div/div[1]/span/span")
+    UPLOAD_FILE_NAME = (By.ID, "enterFileName")
+    UPLOAD_BUTTON = (By.ID, "uploadBtn")
+    UPLOAD_SIZE_EXCEEDED = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[2]/div[1]/span/div[2]/div/div/div/div/p")
+    FILE_UPOADED_NUMBER = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[1]/div/div[1]")
 
 
 class CanonizerSupportCampIdentifiersPage(object):
