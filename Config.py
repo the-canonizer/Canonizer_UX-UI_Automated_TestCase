@@ -26,6 +26,7 @@ NOTIFICATION_URL = "https://ux-dev.canonizer.com/notifications"
 BROWSE_PAGE_URL = "https://ux-dev.canonizer.com/browse"
 VIDEOS_URL = "https://ux-dev.canonizer.com/videos"
 HELP_URL = "https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1"
+UPLOAD_FILE_URL = "https://ux-dev.canonizer.com/uploadFile"
 
 
 """
