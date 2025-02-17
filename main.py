@@ -1477,6 +1477,44 @@ class TestPages:
         result = self.driver.current_url
         assert "uploadFile" in result
 
+    def test_upload_file_less_than_5mb(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        time.sleep(10)
+        self.driver.get(UPLOAD_FILE_URL)
+        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/image.png"
+        upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
+        upload_image.send_keys(image)
+        time.sleep(5)
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_BUTTON).text
+        assert "Upload" in result
+
+    def test_upload_file_more_than_5mb(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        time.sleep(10)
+        self.driver.get(UPLOAD_FILE_URL)
+        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/10mb.jpg"
+        upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
+        upload_image.send_keys(image)
+        time.sleep(5)
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_SIZE_EXCEEDED).text
+        assert "This file is exceeding the max limit and will not be uploaded" in result
+
+    def test_uploading_file_less_than_5mb(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        time.sleep(10)
+        self.driver.get(UPLOAD_FILE_URL)
+        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/image.png"
+        upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
+        upload_image.send_keys(image)
+        time.sleep(5)
+        self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_FILE_NAME).send_keys("test file upload")
+        self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_BUTTON).click()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.FILE_UPOADED_NUMBER).text
+        assert "5 Files, 0 Folder" in result
+
     
     def teardown_method(self):
 
