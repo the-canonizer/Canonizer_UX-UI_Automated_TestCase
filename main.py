@@ -1529,6 +1529,16 @@ class TestPages:
 
         assert "Profile updated successfully." in result
 
+   def test_topic_name_in_recent_activities(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("Recent Topic" + add_name)
+        self.driver.get(DEFAULT_BASE_URL)
+        result = self.driver.find_element(*CreateTopicIdentifiers.RECENT_TOPIC_NAME).text
+        assert "Recent Topic" in result
+
     
     def teardown_method(self):
 
