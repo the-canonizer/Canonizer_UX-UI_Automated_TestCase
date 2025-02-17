@@ -163,6 +163,8 @@ class ProfileInfoIdentifiersPage(object):
     UPLOAD_BUTTON = (By.ID, "uploadBtn")
     UPLOAD_SIZE_EXCEEDED = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[2]/div[1]/span/div[2]/div/div/div/div/p")
     FILE_UPOADED_NUMBER = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[1]/div/div[1]")
+    USERNAME_UPPER = (By.ID, "setting_section_user_profile_name")
+    PROFILE_UPDATED_POP_UP = (By.XPATH, "/html/body/div[4]/div/div/div/div/div/span[2]")
 
 
 class CanonizerSupportCampIdentifiersPage(object):
