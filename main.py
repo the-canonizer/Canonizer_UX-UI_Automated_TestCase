@@ -1041,77 +1041,77 @@ class TestPages:
         assert "https://ux-dev.canonizer.com/browse" in result
 
 
-    def test_footer_create_topic_button(self):
+   def test_footer_create_topic_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_CREATE_TOPIC).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/create/topic" in result
 
-    def test_footer_upload_file_button(self):
+   def test_footer_upload_file_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_UPLOAD).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/uploadFile" in result
 
-    def test_footer_sitemap_button(self):
+   def test_footer_sitemap_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_SITE_MAP).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/sitemap" in result
 
-    def test_footer_videos_button(self):
+   def test_footer_videos_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_VIDEOS).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/videos" in result
 
-    def test_footer_help_button(self):
+   def test_footer_help_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_HELP).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1" in result
 
-    def test_footer_white_paper_button(self):
+   def test_footer_white_paper_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_WHITE_PAPER).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/files/2012_amplifying_final.pdf" in result
 
-    def test_footer_jobs_button(self):
+   def test_footer_jobs_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_JOBS).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/6-Canonizer-Jobs/1-Agreement?is_tree_open=1" in result
 
-    def test_footer_privacy_policy_button(self):
+   def test_footer_privacy_policy_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_PRIVACY).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/privacy-policy" in result
 
-    def test_footer_term_and_services_button(self):
+   def test_footer_term_and_services_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_TERM_CONDITION).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/terms-and-services" in result
    
-    def test_footer_upload_file_button(self):
+   def test_footer_upload_file_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_UPLOAD).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/uploadFile" in result 
 
-    def test_authentication_expiry_for_create_topic(self):
+   def test_authentication_expiry_for_create_topic(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
        
@@ -1119,7 +1119,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
-    def test_authentication_expiry_for_create_camp(self):
+   def test_authentication_expiry_for_create_camp(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
@@ -1529,7 +1529,7 @@ class TestPages:
 
         assert "Profile updated successfully." in result
 
-   def test_topic_name_in_recent_activities(self):
+    def test_topic_name_in_recent_activities(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
