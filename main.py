@@ -1456,6 +1456,27 @@ class TestPages:
 
         assert "Note: You can drag and drop image files into the editor. The maximum allowed file size is 5 MB." in result
 
+    def test_upload_file_without_userlogin(self):
+        self.driver.implicitly_wait(30)
+        self.driver.get(UPLOAD_FILE_URL)
+        result = self.driver.current_url
+        assert "login" in result
+
+    def test_upload_file_with_non_admin(self):
+        self.driver.implicitly_wait(30)
+        #self.login_to_canonizer_app()
+        CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_user2(DEFAULT_USER_2, DEFAULT_PASS_2)
+        self.driver.get(UPLOAD_FILE_URL)
+        result = self.driver.current_url
+        assert "login" in result
+
+    def test_upload_file_with_admin(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.get(UPLOAD_FILE_URL)
+        result = self.driver.current_url
+        assert "uploadFile" in result
+
     
     def teardown_method(self):
 
