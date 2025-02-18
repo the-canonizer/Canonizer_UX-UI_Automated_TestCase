@@ -684,6 +684,7 @@ class BrowsePageIdentifiers(object):
     PROFILE_LINK_INFO = (By.ID, "link-profile-info")
     SUPPORTED_CAMP = (By.ID, "link-supported-camps")
     NOTIFICATION_BELL = (By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[11]/span/span")
+    TOPIC_TAG = (By.ID, "browse-topic-tags-item")
     
 class UploadFileIdentifiers(object):
     """
