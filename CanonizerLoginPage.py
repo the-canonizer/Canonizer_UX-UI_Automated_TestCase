@@ -1,7 +1,7 @@
 import time
 
 from selenium.common.exceptions import TimeoutException
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 
 from CanonizerBase import Page
@@ -126,8 +126,10 @@ class CanonizerLoginPage(Page):
         #self.click_on_login_button()
         self.find_element(*LoginPageIdentifiers.EMAIL).clear()
         self.find_element(*LoginPageIdentifiers.EMAIL).send_keys(email)
+        self.find_element(*LoginPageIdentifiers.PASSWORD).clear()
         self.find_element(*LoginPageIdentifiers.PASSWORD).send_keys(password)
-        self.find_element(*LoginPageIdentifiers.SUBMIT).click()
+        self.driver.find_element(By.ID, "login-submit-btn").click()
+        #self.find_element(*LoginPageIdentifiers.SUBMIT).click()
 
     def click_on_close_icon_button(self):
         self.click_on_login_button()
@@ -161,6 +163,17 @@ class CanonizerLoginPage(Page):
         self.verify_the_login_page(default_user, default_pass)
         return CanonizerLoginPage(self.driver)
 
+    def verify_the_login_with_user2(self, default_user, default_pass):
+        self.driver.implicitly_wait(30)
+        self.driver.find_element(By.ID, "login_form_username").click()
+        actions = ActionChains(self.driver)
+        actions.key_down(Keys.CLEAR)
+        action.key_down(Keys.BACKSPACE).perform()
+        self.driver.find_element(By.ID, "login_form_password").click()
+        actions = ActionChains(self.driver)
+        action.key_down(Keys.BACKSPACE).perform()
+        self.verify_the_login_page(default_user, default_pass)
+        return CanonizerLoginPage(self.driver)
     def verify_the_forget_password_button(self):
         #self.click_on_login_button()
         self.hover(*LoginPageIdentifiers.FORGET_PASSWORD)
