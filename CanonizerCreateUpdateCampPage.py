@@ -64,7 +64,6 @@ class CanonizerCreateCampPage(Page):
 
     def click_create_camp_button(self):
         self.driver.implicitly_wait(10)
-        print("clcicking create")
         self.find_element(*CreateCampIdentifiers.CREATE_CAMP_BUTTON).click()
 
 
@@ -72,18 +71,14 @@ class CanonizerCreateCampPage(Page):
     def create_camp(self, *args):
         self.driver.implicitly_wait(10)
         args = list(args[0])
-        print("created")
         self.enter_camp_name(args[2])
         self.click_create_camp_button()
-        print("clicked create camp")
     def disable_create_camp(self, *args):
         self.driver.implicitly_wait(10)
         args = list(args[0])
-        print("created")
         self.enter_camp_name(args[2])
         self.driver.find_element(By.ID, "is_disabled").click()
         self.click_create_camp_button()
-        print("clicked create camp")
     def create_camp2(self, *args):
         args = list(args[0])
         self.enter_nick_name(args[0])
@@ -95,12 +90,10 @@ class CanonizerCreateCampPage(Page):
         self.click_create_camp_button()
     def create_camp_with_valid_data(self, create_camp_list1):
         self.driver.implicitly_wait(10)
-        print("valid")
         self.create_camp(create_camp_list1)
         return CanonizerCreateCampPage(self.driver)
     def disable_create_camp_with_valid_data(self, create_camp_list1):
         self.driver.implicitly_wait(10)
-        print("valid")
         self.disable_create_camp(create_camp_list1)
         return CanonizerCreateCampPage(self.driver)
     def create_camp2_with_valid_data(self, create_camp_list1):
