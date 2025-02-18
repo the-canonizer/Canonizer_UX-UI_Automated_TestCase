@@ -1,6 +1,8 @@
 import time
 
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver import ActionChains
+from selenium.webdriver.chrome import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -15,7 +17,9 @@ class CanonizerRegisterPage(Page):
     Class Name: CanonizerRegisterPage
 
     """
-
+    def driver(self):
+        self.driver = webdriver.Chrome()
+        self.action = ActionChains(self.driver)
     def click_register_button(self):
         """
         -> Hover the control towards the register button. Identifiers are loaded from Identifiers Class
@@ -63,12 +67,12 @@ class CanonizerRegisterPage(Page):
         self.find_element(*RegistrationPageIdentifiers.CONFIRM_PASSWORD).send_keys(confirm_password)
 
     def click_register_now_button(self):
-        try:
+        '''try:
             WebDriverWait(self.driver, 5).until(
                 EC.visibility_of_element_located(
                     (By.CLASS_NAME, 'ant-btn ant-btn-primary ant-btn-block login-form-button')))
         except TimeoutException:
-            pass
+            pass'''
         self.find_element(*RegistrationPageIdentifiers.REGISTER_NOW).click()
 
     def register(self, *args):
@@ -79,7 +83,7 @@ class CanonizerRegisterPage(Page):
         self.enter_password(args[4])
         self.enter_confirm_password(args[5])
         self.click_register_now_button()
-    
+
     def join_now(self):
 
         self.find_element(*RegistrationPageIdentifiers.JOIN_NOW).click()
