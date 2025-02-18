@@ -28,6 +28,7 @@ VIDEOS_URL = "https://ux-dev.canonizer.com/videos"
 HELP_URL = "https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1"
 UPLOAD_FILE_URL = "https://ux-dev.canonizer.com/uploadFile"
 PROFILE_PAGE = "https://ux-dev.canonizer.com/settings?tab=profile_info"
+TOPIC_TAG_URL = "https://ux-dev.canonizer.com/categories/9"
 
 
 """
