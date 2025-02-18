@@ -1539,6 +1539,20 @@ class TestPages:
         result = self.driver.find_element(*CreateTopicIdentifiers.RECENT_TOPIC_NAME).text
         assert "Recent Topic" in result
 
+    def test_categories_page(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.get(TOPIC_TAG_URL)
+        categories = self.driver.find_elements(*BrowsePageIdentifiers.TOPIC_TAG)
+        for x in categories:
+            if x.text == "Relationships":
+               result = "Relationships"
+               break
+            else:
+               result = "tag does not exist"
+
+        assert "Relationships" in result
+
     
     def teardown_method(self):
 
