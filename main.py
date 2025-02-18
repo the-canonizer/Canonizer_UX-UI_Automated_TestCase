@@ -1553,6 +1553,13 @@ class TestPages:
 
         assert "Relationships" in result
 
+     def test_elastic_search_count(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.get(TOPIC_SEARCH_URL)
+        result = self.driver.find_element(*BrowsePageIdentifiers.TOPIC_SEARCH_COUNT).text
+        assert "1121" in result
+
     
     def teardown_method(self):
 
