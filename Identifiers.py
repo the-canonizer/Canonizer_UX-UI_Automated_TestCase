@@ -685,6 +685,7 @@ class BrowsePageIdentifiers(object):
     SUPPORTED_CAMP = (By.ID, "link-supported-camps")
     NOTIFICATION_BELL = (By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[11]/span/span")
     TOPIC_TAG = (By.ID, "browse-topic-tags-item")
+    TOPIC_SEARCH_COUNT = (By.XPATH, "/html/body/div[1]/section/section/main/div[2]/aside/div/div/div/a[2]/button/span[2]")
     
 class UploadFileIdentifiers(object):
     """
