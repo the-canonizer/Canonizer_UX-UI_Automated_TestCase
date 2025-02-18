@@ -25,13 +25,11 @@ class CanonizerCreateNewTopic(Page):
 
     def click_create_topic_button_without_login(self):
         self.driver.implicitly_wait(30)
-        time.sleep(10)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[1]/a/span").click()
         return CanonizerCreateNewTopic(self.driver)
 
     def click_create_topic_button(self):
         self.driver.implicitly_wait(30)
-        time.sleep(10)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[1]/a/span[1]").click()
         return CanonizerCreateNewTopic(self.driver)
 
@@ -62,12 +60,12 @@ class CanonizerCreateNewTopic(Page):
             self.i = self.i - 1
             time.sleep(0.4)
             self.current_name = self.driver.find_element(By.XPATH,
-                                                         "/html/body/div[1]/section/section/main/div/div/div/div[1]/div/div/form/div[1]/div[4]/div/div/div[2]/div/div/div/div/div/span[2]").text
+                                                         "/html/body/div[1]/section/section/main/div/div/div/div[1]/div/div/form/div[1]/div[4]/div/div[2]/div/div/div[2]/div/div/div[2]/div[1]/div/div/div/div/span[2]").text
             if self.current_name == "sandbox testing":
                 time.sleep(10)
                 break
             self.driver.find_element(By.XPATH,
-                                     "/html/body/div[1]/section/section/main/div/div/div/div[1]/div/div/form/div[1]/div[4]/div/div/div[2]/div/div/div/div/div/span[2]").click()
+                                     "/html/body/div[1]/section/section/main/div/div/div/div[1]/div/div/form/div[1]/div[4]/div/div[2]/div/div/div[2]/div/div/div[2]/div[1]/div/div/div/div/span[2]").click()
 
     def scroll_down_edit(self):
         self.driver.implicitly_wait(20)
@@ -113,8 +111,7 @@ class CanonizerCreateNewTopic(Page):
     def create_topic(self, topic_name):
         self.driver.implicitly_wait(30)
         self.entering_data_fields(topic_name)
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/div[1]/section/section/main/div/div/div/div[1]/div/div/form/div[1]/div[4]/div/div/div[2]/div/div/div/div/div/span[2]").click()
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div/div/form/div[1]/div[4]/div/div[2]/div/div/div[2]/div/div/div[2]/div[1]/div/div/div/div/span[2]").click()
         self.scroll_down()
 
         self.create_topic_button()
@@ -199,34 +196,12 @@ class CanonizerCreateNewTopic(Page):
 
 
 class CanonizerUpdateTopicPage(Page):
-    def load_topic_history_page(self, topic_name):
+    def load_topic_history_page(self):
 
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/div/div/div[3]/div/div/div/div/div[1]/div[2]/span/span/span[1]/input").click()
-
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/div/div/div[3]/div/div/div/div/div[1]/div[2]/span/span/span[1]/input/html/body/div/div/header/div[2]/nav/ul/li[2]/a").send_keys(
-            "Test")
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/div/div/div[3]/div/div/div/div/div[1]/div[2]/span/span/span[2]/button").click()
-        self.driver.find_element(By.XPATH,
-                                 "/html/body/div[1]/div/div[3]/div/div/div/div/div[2]/div[1]/div[1]/div/ul/li[1]/a/span[1]").click()
-
-        # Click on Manage/edit Topic
-        try:
-            WebDriverWait(self.driver, 10).until(
-                EC.visibility_of_element_located((By.CLASS_NAME, 'ant-btn ant-btn-default btn-green')))
-        except TimeoutException:
-            pass
-        self.find_element(By.XPATH, "/html/body/div[1]/div/div[2]/div/div[1]/div[1]/div/div/div[2]/div/a/span").click()
-        self.driver.get("https://canonizer3.canonizer.com/topic/history/1000-automated-topic")
-        self.hover(*UpdateTopicIdentifiers.TOPIC_HISTORY_TITLE)
-        page_title = self.find_element(*UpdateTopicIdentifiers.TOPIC_HISTORY_TITLE).text
-        if page_title == message['Update_Topic']['TOPIC_HISTORY_TITLE']:
-            return CanonizerUpdateTopicPage(self.driver)
-        else:
-            print("Title not found or is not matching")
-
+        self.driver.implicitly_wait(30)
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[2]/div[2]/a/span/img").click()
+        self.driver.find_element(By.ID, "threedot_dropdown_manage_topic_btn__menu_item_text").click()
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/button/span").click()
     def verify_topic_name_on_topic_history_page(self, topic_name):
         try:
             WebDriverWait(self.driver, 10).until(
