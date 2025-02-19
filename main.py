@@ -1524,6 +1524,13 @@ class TestPages:
         result = self.driver.find_element(*BrowsePageIdentifiers.TOPIC_SEARCH_COUNT).text
         assert "1121" in result
 
+     def test_videos_thumbnail(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.get(HEADER_VIDEOS)
+        result = self.driver.find_element(*BrowsePageIdentifiers.VIDEOS_THUMBNAIL).get_attribute("src")
+        assert "https://ux-dev.canonizer.com/files/videos/consciousness/introduction_thumb.png" in result
+
     
     def teardown_method(self):
 
