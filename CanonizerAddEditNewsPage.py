@@ -25,13 +25,9 @@ class CanonizerAddNewsPage(Page):
     def load_add_news_page(self):
         self.driver.implicitly_wait(30)
         action = ActionChains(self.driver)
-        '''self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[2]/div[2]/a/span/img").click()
-        time.sleep(5)
-        self.driver.find_element(By.ID, "threedot_dropdown_add_news_menu_item").click()'''
         news = self.driver.current_url
         news = news.replace("topic", "addnews")
         self.driver.get(news)
-        time.sleep(5)
 
         return CanonizerAddNewsPage(self.driver)
 
