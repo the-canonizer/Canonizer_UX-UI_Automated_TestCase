@@ -11,7 +11,6 @@ from selenium.webdriver.common.keys import Keys
 import string
 import random
 from selenium.webdriver.chrome.service import Service
-#from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.remote.webelement import *
 from selenium import webdriver
 import Config
@@ -27,14 +26,9 @@ class CanonizerCampForumPage(Page):
 
     def load_camp_forum_page(self, topic_name):
         self.driver.implicitly_wait(30)
-        # Browse to Browse Page
         self.driver.find_element(By.XPATH, "/html/body/div[1]/div/header/div[2]/nav/ul/li[2]/a").click()
-        # Click on Search Topic
         self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div/div/div/div[1]/div[2]/span/span/input").send_keys("test")
-        #self.find_element(*CampForumIdentifiers.SEARCH_TOPIC).send_keys("test")
         self.find_element(*CampForumIdentifiers.SEARCH_TOPIC).send_keys(Keys.ENTER)
-        #self.hover(*CampForumIdentifiers.SEARCH_ICON)
-        #self.find_element(*CampForumIdentifiers.SEARCH_ICON).click()
         self.find_element(*CampForumIdentifiers.TOPIC_CLICK).click()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[1]/aside/button").click()
 
@@ -45,7 +39,6 @@ class CanonizerCampForumPage(Page):
 
     def load_all_threads_page(self):
         self.driver.implicitly_wait(20)
-        #self.find_element(*CampForumIdentifiers.ALL_THREADS_BUTTON).click()
         self.driver.find_element(By.ID, "all-thread-btn").click()
         WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located((By.CLASS_NAME, "ant-table-cell ant-table-cell-row-hover")))
         return CanonizerCampForumPage(self.driver)
@@ -69,7 +62,6 @@ class CanonizerCampForumPage(Page):
         return CanonizerCampForumPage(self.driver)
 
     def check_no_thread_availability(self):
-        # Click on Camp Forum Button
         self.driver.implicitly_wait(20)
         self.find_element(*CampForumIdentifiers.CAMP_FORUM_BUTTON).click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.CLASS_NAME, "Forum_cardTitle__VagbD")))
@@ -84,7 +76,6 @@ class CanonizerCampForumPage(Page):
         return CanonizerCampForumPage(self.driver)
 
     def enter_thread_title(self, title):
-        #self.find_element(By.ID, "create_new_thread_thread_title").send_keys(title)
         self.driver.find_element(By.ID, "create_new_thread_thread_title").send_keys(title)
 
 
