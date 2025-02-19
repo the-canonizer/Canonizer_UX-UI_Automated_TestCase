@@ -56,10 +56,8 @@ def random_char(char_num):
     return ''.join(random.choice(string.ascii_letters) for _ in range(char_num))
 
 NEW_USER = random_char(7)+"@gmail.com"
-DEFAULT_USER = "saideekshith@zibtek.in"
-DEFAULT_PASS = "Deekshith@123"
-DEFAULT_NAME = "saideekshith"
-INVALID_NAME = "sai deekshith1"
+DEFAULT_NAME = "Akash"
+INVALID_NAME = "Akash   ksndmsnd,mas"
 INVALID_PASSWORD = "sfagf@@3 sfg gdahg"
 
 FIRST_NAME = "test"
@@ -70,12 +68,12 @@ LAST_NAME = "automation"
 # Registration Page Configuration Parameters
 DEFAULT_FIRST_NAME = "kumar"
 DEFAULT_LAST_NAME = "file"
-DEFAULT_EMAIL = "saideekshith@zibtek"
-DEFAULT_PASSWORD = "Sai@1998"
-DEFAULT_CONFIRM_PASSWORD = "Sai@1998"
+DEFAULT_EMAIL = "akash.roshan@iffort.com"
+DEFAULT_PASSWORD = "Test@123"
+DEFAULT_CONFIRM_PASSWORD = "Test@123"
 INVALID_MOBILE_NUMBER = "12345"
 DEFAULT_MOBILE_NUMBER = ''.join(random.choices(string.digits, k=10))
-DEFAULT_INVALID_EMAIL = "sai#222222gmail"
+DEFAULT_INVALID_EMAIL = "akash222222gmail"
 
 reg_list_1 = [
     "      ",
@@ -146,7 +144,7 @@ reg_list_8 = [
     DEFAULT_USER,
     DEFAULT_MOBILE_NUMBER,
     DEFAULT_PASS,
-    'Sai@22222222222222',
+    'Test@123',
     ''
 
 ]
@@ -170,7 +168,7 @@ reg_list_10 = [
 ]
 reg_list_11 = [
     DEFAULT_FIRST_NAME,
-    "sai@@@@###@@",
+    "akash@@@@###@@",
     DEFAULT_USER,
     DEFAULT_MOBILE_NUMBER,
     DEFAULT_PASS,
@@ -258,13 +256,13 @@ DEFAULT_INVALID_USER = 'invaliduse22rgmail.com'
 DEFAULT_INVALID_PASSWORD = "invalid_password"
 
 # Account Setting page Configuration Parameters
-DEFAULT_NICK_NAME = "saideekshith"
-DEFAULT_NEW_PASSWORD = "Sai@199828"
-DEFAULT_INVALID_NICK_NAME = "sai deekshith"
-DEFAULT_INVALID_CONFIRM_PASSWORD = "sai@   12333333"
-INVALID_NEW_PASSWORD = "sai123333"
-INVALID_CURRENT_PASSWORD = "sai@    12333"
-DEFAULT_CONFIRM_PASSWORD = "Sai@166666"
+DEFAULT_NICK_NAME = "Ahasg"
+DEFAULT_NEW_PASSWORD = "Test@1234"
+DEFAULT_INVALID_NICK_NAME = "Akash Roshan"
+DEFAULT_INVALID_CONFIRM_PASSWORD = "Akash@   12333333"
+INVALID_NEW_PASSWORD = "Akash123333"
+INVALID_CURRENT_PASSWORD = "Akash@    12333"
+DEFAULT_CONFIRM_PASSWORD = "Akash@166666"
 DEFAULT_FIRST_NAME = "  automation  testing"
 DEFAULT_LAST_NAME = "  testing  cases"
 DEFAULT_MIDDLE_NAME = "  test  case "
