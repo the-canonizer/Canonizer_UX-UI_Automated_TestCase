@@ -1,13 +1,10 @@
 import random
 
-#from selenium.webdriver import Keys, ActionChains
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome import webdriver
 from selenium.webdriver.chrome.service import Service
-#from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.wait import WebDriverWait
-#from webdriver_manager.core import driver
 
 from selenium.common.exceptions import TimeoutException
 from CanonizerBase import Page
@@ -18,7 +15,6 @@ import unittest
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-#from webdriver_manager.chrome import ChromeDriverManager
 import sys
 from Config import *
 from selenium import webdriver
@@ -75,13 +71,7 @@ class CanonizerCampStatementPage(Page):
             time.sleep(0.4)
             self.current_name = self.driver.find_element(*CampStatementIdentifiers.SELECTED_NAMESPACE).text
             if self.current_name == "sandbox testing":
-                time.sleep(10)
                 break
-
-
-
-            #time.sleep(0.4)
-
 
     def create_new_topic(self):
         self.driver.implicitly_wait(30)
@@ -119,7 +109,6 @@ class CanonizerCampStatementPage(Page):
     def add_camp_statement_without_mandatory_data(self):
         self.driver.implicitly_wait(20)
         self.click_add_camp_statement()
-        #self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("")
         self.driver.find_element(*CampStatementIdentifiers.SUBMIT_STATEMENT_BUTTON).click()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button[1]/span").click()
         return CanonizerCampStatementPage(self.driver)
