@@ -10,7 +10,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from CanonizerValidationCheckMessages import message
 from selenium.webdriver.chrome.service import Service
-#from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.remote.webelement import *
 from selenium import webdriver
 
