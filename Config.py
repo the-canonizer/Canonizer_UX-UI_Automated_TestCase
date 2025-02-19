@@ -8,7 +8,6 @@ Set All Basic Configuration required for testing Framework
 """
 
 DEFAULT_BASE_URL = "https://ux-dev.canonizer.com/"
-#DEFAULT_BASE_URL = "https://canonizer3.canonizer.com/"
 
 ARCHIVED_CAMP_URL = "https://development.canonizer.com/topic/861-can-1462-test/2-camp-1"
 ARCHIVED_EDIT_CAMP_URL = "https://development.canonizer.com/camp/history/861-can-1462-test/2-camp-1"
@@ -65,7 +64,6 @@ FIRST_NAME_WITH_SPACES = ''.join(random.choices(string.ascii_uppercase + "      
 MIDDLE_NAME = "testing"
 LAST_NAME = "automation"
 
-# Registration Page Configuration Parameters
 DEFAULT_FIRST_NAME = "kumar"
 DEFAULT_LAST_NAME = "file"
 DEFAULT_EMAIL = "akash.roshan@iffort.com"
@@ -246,10 +244,6 @@ INVALID_LONG_OTP = "7272727722"
 DEFAULT_EMAIL = "cano3@yopmail.com"
 DEFAULT_USER_INVALID = "xcvxc"
 
-# Login Page Configuration Parameters
-#DEFAULT_USER = "sania.mohan@talentelgia.in"
-#DEFAULT_PASS = "Test@123"
-
 DEFAULT_USER = "akash.roshan@iffort.com"
 DEFAULT_PASS = "Test@123"
 DEFAULT_INVALID_USER = 'invaliduse22rgmail.com'
@@ -269,7 +263,6 @@ DEFAULT_MIDDLE_NAME = "  test  case "
 
 # support camps tab Configuration Parameters
 DEFAULT_TOPIC_NAME = "Test"
-# //input [@aria-activedescendant = 'PlacesAutocomplete__suggestion-ChIJVaU9EY4UrjsRIrtCkznuBEc']
 DEFAULT_UNVERIFIED_PHONE_NUMBER = "1234567890"
 DEFAULT_INVALID_PHONE_NUMBER = "1212121212"
 DEFAULT_VALID_PHONE_NUMBER = ""
@@ -278,8 +271,7 @@ DEFAULT_INVALID_EMAIL_FORMAT = "test@test"
 
 
 # Create New Topic Configuration Parameters
-# DEFAULT_NICK_NAME = "sania_talentelgia"
-# DEFAULT_TOPIC_NAME = "testing4546"
+
 DEFAULT_NAMESPACE = ""
 DEFAULT_SUMMARY = "Default note"
 DUPLICATE_TOPIC_NAME = "Theories of Consciousness"
