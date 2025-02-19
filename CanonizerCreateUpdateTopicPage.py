@@ -14,7 +14,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 
 
-# from webdriver_manager.chrome import ChromeDriverManager
 
 
 class CanonizerCreateNewTopic(Page):
@@ -39,7 +38,7 @@ class CanonizerCreateNewTopic(Page):
 
     def enter_topic_name(self, topic_name):
         self.driver.implicitly_wait(30)
-        # WebDriverWait(self.driver, 2).until(EC.presence_of_element_located((By.ID, 'create_new_topic_topic_name')))
+         WebDriverWait(self.driver, 2).until(EC.presence_of_element_located((By.ID, 'create_new_topic_topic_name')))
         self.find_element(*CreateTopicIdentifiers.TOPIC_NAME).send_keys(topic_name)
 
     def entering_data_fields(self, topic_name):
@@ -209,18 +208,16 @@ class CanonizerUpdateTopicPage(Page):
         except TimeoutException:
             pass
 
-            # Browse to Browse Page
+             Browse to Browse Page
         self.hover(*CampForumIdentifiers.BROWSE)
         self.find_element(*CampForumIdentifiers.BROWSE).click()
 
-        # Click on Search Topic
         self.hover(*CampForumIdentifiers.SEARCH_TOPIC)
         self.find_element(*CampForumIdentifiers.SEARCH_TOPIC).send_keys(topic_name)
         self.hover(*CampForumIdentifiers.SEARCH_ICON)
         self.find_element(*CampForumIdentifiers.SEARCH_ICON).click()
         self.hover(*CampForumIdentifiers.TOPIC_CLICK)
         self.find_element(*CampForumIdentifiers.TOPIC_CLICK).click()
-        # Click on Manage/edit Topic
         try:
             WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((By.CLASS_NAME, 'ant-btn ant-btn-default btn-green')))
