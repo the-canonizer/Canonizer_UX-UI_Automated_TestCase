@@ -44,10 +44,6 @@ class CanonizerBrowsePage(Page):
 
     def click_only_my_topics_button(self):
         self.driver.implicitly_wait(30)
-        print("Going  at browse page")
-        #self.click_browse_page_button()
-        print("came at browse page")
-        time.sleep(10)
         self.find_element(*BrowsePageIdentifiers.ONLY_MY_TOPICS).click()
         return CanonizerBrowsePage(self.driver)
 
@@ -67,7 +63,6 @@ class CanonizerBrowsePage(Page):
             time.sleep(0.4)
             self.current_name = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/form/div/div[1]/div[1]/div/div/div/div/div[2]/div/span[2]").text
             if self.current_name == "sandbox testing":
-                time.sleep(10)
                 break
             self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/form/div/div[1]/div[1]/div/div/div/div/div[2]/div/span[2]").click()
     def select_dropdown_value(self):
@@ -103,7 +98,6 @@ class CanonizerBrowsePage(Page):
 
     def algo_dropdown_filter(self):
         self.driver.implicitly_wait(30)
-        print("testing")
         self.driver.find_element(By.CLASS_NAME, "ant-btn ant-btn-default xl:w-[277px] text-canBlack border border-canGrey2 py-2.5 lg:px-5 !h-[44px] refine-btn lg:!text-sm !text-sm font-medium flex items-center justify-between gap-2.5 rounded-lg bg-canGray")
         #self.driver.find_element(*CreateTopicIdentifiers.REFINE_BUTTON_FILTER).click()
 
