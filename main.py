@@ -1,7 +1,6 @@
 import unittest
 from datetime import datetime
 from subprocess import run
-# import HtmlTestRunner
 import requests
 import xmlrunner as xmlrunner
 from selenium.webdriver.common import keys
@@ -53,16 +52,12 @@ class TestPages:
         # options.add_argument('headless')
 
         options.add_argument("--start-maximized")
-        # options.add_argument("/home/vivekkumar/.config/google-chrome/profile")
 
-        # self.driver = webdriver.Chrome(ChromeDriverManager().install())
-        # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         self.driver = webdriver.Chrome()
         self.driver.get(DEFAULT_BASE_URL)
         self.driver.implicitly_wait(30)
 
     def driver(self):
-        # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         self.driver = webdriver.Chrome()
         self.action = ActionChains(self.driver)
 
@@ -72,7 +67,6 @@ class TestPages:
         :param flag:
         :return:
         """
-        # result = CanonizerLoginPage(self.driver).click_login_page_button().login_with_valid_user(DEFAULT_USER, DEFAULT_PASS).get_url()
         self.driver.implicitly_wait(30)
         CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_functionality_by_entering_the_registered_credential(DEFAULT_USER, DEFAULT_PASS)
@@ -1128,7 +1122,6 @@ class TestPages:
         topic_url = self.driver.current_url
         camp_url = topic_url.replace("topic", "camp/create")
         self.driver.get(camp_url)
-        #time.sleep(60) one minute hold
         self.driver.get(camp_url)
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1142,7 +1135,6 @@ class TestPages:
         topic_url = self.driver.current_url
         statement_url = topic_url.replace("topic", "create/statement")
         self.driver.get(statement_url)
-        #time.sleep(60) one minute hold
         self.driver.get(statement_url)
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1152,7 +1144,6 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.get(UPLOAD_FILE_URL)
-        #time.sleep(60) one minute hold
         self.driver.get(UPLOAD_FILE_URL)
 
         result = self.driver.current_url
@@ -1161,10 +1152,7 @@ class TestPages:
     def test_authentication_expiry_for_account_setting(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        time.sleep(5)
-
         self.driver.get(ACCOUNT_SETTING_URL)
-        #time.sleep(60) one minute hold
         self.driver.get(ACCOUNT_SETTING_URL)
 
         result = self.driver.current_url
@@ -1176,7 +1164,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get(SUPPORTED_CAMP_URL)
-        #time.sleep(60) one minute hold
         self.driver.get(SUPPORTED_CAMP_URL)
 
         result = self.driver.current_url
@@ -1187,7 +1174,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get(NICKNAME_URL)
-        #time.sleep(60) one minute hold
         self.driver.get(NICKNAME_URL)
 
         result = self.driver.current_url
@@ -1198,7 +1184,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get(USER_PREFERENCE_URL)
-        #time.sleep(60) one minute hold
         self.driver.get(USER_PREFERENCE_URL)
 
         result = self.driver.current_url
@@ -1209,7 +1194,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get(DIRECT_SUPPORTED_CAMP_URL)
-        #time.sleep(60) one minute hold
         self.driver.get(DIRECT_SUPPORTED_CAMP_URL)
 
         result = self.driver.current_url
@@ -1220,7 +1204,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get(DELEGATE_SUPPORT_URL)
-        #time.sleep(60) one minute hold
         self.driver.get(DELEGATE_SUPPORT_URL)
 
         result = self.driver.current_url
@@ -1231,7 +1214,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get(SUBSCRIPTION_URL)
-        #time.sleep(60) one minute hold
         self.driver.get(SUBSCRIPTION_URL)
 
         result = self.driver.current_url
@@ -1242,7 +1224,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get(SOCIAL_AUTH)
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1253,7 +1234,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get(CHANGE_PASSWORD)
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1268,7 +1248,6 @@ class TestPages:
         topic_url = self.driver.current_url
         statement_url = topic_url.replace("topic", "addnews")
         self.driver.get(statement_url)
-        #time.sleep(60) one minute hold
         self.driver.get(statement_url)
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1277,7 +1256,6 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        #time.sleep(60) one minute hold
         self.driver.refresh()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1288,7 +1266,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get(NOTIFICATION_URL)
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1320,8 +1297,6 @@ class TestPages:
     def test_authentication_header_help(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        #time.sleep(60) one minute hold
-
         self.driver.get(HELP_URL)
         self.driver.refresh()
 
@@ -1333,8 +1308,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.find_element(*HomePageIdentifiers.FOOTER_BROWSE).click()
-
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         try:
@@ -1349,7 +1322,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.find_element(*HomePageIdentifiers.FOOTER_CREATE_TOPIC.click()
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1360,7 +1332,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.find_element(*HomePageIdentifiers.FOOTER_UPLOAD.click()
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1371,7 +1342,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.find_element(*HomePageIdentifiers.FOOTER_VIDEOS.click()
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1382,7 +1352,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.find_element(*HomePageIdentifiers.FOOTER_HELP.click()
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1393,7 +1362,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.find_element(*HomePageIdentifiers.FOOTER_WHITE_PAPER.click()
-        #time.sleep(60) one minute hold
         self.driver.refresh()
         old_window = self.driver.current_window_handle
 
@@ -1405,7 +1373,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.find_element(*HomePageIdentifiers.FOOTER_PRIVACY.click()
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1416,7 +1383,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.find_element(*HomePageIdentifiers.FOOTER_TERM_CONDITION.click()
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1429,7 +1395,6 @@ class TestPages:
         self.login_to_canonizer_app()
 
         self.driver.get("https://ux-dev.canonizer.com/topic/history/6669-Test-dlkskndlksndl")
-        #time.sleep(60) one minute hold
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1464,7 +1429,6 @@ class TestPages:
 
     def test_upload_file_with_non_admin(self):
         self.driver.implicitly_wait(30)
-        #self.login_to_canonizer_app()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_user2(DEFAULT_USER_2, DEFAULT_PASS_2)
         self.driver.get(UPLOAD_FILE_URL)
         result = self.driver.current_url
