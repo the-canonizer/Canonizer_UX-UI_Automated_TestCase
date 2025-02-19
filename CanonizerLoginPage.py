@@ -10,7 +10,6 @@ from Identifiers import LoginPageIdentifiers
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service
-#from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.remote.webelement import *
 from selenium import webdriver
 from Config import *
@@ -123,13 +122,11 @@ class CanonizerLoginPage(Page):
         return CanonizerLoginPage(self.driver)
 
     def verify_the_login_page(self, email, password):
-        #self.click_on_login_button()
         self.find_element(*LoginPageIdentifiers.EMAIL).clear()
         self.find_element(*LoginPageIdentifiers.EMAIL).send_keys(email)
         self.find_element(*LoginPageIdentifiers.PASSWORD).clear()
         self.find_element(*LoginPageIdentifiers.PASSWORD).send_keys(password)
         self.driver.find_element(By.ID, "login-submit-btn").click()
-        #self.find_element(*LoginPageIdentifiers.SUBMIT).click()
 
     def click_on_close_icon_button(self):
         self.click_on_login_button()
@@ -175,7 +172,6 @@ class CanonizerLoginPage(Page):
         self.verify_the_login_page(default_user, default_pass)
         return CanonizerLoginPage(self.driver)
     def verify_the_forget_password_button(self):
-        #self.click_on_login_button()
         self.hover(*LoginPageIdentifiers.FORGET_PASSWORD)
         self.find_element(*LoginPageIdentifiers.FORGET_PASSWORD).click()
         self.find_element(*LoginPageIdentifiers.FORGET_PASSWORD_TITLE).click()
