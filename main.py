@@ -1529,7 +1529,7 @@ class TestPages:
         self.login_to_canonizer_app()
         self.driver.get(HEADER_VIDEOS)
         result = self.driver.find_element(*BrowsePageIdentifiers.VIDEOS_THUMBNAIL).get_attribute("src")
-        assert "https://ux-dev.canonizer.com/_next/image?url=https%3A%2F%2Fux-dev.canonizer.com%2Ffiles%2Fvideos%2Fconsciousness%2Fperceiving_a_strawberry_thumb.png&w=3840&q=75" in result
+        assert "https://ux-dev.canonizer.com/_next/image?url=https%3A%2F%2Fux-dev.canonizer.com%2Ffiles%2Fvideos%2Fconsciousness%2Fintroduction_thumb.png&w=3840&q=75" in result
 
     
     def teardown_method(self):
