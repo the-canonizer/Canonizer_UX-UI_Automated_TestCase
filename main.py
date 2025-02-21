@@ -1546,6 +1546,23 @@ class TestPages:
         result = self.driver.find_element(*BrowsePageIdentifiers.ELASTIC_SEARCH_URL).text
         assert "Search Results for " in result
 
+     def test_support_camp_error_first_time(self):
+        print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_VALID_DATA')))
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        time.sleep(5)
+        self.driver.find_element(*SupportValueIdentifiers.MANAGE_SUPPORT).click()
+        time.sleep(5)
+        self.driver.find_element(*SupportValueIdentifiers.DELEGATE_SUPPORT_SUBMIT).click()
+        time.sleep(2)
+
+        result = self.driver.find_element(*SupportValueIdentifiers.SUPPORT_POP_UP).text
+        assert "Thank you for adding your support to camp" in result
+
     
     def teardown_method(self):
 
