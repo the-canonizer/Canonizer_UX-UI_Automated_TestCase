@@ -687,6 +687,7 @@ class BrowsePageIdentifiers(object):
     TOPIC_TAG = (By.ID, "browse-topic-tags-item")
     TOPIC_SEARCH_COUNT = (By.XPATH, "/html/body/div[1]/section/section/main/div[2]/aside/div/div/div/a[2]/button/span[2]")
     VIDEOS_THUMBNAIL = (By.ID, "videos-category-thumbnail")
+    ELASTIC_SEARCH_URL = (By.ID, "auto_search_section_placeholder")
     
 class UploadFileIdentifiers(object):
     """
