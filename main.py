@@ -1536,14 +1536,14 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.get(TREE_SEARCH_URL)
-        result = self.driver.find_element(By.ID, "auto_search_section_placeholder").text
+        result = self.driver.find_element(*BrowsePageIdentifiers.ELASTIC_SEARCH_URL).text
         assert "Search Results for " in result
 
      def test_agree_search_crash(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.get(AGREE_SEARCH_URL)
-        result = self.driver.find_element(By.ID, "auto_search_section_placeholder").text
+        result = self.driver.find_element(*BrowsePageIdentifiers.ELASTIC_SEARCH_URL).text
         assert "Search Results for " in result
 
     
