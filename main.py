@@ -1563,6 +1563,24 @@ class TestPages:
         result = self.driver.find_element(*SupportValueIdentifiers.SUPPORT_POP_UP).text
         assert "Thank you for adding your support to camp" in result
 
+    def test_create_topic_edit_draft_crash(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("//New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampStatementPage(self.driver).click_add_camp_statement()
+        self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("create new statement")
+        self.driver.find_element(*CampStatementIdentifiers.SAVE_DRAFT).click()
+        statement = self.driver.current_url
+        topic = statement.replace("create/statement", "topic")
+        self.driver.get(topic)
+        self.driver.find_element(*CampStatementIdentifiers.SAVE_DRAFT).click()
+        result = self.driver.find_element(*CampStatementIdentifiers.EDIT_DRAFT).text
+
+        assert "Save As Draft" in result
+
     
     def teardown_method(self):
 
