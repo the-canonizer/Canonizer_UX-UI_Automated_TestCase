@@ -1529,7 +1529,22 @@ class TestPages:
         self.login_to_canonizer_app()
         self.driver.get(HEADER_VIDEOS)
         result = self.driver.find_element(*BrowsePageIdentifiers.VIDEOS_THUMBNAIL).get_attribute("src")
-        assert "https://ux-dev.canonizer.com/_next/image?url=https%3A%2F%2Fux-dev.canonizer.com%2Ffiles%2Fvideos%2Fconsciousness%2Fintroduction_thumb.png&w=3840&q=75" in result
+        thumnail_link = "https://ux-dev.canonizer.com/_next/image?url=https%3A%2F%2Fux-dev.canonizer.com%2Ffiles%2Fvideos%2Fconsciousness%2Fintroduction_thumb.png&w=3840&q=75"
+        assert thumnail_link in result
+
+     def test_tree_search_crash(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.get(TREE_SEARCH_URL)
+        result = self.driver.find_element(By.ID, "auto_search_section_placeholder").text
+        assert "Search Results for " in result
+
+     def test_agree_search_crash(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        self.driver.get(AGREE_SEARCH_URL)
+        result = self.driver.find_element(By.ID, "auto_search_section_placeholder").text
+        assert "Search Results for " in result
 
     
     def teardown_method(self):
