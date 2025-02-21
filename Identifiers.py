@@ -515,6 +515,8 @@ class CampStatementIdentifiers(object):
     CAMP_NAME_1 = (By.XPATH, "/html/body/div[1]/section/div[2]/div[1]/nav/ol/li[4]/span[1]/div/a")
     CAMP_NAME_2 = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[2]/div/div/div/div/div/div/div[2]/div[2]/div/h2")
     TEST_CAMP = (By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span")
+    SAVE_DRAFT = (By.ID, "save-draft-button")
+    EDIT_DRAFT = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[2]/div[2]/div/div/div[2]/button/span[1]")
 
 
 class CampHistoryIdentifiers(object):
