@@ -71,6 +71,7 @@ class CanonizerCreateCampPage(Page):
         self.driver.implicitly_wait(10)
         args = list(args[0])
         self.enter_camp_name(args[2])
+        self.enter_camp_name(args[2])
         self.click_create_camp_button()
     def disable_create_camp(self, *args):
         self.driver.implicitly_wait(10)
