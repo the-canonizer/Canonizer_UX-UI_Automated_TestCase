@@ -590,6 +590,8 @@ class SupportValueIdentifiers(object):
     NICK_NAME_ASTERISK = (By.XPATH, '(//span[@class = "required"])')
     TOPIC_NAME_ASTERISK = (By.XPATH, '(//span[@class = "required"])[2]')
     NAMESPACE_ASTERISK = (By.XPATH, '(//span[@class = "required"])[3]')
+    DELEGATE_SUPPORT_SUBMIT = (By.ID, "delegate-support-drawer-submit-btn")
+    SUPPORT_POP_UP = (By.CLASS_NAME, "ant-notification-notice-description")
 class UploadFileIdentifiers(object):
     """
     Class to hold the Browse Page Identifiers
