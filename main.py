@@ -35,6 +35,7 @@ from CanonizerCreateUpdateTopicPage import CanonizerCreateNewTopic, CanonizerUpd
 
 from CanonizerLoginPage import CanonizerLoginPage
 from CanonizerRegistrationPage import CanonizerRegisterPage
+from CanonizerAccountPage import CanonizerPofilePage
 from Identifiers import RegistrationPageIdentifiers, CreateTopicIdentifiers
 
 
@@ -1152,9 +1153,7 @@ class TestPages:
     def test_authentication_expiry_for_account_setting(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.get(ACCOUNT_SETTING_URL)
-        self.driver.get(ACCOUNT_SETTING_URL)
-
+        CanonizerPofilePage(self.driver).profile_button()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
@@ -1163,8 +1162,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get(SUPPORTED_CAMP_URL)
-        self.driver.get(SUPPORTED_CAMP_URL)
+        CanonizerPofilePage(self.driver).profile_page_direct_supported_camp_tab()
 
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
@@ -1172,20 +1170,14 @@ class TestPages:
     def test_authentication_expiry_for_nicknames(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-
-        self.driver.get(NICKNAME_URL)
-        self.driver.get(NICKNAME_URL)
-
+        CanonizerPofilePage(self.driver).profile_page_nickname_tab()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
     def test_authentication_expiry_for_user_preference(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-
-        self.driver.get(USER_PREFERENCE_URL)
-        self.driver.get(USER_PREFERENCE_URL)
-
+        CanonizerPofilePage(self.driver).profile_page_preferences_tab()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
@@ -1193,49 +1185,35 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.get(DIRECT_SUPPORTED_CAMP_URL)
-        self.driver.get(DIRECT_SUPPORTED_CAMP_URL)
-
+        CanonizerPofilePage(self.driver).profile_page_direct_supported_camp_tab()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
     def test_authentication_expiry_for_delegate_supported_camp(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-
-        self.driver.get(DELEGATE_SUPPORT_URL)
-        self.driver.get(DELEGATE_SUPPORT_URL)
-
+        CanonizerPofilePage(self.driver).profile_page_delegate_supported_camp_tab()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
     def test_authentication_expiry_for_subscriptions(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-
-        self.driver.get(SUBSCRIPTION_URL)
-        self.driver.get(SUBSCRIPTION_URL)
-
+        CanonizerPofilePage(self.driver).profile_page_mysubscription_tab()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
     def test_authentication_social_oauth_verification(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-
-        self.driver.get(SOCIAL_AUTH)
-        self.driver.refresh()
-
+        CanonizerPofilePage(self.driver).profile_page_account_setting_social_auth_tab()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
     def test_authentication_change_password(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-
-        self.driver.get(CHANGE_PASSWORD)
-        self.driver.refresh()
-
+        CanonizerPofilePage(self.driver).profile_page_account_setting_password_tab()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
