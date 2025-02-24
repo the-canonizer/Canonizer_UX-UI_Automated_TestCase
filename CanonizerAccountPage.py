@@ -22,39 +22,39 @@ class CanonizerPofilePage(Page):
 
     def profile_button(self):
         self.driver.implicitly_wait(30)
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=profile_info")
+        self.driver.get(ACCOUNT_SETTING_URL)
         return CanonizerPofilePage(self.driver)
 
     def profile_page_nickname_tab(self):
         self.driver.implicitly_wait(30)
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=nick_name")
+        self.driver.get(NICKNAME_URL)
         return CanonizerPofilePage(self.driver)
 
     def profile_page_preferences_tab(self):
         self.driver.implicitly_wait(30)
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=user_preferences")
+        self.driver.get(USER_PREFERENCE_URL)
         return CanonizerPofilePage(self.driver)
 
     def profile_page_direct_supported_camp_tab(self):
         self.driver.implicitly_wait(30)
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=direct_supported_camps")
+        self.driver.get(SUPPORTED_CAMP_URL)
         return CanonizerPofilePage(self.driver)
 
     def profile_page_delegate_supported_camp_tab(self):
         self.driver.implicitly_wait(30)
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=delegate_supported_camp")
+        self.driver.get(DELEGATE_SUPPORT_URL)
         return CanonizerPofilePage(self.driver)
     def profile_page_mysubscription_tab(self):
         self.driver.implicitly_wait(30)
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=subscriptions")
+        self.driver.get(SUBSCRIPTION_URL)
         return CanonizerPofilePage(self.driver)
 
     def profile_page_account_setting_social_auth_tab(self):
         self.driver.implicitly_wait(30)
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=social_oauth_verification")
+        self.driver.get(SOCIAL_AUTH)
         return CanonizerPofilePage(self.driver)
 
     def profile_page_account_setting_password_tab(self):
         self.driver.implicitly_wait(30)
-        self.driver.get("https://ux-dev.canonizer.com/settings?tab=change_password")
+        self.driver.get(CHANGE_PASSWORD)
         return CanonizerPofilePage(self.driver)
