@@ -30,7 +30,6 @@ class CanonizerPofileUpdatePage(Page):
         self.driver.implicitly_wait(30)
         self.driver.get("https://ux-dev.canonizer.com/settings?tab=profile_info")
         self.driver.find_element(By.ID, "firstName").send_keys("testfirstname")
-        time.sleep(2)
         self.driver.find_element(By.ID, "profileUpdate").click()
         return CanonizerPofileUpdatePage(self.driver)
 
