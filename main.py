@@ -1574,7 +1574,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).enter_first_name()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[4]/div/div/div/div/div/span[2]").text
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
 
         assert "Profile updated successfully." in result
 
@@ -1583,7 +1583,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).enter_last_name()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[4]/div/div/div/div/div/span[2]").text
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
 
         assert "Profile updated successfully." in result
 
@@ -1591,7 +1591,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).select_date_of_birth()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[4]/div/div/div/div/div/span[2]").text
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
 
         assert "Profile updated successfully." in result
 
@@ -1599,7 +1599,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).select_gender()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[4]/div/div/div/div/div/span[2]").text
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
 
         assert "Profile updated successfully." in result
 
@@ -1607,7 +1607,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).enter_phone_number()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[4]/div/div/div/div/div/span[2]").text
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
 
         assert "Profile updated successfully." in result
 
@@ -1615,7 +1615,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).enter_address_1()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[4]/div/div/div/div/div/span[2]").text
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
 
     
     def teardown_method(self):
