@@ -1249,6 +1249,17 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    def test_authentication_notification_delete(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+
+        self.driver.get(NOTIFICATION_URL)
+        self.driver.find_element(*BrowsePageIdentifiers.DELETE_NOTIFICATION).click()
+
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/login" in result
+
+
     def test_authentication_header_browse_pge(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
