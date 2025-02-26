@@ -58,3 +58,15 @@ class CanonizerPofilePage(Page):
         self.driver.implicitly_wait(30)
         self.driver.get(CHANGE_PASSWORD)
         return CanonizerPofilePage(self.driver)
+
+       
+    def profile_page_public_crash(self):
+        self.driver.implicitly_wait(30) 
+        self.driver.get(ACCOUNT_SETTING_URL)
+        action = ActionChains(self.driver)
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[2]/div/div/div/div/form/div[1]/div[1]/div/div/div[2]/div/div/span/span/span[2]/div/div/span[2]").click()
+        action.key_down(Keys.DOWN).perform()
+        action.key_down(Keys.ENTER).perform()
+        self.driver.find_element(By.ID, "profileUpdate").click()
+        self.driver.get(USER_PREFERENCE_URL)
+        return CanonizerPofilePage(self.driver)   
