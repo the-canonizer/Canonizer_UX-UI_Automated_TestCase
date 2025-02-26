@@ -165,6 +165,14 @@ class ProfileInfoIdentifiersPage(object):
     FILE_UPOADED_NUMBER = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[1]/div/div[1]")
     USERNAME_UPPER = (By.ID, "setting_section_user_profile_name")
     PROFILE_UPDATED_POP_UP = (By.XPATH, "/html/body/div[4]/div/div/div/div/div/span[2]")
+    PREFERENCE_SAVE_BUTTON = (By.ID, "prefrence_tags_save_btn_unique")
+    NICKNAME = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[2]/div/div/section/h5/span")
+    PREFERENCE = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[2]/div/div/section/h5/span")
+    DIRECT_SUPPORTED = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[2]/div/div/div/div/div/div/div[1]/div[1]/h3") 
+    DELEGATE_SUPPORT = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[2]/div/div/div/div[1]/div/div[1]/div[1]/h3")
+    MY_SUBCRIPTION = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[2]/div/div/div/h5/span")
+    SOCIAL_AUTH = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[2]/div/div/section/h5/span")
+    CHANGE_PASSWORD = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div[2]/div/div/section/h5/span")
 
 
 class CanonizerSupportCampIdentifiersPage(object):
