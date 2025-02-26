@@ -1543,11 +1543,8 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
-        time.sleep(5)
         self.driver.find_element(*SupportValueIdentifiers.MANAGE_SUPPORT).click()
-        time.sleep(5)
         self.driver.find_element(*SupportValueIdentifiers.DELEGATE_SUPPORT_SUBMIT).click()
-        time.sleep(2)
 
         result = self.driver.find_element(*SupportValueIdentifiers.SUPPORT_POP_UP).text
         assert "Thank you for adding your support to camp" in result
@@ -1570,7 +1567,57 @@ class TestPages:
 
         assert "Save As Draft" in result
 
-  def test_update_first_name(self):
+
+    def test_profile_page_nickname_tab(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerPofilePage(self.driver).profile_page_nickname_tab()
+
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.NICKNAME).text
+        assert "NICKNAMES" in result
+
+    def test_profile_page_preferences_tab(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerPofilePage(self.driver).profile_page_preferences_tab()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.PREFERENCE).text
+        assert "PREFERENCES" in result
+
+    def test_profile_page_direct_supported_camp_tab(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerPofilePage(self.driver).profile_page_direct_supported_camp_tab()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.DIRECT_SUPPORTED).text
+        assert "DIRECT SUPPORTED CAMPS" in result
+
+    def test_profile_page_delegate_supported_camp_tab(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerPofilePage(self.driver).profile_page_delegate_supported_camp_tab()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.DELEGATE_SUPPORT).text
+        assert "DELEGATED SUPPORTED CAMPS" in result
+    def test_profile_page_mysubscription_tab(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerPofilePage(self.driver).profile_page_mysubscription_tab()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.MY_SUBCRIPTION).text
+        assert "My Subscriptions" in result
+
+    def test_profile_page_account_setting_social_auth_tab(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerPofilePage(self.driver).profile_page_account_setting_social_auth_tab()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.SOCIAL_AUTH).text
+        assert "SOCIAL AUTH" in result
+
+    def test_profile_page_account_setting_password_tab(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerPofilePage(self.driver).profile_page_account_setting_password_tab()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.CHANGE_PASSWORD).text
+        assert "CHANGE PASSWORD" in result
+    
+    def test_update_first_name(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).enter_first_name()
@@ -1616,6 +1663,16 @@ class TestPages:
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).enter_address_1()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
+        assert "Profile updated successfully." in result
+
+    def test_profile_setting_public_crash(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerPofilePage(self.driver).profile_page_public_crash()
+        self.driver.find_element(*ProfileInfoIdentifiersPage.PREFERENCE_SAVE_BUTTON).click()
+        result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
+
+        assert "Profile updated successfully." in result
 
     
     def teardown_method(self):
