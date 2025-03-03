@@ -71,8 +71,8 @@ class CanonizerCampForumPage(Page):
 
     def click_start_thread_button(self):
         self.driver.implicitly_wait(30)
-        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[4]/div/div/div/button/span").click()
-        self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/div[2]/div/div/button/span[1]").click()
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span").click()
+        self.driver.find_element(By.ID, "create-thread-button").click()
         return CanonizerCampForumPage(self.driver)
 
     def enter_thread_title(self, title):
