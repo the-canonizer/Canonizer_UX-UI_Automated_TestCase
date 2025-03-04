@@ -814,6 +814,19 @@ class TestPages:
         CanonizerCampForumPage(self.driver).edit_thread()
         result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
+   
+    def test_create_post(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerCampForumPage(self.driver).create_thread_with_valid_data()
+        CanonizerCampForumPage(self.driver).thread_post_with_valid_data()
+
+        result = self.driver.find_element(By.ID, "card-title").text
+        assert "test" in result
     
 # TC_LOAD_ADD_NEWS_FEED_PAGE
     def test_load_add_news_page(self):
