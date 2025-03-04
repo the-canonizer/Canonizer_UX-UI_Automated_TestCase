@@ -32,6 +32,9 @@ from CanonizerCampForum import CanonizerCampForumPage
 from CanonizerCampStatementPage import CanonizerCampStatementPage
 from CanonizerCreateUpdateCampPage import CanonizerCreateCampPage, CanonizerEditCampPage
 from CanonizerCreateUpdateTopicPage import CanonizerCreateNewTopic, CanonizerUpdateTopicPage
+from CanonizerAccountPage import CanonizerPofilePage
+from CanonizerUploadFile import CanonizerUploadFile
+
 
 from CanonizerLoginPage import CanonizerLoginPage
 from CanonizerRegistrationPage import CanonizerRegisterPage
@@ -1412,54 +1415,43 @@ class TestPages:
 
     def test_upload_file_without_userlogin(self):
         self.driver.implicitly_wait(30)
-        self.driver.get(UPLOAD_FILE_URL)
+        CanonizerUploadFile(self.driver).upload_file_without_userlogin()
         result = self.driver.current_url
         assert "login" in result
 
     def test_upload_file_with_non_admin(self):
         self.driver.implicitly_wait(30)
-        CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_user2(DEFAULT_USER_2, DEFAULT_PASS_2)
-        self.driver.get(UPLOAD_FILE_URL)
+        CanonizerUploadFile(self.driver).upload_file_with_non_admin()
         result = self.driver.current_url
         assert "login" in result
 
     def test_upload_file_with_admin(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.get(UPLOAD_FILE_URL)
+        CanonizerUploadFile(self.driver).upload_file_with_admin()
         result = self.driver.current_url
         assert "uploadFile" in result
+
 
     def test_upload_file_less_than_5mb(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.get(UPLOAD_FILE_URL)
-        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/image.png"
-        upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
-        upload_image.send_keys(image)
-        result = self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_BUTTON).text
+        CanonizerUploadFile(self.driver).upload_file_less_than_5mb()
+        result = self.driver.find_element(By.ID, "uploadBtn").text
         assert "Upload" in result
 
     def test_upload_file_more_than_5mb(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.get(UPLOAD_FILE_URL)
-        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/10mb.jpg"
-        upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
-        upload_image.send_keys(image)
-        result = self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_SIZE_EXCEEDED).text
+        CanonizerUploadFile(self.driver).upload_file_more_than_5mb()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[2]/div[1]/span/div[2]/div/div/div/div/p").text
         assert "This file is exceeding the max limit and will not be uploaded" in result
 
     def test_uploading_file_less_than_5mb(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        self.driver.get(UPLOAD_FILE_URL)
-        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/image.png"
-        upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
-        upload_image.send_keys(image)
-        self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_FILE_NAME).send_keys("test file upload")
-        self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_BUTTON).click()
-        result = self.driver.find_element(*ProfileInfoIdentifiersPage.FILE_UPOADED_NUMBER).text
+        CanonizerUploadFile(self.driver).upload_file_less_than_5mb()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[1]/div/div[1]").text
         assert "5 Files, 0 Folder" in result
 
     def test_profile_page_name_change(self):
