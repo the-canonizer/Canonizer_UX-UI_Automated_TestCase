@@ -50,7 +50,7 @@ class CanonizerUploadFile(Page):
     def upload_file_less_than_5mb(self):
         self.driver.implicitly_wait(30)
         self.driver.get(UPLOAD_FILE_URL)
-        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/image.png"
+        image = "/home/akash/PycharmProjects/Canonizer_UX _Github/UI/image.png"
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
         upload_image.send_keys(image)
         return CanonizerUploadFile(self.driver)
@@ -58,7 +58,7 @@ class CanonizerUploadFile(Page):
     def upload_file_more_than_5mb(self):
         self.driver.implicitly_wait(30)
         self.driver.get(UPLOAD_FILE_URL)
-        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/10mb.jpg"
+        image = "/home/akash/PycharmProjects/Canonizer_UX _Github/UI/10mb.jpg"
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
         upload_image.send_keys(image)
         return CanonizerUploadFile(self.driver)
@@ -66,7 +66,7 @@ class CanonizerUploadFile(Page):
     def uploading_file_less_than_5mb(self):
         self.driver.implicitly_wait(30)
         self.driver.get(UPLOAD_FILE_URL)
-        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/image.png"
+        image = "/home/akash/PycharmProjects/Canonizer_UX _Github/UI/image.png"
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
         upload_image.send_keys(image)
         self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_FILE_NAME).send_keys("test file upload")
