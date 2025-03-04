@@ -22,7 +22,8 @@ from Config import *
 class CanonizerCampForumPage(Page):
 
     def driver(self):
-        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        self.driver = webdriver.Chrome()
+        self.action = ActionChains(self.driver)    
 
     def load_camp_forum_page(self, topic_name):
         self.driver.implicitly_wait(30)
@@ -230,11 +231,14 @@ class CanonizerCampForumPage(Page):
         self.enter_post_reply(reply)
         self.click_post_submit_button()
 
-    def thread_post_with_valid_data(self, reply):
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "Forum_cardTitle__VagbD")))
+    def thread_post_with_valid_data(self):
+        #WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "Forum_cardTitle__VagbD")))
         self.driver.implicitly_wait(20)
-        self.post_thread_reply(reply)
-        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.CLASS_NAME, "Forum_cardTitle__VagbD")))
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[1]/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").click()
+        self.driver.find_element(By.ID, "comment-button-desktop").click()
+        self.driver.find_element(By.CLASS_NAME, "ck-placeholder").send_keys("test post")
+        self.find_element(By.ID, "submit-btn").click()
+
         return CanonizerCampForumPage(self.driver)
 
     def thread_post_with_empty_reply(self, reply):
