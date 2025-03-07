@@ -1690,7 +1690,6 @@ class TestPages:
         self.driver.get(OLD_ASP_CAMP_URL)
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/6669-Test-dlkskndlksndl/1-Agreement?is_tree_open=0" in result
-        #support url
 
     def test_asp_old_urls_for_support(self):
         self.driver.implicitly_wait(30)
