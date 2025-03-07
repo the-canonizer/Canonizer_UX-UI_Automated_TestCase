@@ -31,6 +31,10 @@ TOPIC_TAG_URL = "https://ux-dev.canonizer.com/categories/9"
 TOPIC_SEARCH_URL = "https://ux-dev.canonizer.com/search?q=test"
 TREE_SEARCH_URL = "https://ux-dev.canonizer.com/search?q=tree"
 AGREE_SEARCH_URL = "https://ux-dev.canonizer.com/search?q=tree"
+OLD_ASP_TOPIC_URL = "https://ux-dev.canonizer.com/topic.asp/105"
+OLD_ASP_CAMP_URL = "https://ux-dev.canonizer.com/topic.asp/6669-Test-dlkskndlksndl/1-Agreement"
+OLD_ASP_SUPPORT_URL = "https://ux-dev.canonizer.com/secure/support.asp?topic_num=97&camp_num=1"
+
 
 
 """
