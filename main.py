@@ -1679,6 +1679,25 @@ class TestPages:
 
         assert "Profile updated successfully." in result
 
+    def test_asp_old_urls_for_topics(self):
+        self.driver.implicitly_wait(30)
+        self.driver.get(OLD_ASP_TOPIC_URL)
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/topic/105-Consciousness-Consensus-Projct/1-Agreement?is_tree_open=0" in result
+
+    def test_asp_old_urls_for_camps(self):
+        self.driver.implicitly_wait(30)
+        self.driver.get(OLD_ASP_CAMP_URL)
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/topic/6669-Test-dlkskndlksndl/1-Agreement?is_tree_open=0" in result
+        #support url
+
+    def test_asp_old_urls_for_support(self):
+        self.driver.implicitly_wait(30)
+        self.driver.get(OLD_ASP_SUPPORT_URL)
+        result = self.driver.current_url
+        assert "https://ux-dev.canonizer.com/topic/97-Mormon-Spirits/1-Agreement?is_tree_open=0" in result
+
     
     def teardown_method(self):
 
