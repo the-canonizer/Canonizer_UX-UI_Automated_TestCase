@@ -140,10 +140,18 @@ class CanonizerEditCampPage(Page):
 
     def load_camp_manage_edit_page(self):
         self.driver.implicitly_wait(30)
-        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[2]/div[2]/a/span/img").click()
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[1]/div[2]/div[2]/a/span/img").click()
         self.driver.find_element(By.ID, "threedot_dropdown_manage_camp_btn__menu_item_text").click()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div/div[1]/button/span").click()
 
+    def add_statement_for_archived_camp(self):
+        self.driver.find_element(By.ID, "is_archive").click()
+        self.driver.find_element(By.ID, "create-camp-btn").click()
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/button[1]/span").click()
+        camp_url = self.driver.current_url
+        camp_url = camp_url.replace("camp/history", "topic")
+        self.driver.get(camp_url)
+    
     def submit_camp_update_with_valid_name(self):
         self.driver.implicitly_wait(10)
         self.driver.find_element(By.ID, "create_new_camp_camp_name").send_keys("camp changed")
