@@ -497,6 +497,22 @@ class TestPages:
         result = self.driver.current_url
         assert "manage/camp" in result
 
+    def test_add_statement_for_archived_camp(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+        CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
+        CanonizerEditCampPage(self.driver).load_camp_manage_edit_page()
+        CanonizerEditCampPage(self.driver).add_statement_for_archived_camp()
+        
+        if self.driver.find_element(*CampStatementIdentifiers.ADD_STATEMENT_BUTTON).is_enabled():
+           result = "fail"
+        else:
+           result = "pass"
+        assert "pass" in result
+
 
     # TC_UPDATE_CAMP_WITH_INVALID_URL
     def test_submit_camp_update_with_invalid_url(self):
