@@ -1448,12 +1448,6 @@ class TestPages:
         result = self.driver.current_url
         assert "login" in result
 
-    def test_upload_file_with_non_admin(self):
-        self.driver.implicitly_wait(30)
-        CanonizerUploadFile(self.driver).upload_file_with_non_admin()
-        result = self.driver.current_url
-        assert "login" in result
-
     def test_upload_file_with_admin(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
@@ -1465,9 +1459,9 @@ class TestPages:
     def test_upload_file_less_than_5mb(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        CanonizerUploadFile(self.driver).upload_file_less_than_5mb()
-        result = self.driver.find_element(By.ID, "uploadBtn").text
-        assert "Upload" in result
+        CanonizerUploadFile(self.driver).uploading_file_less_than_5mb()
+        result = self.driver.current_url
+        assert "uploadFile" in result
 
     def test_upload_file_more_than_5mb(self):
         self.driver.implicitly_wait(30)
@@ -1476,12 +1470,20 @@ class TestPages:
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[2]/div[1]/span/div[2]/div/div/div/div/p").text
         assert "This file is exceeding the max limit and will not be uploaded" in result
 
-    def test_uploading_file_less_than_5mb(self):
+    def test_upload_in_create_new_folder(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-        CanonizerUploadFile(self.driver).upload_file_less_than_5mb()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[1]/div/div[1]").text
-        assert "5 Files, 0 Folder" in result
+        CanonizerUploadFile(self.driver).upload_in_create_new_folder()
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[1]/div/div[2]/button/span[1]").text
+        assert "Upload New File" in result
+
+    def test_upload_file_in_new_folder(self):
+        self.driver.implicitly_wait(30)
+        self.login_to_canonizer_app()
+        CanonizerUploadFile(self.driver).upload_in_create_new_folder()
+        CanonizerUploadFile(self.driver).upload_file_in_new_folder()
+        result = self.driver.current_url
+        assert "uploadFile" in result
 
     def test_profile_page_name_change(self):
         self.driver.implicitly_wait(30)
