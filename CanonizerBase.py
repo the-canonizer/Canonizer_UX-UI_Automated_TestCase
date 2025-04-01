@@ -36,10 +36,3 @@ class Page(object):
     def get_attribute(self):
         return self.driver.attribute
 
-
-
-
-
-
-
-
