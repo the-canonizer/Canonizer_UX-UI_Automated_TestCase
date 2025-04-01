@@ -67,5 +67,3 @@ class CanonizerPofileUpdatePage(Page):
         self.driver.find_element(By.ID, "selectAddress_1").send_keys("Hello KittyCafé")
         self.driver.find_element(By.ID, "profileUpdate").click()
         return CanonizerPofileUpdatePage(self.driver)
-
-
