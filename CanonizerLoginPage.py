@@ -116,9 +116,7 @@ class CanonizerLoginPage(Page):
 
     def click_on_login_button(self):
         self.driver.implicitly_wait(30)
-        self.hover(*LoginPageIdentifiers.LOGIN_BUTTON)
         self.find_element(*LoginPageIdentifiers.LOGIN_BUTTON).click()
-        self.driver.implicitly_wait(30)
         return CanonizerLoginPage(self.driver)
 
     def verify_the_login_page(self, email, password):
@@ -165,10 +163,10 @@ class CanonizerLoginPage(Page):
         self.driver.find_element(By.ID, "login_form_username").click()
         actions = ActionChains(self.driver)
         actions.key_down(Keys.CLEAR)
-        action.key_down(Keys.BACKSPACE).perform()
+        actions.key_down(Keys.BACKSPACE).perform()
         self.driver.find_element(By.ID, "login_form_password").click()
         actions = ActionChains(self.driver)
-        action.key_down(Keys.BACKSPACE).perform()
+        actions.key_down(Keys.BACKSPACE).perform()
         self.verify_the_login_page(default_user, default_pass)
         return CanonizerLoginPage(self.driver)
     def verify_the_forget_password_button(self):
@@ -194,9 +192,9 @@ class CanonizerLoginPage(Page):
 
 
     def verify_one_time_request_code(self, default_user):
-        self.find_element(*LoginPageIdentifiers.EMAIL).clear()
+        self.driver.implicitly_wait(30)
         self.find_element(*LoginPageIdentifiers.EMAIL).send_keys(default_user)
-        self.find_element(*LoginPageIdentifiers.REQUEST_CODE).click()
+        self.find_element(*LoginPageIdentifiers.LOGIN_REQUEST_OTP).click()
 
     def verify_one_time_request_code_with_invalid_email(self, default_user):
         self.driver.implicitly_wait(30)
