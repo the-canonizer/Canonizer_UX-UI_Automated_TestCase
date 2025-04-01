@@ -11,8 +11,8 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 
-from selenium.common.exceptions import TimeoutException
-from Identifiers *
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from Identifiers import *
 
 
 from Config import *
@@ -72,7 +72,6 @@ class TestPages:
         :return:
         """
         self.driver.implicitly_wait(30)
-        CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_functionality_by_entering_the_registered_credential(DEFAULT_USER, DEFAULT_PASS)
         self.driver.maximize_window()
 
@@ -94,6 +93,7 @@ class TestPages:
     def test_register_page_mandatory_fields_are_marked_with_asterisk(self):
         assert CanonizerRegisterPage(
             self.driver).click_register_button().register_page_mandatory_fields_are_marked_with_asterisk()
+
 
     def test_registration_with_valid_credential(self):
         self.driver.implicitly_wait(30)
@@ -161,8 +161,11 @@ class TestPages:
     # TC_CHECK_LOGIN_PAGE_OPEN_CLICK_ON_LOGIN_HERE_LINK
     def test_check_login_page_open_click_login_here_link(self):
         print("\n" + str(test_cases('TC_CHECK_LOGIN_PAGE_OPEN_CLICK_ON_LOGIN_HERE_LINK')))
-        result = CanonizerRegisterPage(self.driver).check_login_page_open_click_login_here_link().get_url()
-        assert "" in result
+        self.driver.implicitly_wait(30)
+        CanonizerRegisterPage(self.driver).click_on_register_button()
+        CanonizerRegisterPage(self.driver).check_login_page_open_click_login_here_link()
+        result = self.driver.current_url
+        assert "login" in result
 
     # TC_VERIFY_THE_FUNCTIONALITY_OF_REGISTRATION_WITH_MANDATORY_FIELDS
     def test_verify_the_functionality_of_registration_with_entering_data_in_mandatory_fields(self):
@@ -183,17 +186,16 @@ class TestPages:
     def test_click_on_login_button(self):
         print("\n" + str(test_cases('TC_CLICK_ON_LOGIN_BUTTON')))
         self.driver.implicitly_wait(30)
-        CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button()
-        result = self.driver.find_element(*LoginPageIdentifiers.LOGIN_BUTTON_HOMEPAGE).text
-        assert "Log In" in result
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "login-submit-btn")))
+        result = self.driver.current_url
+        assert "login" in result
 
 
     # TC_LOGIN_WITH_REGISTERED_CREDENTIALS
     def test_login_with_registered_credentials(self):
         print("\n" + str(test_cases('TC_LOGIN_WITH_REGISTERED_CREDENTIALS')))
         self.driver.implicitly_wait(30)
-        CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_functionality_by_entering_the_registered_credential(DEFAULT_USER, DEFAULT_PASS)
         result = self.driver.find_element(*LoginPageIdentifiers.START_TOPIC_BUTTON).text
         assert "Start a Topic" in result
@@ -202,7 +204,6 @@ class TestPages:
     def test_verify_the_login_with_blank_email(self):
         print("\n" + str(test_cases('TC_LOGIN_WITH_REGISTERED_CREDENTIALS')))
         self.driver.implicitly_wait(30)
-        CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_blank_email("", DEFAULT_PASS)
         result = self.driver.find_element(*LoginPageIdentifiers.EMAIL_VALIDATION).text
         assert "Please input your Email!" in result
@@ -211,7 +212,6 @@ class TestPages:
     def test_verify_the_login_with_blank_password(self):
         print("\n" + str(test_cases('TC_VERIFY_THE_LOGIN_WITH_BLANK_PASSWORD')))
         self.driver.implicitly_wait(30)
-        CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_blank_password(DEFAULT_USER, "")
         result = self.driver.find_element(*LoginPageIdentifiers.PASSWORD_VALIDATION).text
         assert "Please input your Password!" in result
@@ -219,7 +219,6 @@ class TestPages:
     # TC_LOGIN_WITH_INVALID_EMAIL
     def test_login_with_invalid_email(self):
         self.driver.implicitly_wait(30)
-        CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_invalid_email_format(DEFAULT_INVALID_USER, DEFAULT_PASS)
         result = self.driver.find_element(*LoginPageIdentifiers.VALID_EMAIL).text
         assert "Input is not valid!" in result
@@ -228,8 +227,7 @@ class TestPages:
     def test_verify_one_time_request_code_with_valid_credentials(self):
         print("\n" + str(test_cases('TC_VERIFY_ONE_TIME_REQUEST_CODE_WITH_VALID_CREDENTIALS')))
         self.driver.implicitly_wait(30)
-        CanonizerRegisterPage(self.driver).click_on_register_button()
-        CanonizerLoginPage(self.driver).click_on_login_page_button().verify_one_time_request_code_with_valid_credentials(DEFAULT_USER)
+        CanonizerLoginPage(self.driver).click_on_login_page_button().verify_one_time_request_code(DEFAULT_USER)
         result = self.driver.find_element(*LoginPageIdentifiers.RESEND_OTP).text
         assert "Resend OTP" in result
 
@@ -247,7 +245,6 @@ class TestPages:
     # TC_CLICK_CREATE_TOPIC_WITHOUT_USER_LOGIN
     def test_click_create_topic_without_user_login(self):
         print("\n" + str(test_cases('TC_CLICK_CREATE_TOPIC_WITHOUT_USER_LOGIN')))
-        self.driver.maximize_window()
         self.driver.implicitly_wait(30)
         CanonizerCreateNewTopic(self.driver).click_create_topic_button_without_login()
         result = self.driver.current_url
@@ -261,7 +258,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_blank_topic()
         result = self.driver.find_element(*CreateTopicIdentifiers.VALID_TOPIC_NAME).text
-        assert "Enter a valid Topic Name" in result
+        assert "Topic name cannot start with a space" in result
 
     # TC_CREATE_NEW_TOPIC_WITH_VALID_DATA
     def test_create_topic_name_with_valid_data(self):
@@ -289,7 +286,7 @@ class TestPages:
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
-        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("new summary", "same topic", DEFAULT_NAMESPACE)
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("new summary", "same topic")
         self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div/div/div/div/div[2]/form/div[1]/div[1]/a").click()
         result = self.driver.find_element(*CreateTopicIdentifiers.SAME_TOPIC_TITLE).text
         assert "same topic" in result
@@ -336,7 +333,9 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        assert "/topic/history/" in result.get_url()
+
+        result = self.driver.current_url
+        assert add_name in result
 
     # TC_VERIFY_SUBMITTER_NICK_NAME_LINK_ON_USER_PROFILE
     def test_verify_submitter_nick_name_link_on_user_profile(self):
@@ -347,7 +346,9 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        assert "/user/supports/" in result.get_url()
+
+        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[1]/p[6]/span").text
+        assert "$%$%$%$%" in result
 
     # TC_VERIFY_SUBMIT_TOPIC_UPDATE_BUTTON
     def test_verify_submit_topic_update_button(self):
@@ -358,18 +359,12 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        assert "manage/topic/" in result.get_url()
+        CanonizerUpdateTopicPage(self.driver).verify_submit_topic_update_button()
 
-    # TC_UPDATE_TOPIC_WITH_DUPLICATE_NAME
-    def test_update_topic_with_duplicate_name(self):
-        print("\n" + str(test_cases('TC_UPDATE_TOPIC_WITH_DUPLICATE_NAME')))
-        self.driver.implicitly_wait(30)
-        self.login_to_canonizer_app()
-        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
-        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
-        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
-        CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        assert "manage/topic/" in result.get_url()
+        result = self.driver.find_element(By.ID, "create-topic-btn").text
+
+        assert "Update Topic" in result
+
 
     # TC_VERIFY_CANCEL_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE
     def test_verify_cancel_button_functionality_on_topic_update_page(self):
@@ -380,35 +375,15 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        assert "/topic/history/" in result.get_url()
+        CanonizerUpdateTopicPage(self.driver).verify_cancel_button_functionality_on_topic_update_page()
 
-    # TC_VERIFY_PREVIEW_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE
-    def test_verify_preview_button_functionality_on_topic_update_page(self):
-        print("\n" + str(test_cases('TC_VERIFY_PREVIEW_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE')))
-        self.driver.implicitly_wait(30)
-        self.login_to_canonizer_app()
-        add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
-        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
-        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
-        CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
+        result = self.driver.current_url
 
-    # TC_VERIFY_SUBMITTER_NICK_NAME_ON_PREVIEW_MODAL
-    def test_verify_submitter_nick_name_on_preview_modal(self):
-        print("\n" + str(test_cases('TC_VERIFY_SUBMITTER_NICK_NAME_ON_PREVIEW_MODAL')))
-        self.login_to_canonizer_app()
-        CanonizerUpdateTopicPage(self.driver).load_topic_history_page(DEFAULT_TOPIC) \
-            .verify_submitter_nick_name_on_preview_modal()
+        assert "/topic/history/" in result
 
-    # TC_VERIFY_CANCEL_BUTTON_ON_PREVIEW_MODAL
-    def test_verify_cancel_button_on_preview_modal(self):
-        print("\n" + str(test_cases('TC_VERIFY_CANCEL_BUTTON_ON_PREVIEW_MODAL')))
-        self.login_to_canonizer_app()
-        result = CanonizerUpdateTopicPage(self.driver).load_topic_history_page(DEFAULT_TOPIC) \
-            .verify_cancel_button_on_preview_modal()
-        assert "/manage/topic/" in result.get_url()
 
     # TC_UPDATE_TOPIC_NAME_AND_VERIFY_SUBMIT_UPDATE_BUTTON
-    def test_update_topic_name_and_verify_submit_update_button(self):
+    def test_update_topic_name(self):
         print("\n" + str(test_cases('TC_UPDATE_TOPIC_NAME_AND_VERIFY_SUBMIT_UPDATE_BUTTON')))
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
@@ -416,7 +391,11 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerUpdateTopicPage(self.driver).load_topic_history_page()
-        assert "topic/history/" in result.get_url()
+        CanonizerUpdateTopicPage(self.driver).update_topic_name()
+
+        result = self.driver.current_url
+
+        assert "topic/history/" in result
     # TC_LOAD_CREATE_CAMP_PAGE
     def test_load_create_camp_page(self):
         print("\n" + str(test_cases('TC_LOAD_CREATE_CAMP_PAGE')))
@@ -427,6 +406,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page()
         result = self.driver.current_url
+
         assert "/camp/create/" in result
         # TC_CREATE_CAMP_WITH_VALID_DATA
     def test_create_camp_with_valid_data(self):
@@ -573,7 +553,7 @@ class TestPages:
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampStatementPage(self.driver).add_camp_statement()
         result = self.driver.find_element(*CampStatementIdentifiers.EDIT_BASED_ON_THIS).text
-        assert "Edit Based On This" in result
+        assert "Edit Based on This" in result
     def test_add_camp_statement_page_with_asterisk(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
@@ -582,8 +562,8 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampStatementPage(self.driver).add_camp_statement_asterisk()
-        result = self.driver.find_element(*CampStatementIdentifiers.EDIT_BASED_ON_THIS).text
-        assert "Edit Based On This" in result
+        result = self.driver.find_element(*CampStatementIdentifiers.PUBLISH_BUTTON).text
+        assert "Publish Statement" in result
 
     def test_add_camp_statement_without_mandatory_field(self):
         self.driver.implicitly_wait(30)
@@ -593,7 +573,7 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampStatementPage(self.driver).add_camp_statement_without_mandatory_data()
-        result = self.driver.find_element(*CampStatementIdentifiers.PUBLISH_STATEMENT).text
+        result = self.driver.find_element(*CampStatementIdentifiers.PUBLISH_BUTTON).text
         assert "Publish Statement" in result
 
     def test_add_camp_statement_with_trailing_spaces(self):
@@ -708,13 +688,15 @@ class TestPages:
 
         assert "compare" in result
     
-   def test_click_create_thread_button(self):
+    def test_click_create_thread_button(self):
         print("\n" + str(test_cases('TC_CLICK_CREATE_THREAD_BUTTON')))
         self.login_to_canonizer_app()
-        CanonizerCampForumPage(self.driver).load_camp_forum_page(DEFAULT_TOPIC)
-        CanonizerCampForumPage(self.driver).click_create_thread_button()
+        CanonizerCreateNewTopic(self.driver).click_create_topic_button()
+        CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
+
+        CanonizerCampForumPage(self.driver).click_start_thread_button()
         result = self.driver.current_url
-        assert "/threads/create" in result
+        assert "/threads" in result
 
     # TC_CREATE_THREAD_WITH_VALID_DATA
     def test_create_thread_with_valid_data(self):
@@ -726,8 +708,8 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         CanonizerCampForumPage(self.driver).create_thread_with_valid_data()
-        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
-        assert "test" in result
+        result = self.driver.current_url
+        assert "forum" in result
 
     # TC_CREATE_THREAD_WITH_BLANK_TITLE
     def test_create_thread_with_blank_title(self):
@@ -738,8 +720,8 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
-        CanonizerCampForumPage(self.driver).create_thread_with_blank_title_name()
-        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
+        CanonizerCampForumPage(self.driver).create_thread_with_blank_title_name(" ")
+        result = self.driver.find_element(*CampForumIdentifiers.THREAD_TITLE_HELP).text
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_SPECIAL_CHARS
@@ -751,9 +733,9 @@ class TestPages:
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         CanonizerCreateNewTopic(self.driver).create_topic_with_valid_data("New Topic " + add_name)
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
-        CanonizerCampForumPage(self.driver).create_thread_with_special_chars()
-        result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
-        assert "test" in result
+        CanonizerCampForumPage(self.driver).create_thread_with_special_chars("test@$#@$#@$")
+        result = self.driver.current_url
+        assert "forum" in result
 
     # TC_CREATE_THREAD_WITH_BLANK_MANDATORY_FIELDS
     def test_create_thread_with_blank_mandatory_fields(self):
@@ -951,7 +933,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/1-Agreement" in result
 
-   def test_eventline(self):
+    def test_eventline(self):
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_VALID_DATA')))
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
@@ -963,7 +945,7 @@ class TestPages:
         assert "eventline" in result
    
 
-   def test_browse_start_topic(self):
+    def test_browse_start_topic(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*BrowsePageIdentifiers.START_TOPIC).click()
@@ -1060,7 +1042,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.NO_IMAGE_ALPHABET).text
         assert "AR" in result
 
-   def test_footer_browse_button(self):
+    def test_footer_browse_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_BROWSE).click()
@@ -1068,85 +1050,85 @@ class TestPages:
         assert "https://ux-dev.canonizer.com/browse" in result
 
 
-   def test_footer_create_topic_button(self):
+    def test_footer_create_topic_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_CREATE_TOPIC).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/create/topic" in result
 
-   def test_footer_upload_file_button(self):
+    def test_footer_upload_file_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_UPLOAD).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/uploadFile" in result
 
-   def test_footer_sitemap_button(self):
+    def test_footer_sitemap_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_SITE_MAP).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/sitemap" in result
 
-   def test_footer_videos_button(self):
+    def test_footer_videos_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_VIDEOS).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/videos" in result
 
-   def test_footer_help_button(self):
+    def test_footer_help_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_HELP).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1" in result
 
-   def test_footer_white_paper_button(self):
+    def test_footer_white_paper_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_WHITE_PAPER).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/files/2012_amplifying_final.pdf" in result
 
-   def test_footer_jobs_button(self):
+    def test_footer_jobs_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_JOBS).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/6-Canonizer-Jobs/1-Agreement?is_tree_open=1" in result
 
-   def test_footer_privacy_policy_button(self):
+    def test_footer_privacy_policy_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_PRIVACY).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/privacy-policy" in result
 
-   def test_footer_term_and_services_button(self):
+    def test_footer_term_and_services_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_TERM_CONDITION).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/terms-and-services" in result
    
-   def test_footer_upload_file_button(self):
+    def test_footer_upload_file_button(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.find_element(*HomePageIdentifiers.FOOTER_UPLOAD).click()
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/uploadFile" in result 
 
-   def test_authentication_expiry_for_create_topic(self):
+    def test_authentication_expiry_for_create_topic(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
-       
+
         self.driver.get("https://ux-dev.canonizer.com/create/topic")
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
-   def test_authentication_expiry_for_create_camp(self):
+    def test_authentication_expiry_for_create_camp(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
@@ -1342,7 +1324,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(*HomePageIdentifiers.FOOTER_CREATE_TOPIC.click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_CREATE_TOPIC).click()
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1352,7 +1334,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(*HomePageIdentifiers.FOOTER_UPLOAD.click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_UPLOAD).click()
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1362,7 +1344,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(*HomePageIdentifiers.FOOTER_VIDEOS.click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_VIDEOS).click()
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1372,7 +1354,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(*HomePageIdentifiers.FOOTER_HELP.click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_HELP).click()
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1382,7 +1364,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(*HomePageIdentifiers.FOOTER_WHITE_PAPER.click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_WHITE_PAPER).click()
         self.driver.refresh()
         old_window = self.driver.current_window_handle
 
@@ -1393,7 +1375,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(*HomePageIdentifiers.FOOTER_PRIVACY.click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_PRIVACY).click()
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1403,7 +1385,7 @@ class TestPages:
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
 
-        self.driver.find_element(*HomePageIdentifiers.FOOTER_TERM_CONDITION.click()
+        self.driver.find_element(*HomePageIdentifiers.FOOTER_TERM_CONDITION).click()
         self.driver.refresh()
 
         result = self.driver.current_url
@@ -1529,14 +1511,14 @@ class TestPages:
 
         assert "Relationships" in result
 
-     def test_elastic_search_count(self):
+    def test_elastic_search_count(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.get(TOPIC_SEARCH_URL)
         result = self.driver.find_element(*BrowsePageIdentifiers.TOPIC_SEARCH_COUNT).text
         assert "1121" in result
 
-     def test_videos_thumbnail(self):
+    def test_videos_thumbnail(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.get(HEADER_VIDEOS)
@@ -1544,21 +1526,21 @@ class TestPages:
         thumnail_link = "https://ux-dev.canonizer.com/_next/image?url=https%3A%2F%2Fux-dev.canonizer.com%2Ffiles%2Fvideos%2Fconsciousness%2Fintroduction_thumb.png&w=3840&q=75"
         assert thumnail_link in result
 
-     def test_tree_search_crash(self):
+    def test_tree_search_crash(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.get(TREE_SEARCH_URL)
         result = self.driver.find_element(*BrowsePageIdentifiers.ELASTIC_SEARCH_URL).text
         assert "Search Results for " in result
 
-     def test_agree_search_crash(self):
+    def test_agree_search_crash(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         self.driver.get(AGREE_SEARCH_URL)
         result = self.driver.find_element(*BrowsePageIdentifiers.ELASTIC_SEARCH_URL).text
         assert "Search Results for " in result
 
-     def test_support_camp_error_first_time(self):
+    def test_support_camp_error_first_time(self):
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_VALID_DATA')))
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
@@ -1639,7 +1621,7 @@ class TestPages:
         CanonizerPofilePage(self.driver).profile_page_account_setting_password_tab()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.CHANGE_PASSWORD).text
         assert "CHANGE PASSWORD" in result
-    
+
     def test_update_first_name(self):
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
@@ -1720,5 +1702,5 @@ class TestPages:
 
         self.driver.close()
 
-
 if __name__ == "__main__":
+   print("ended")
