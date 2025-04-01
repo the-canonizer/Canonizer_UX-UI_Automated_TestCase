@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+
 from CanonizerBase import Page
 from CanonizerValidationCheckMessages import message
 from Identifiers import RegistrationPageIdentifiers
@@ -75,6 +76,10 @@ class CanonizerRegisterPage(Page):
             pass'''
         self.find_element(*RegistrationPageIdentifiers.REGISTER_NOW).click()
 
+    def click_register_button(self):
+
+        self.find_element(*RegistrationPageIdentifiers.REGISTER_BUTTON).click()
+
     def register(self, *args):
         self.enter_first_name(args[0])
         self.enter_last_name(args[1])
@@ -82,7 +87,7 @@ class CanonizerRegisterPage(Page):
         self.enter_mobile_number(args[3])
         self.enter_password(args[4])
         self.enter_confirm_password(args[5])
-        self.click_register_now_button()
+        self.click_register_button()
 
     def join_now(self):
 
@@ -160,22 +165,17 @@ class CanonizerRegisterPage(Page):
         return CanonizerRegisterPage(self.driver)
 
     def click_on_register_button(self):
-        self.hover(*RegistrationPageIdentifiers.REGISTER)
+        self.driver.implicitly_wait(30)
         self.find_element(*RegistrationPageIdentifiers.REGISTER).click()
-        self.hover(*RegistrationPageIdentifiers.REGISTRATION_TITLE)
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "register-btn")))
+
         return CanonizerRegisterPage(self.driver)
 
     def check_login_page_open_click_login_here_link(self):
-        self.find_element(*RegistrationPageIdentifiers.REGISTER).click()
-        try:
-            WebDriverWait(self.driver, 5).until(
-                EC.visibility_of_element_located((By.CLASS_NAME, 'ant-typography Registration_ft_link__tyQ1C')))
-        except TimeoutException:
-            pass
+        self.driver.implicitly_wait(30)
         self.find_element(*RegistrationPageIdentifiers.LOGIN_HERE).click()
-        self.hover(*RegistrationPageIdentifiers.LOGIN_TITLE)
-        title = self.find_element(*RegistrationPageIdentifiers.LOGIN_TITLE).text
-        if title == message['Create_Topic']['LOGIN_TITLE']:
-            return CanonizerRegisterPage(self.driver)
-        else:
-            print("Title not found")
+        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "login-submit-btn")))
+
+        return CanonizerRegisterPage(self.driver)
+
+
