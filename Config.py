@@ -60,6 +60,7 @@ import string
 def random_char(char_num):
     return ''.join(random.choice(string.ascii_letters) for _ in range(char_num))
 
+DEFAULT_USER = "akash.roshan@iffort.com"
 NEW_USER = random_char(7)+"@gmail.com"
 DEFAULT_NAME = "Akash"
 INVALID_NAME = "Akash   ksndmsnd,mas"
@@ -73,6 +74,8 @@ LAST_NAME = "automation"
 DEFAULT_FIRST_NAME = "kumar"
 DEFAULT_LAST_NAME = "file"
 DEFAULT_EMAIL = "akash.roshan@iffort.com"
+DEFAULT_PASS = "Test@123"
+
 DEFAULT_PASSWORD = "Test@123"
 DEFAULT_CONFIRM_PASSWORD = "Test@123"
 INVALID_MOBILE_NUMBER = "12345"
