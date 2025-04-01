@@ -72,8 +72,11 @@ class CanonizerCampForumPage(Page):
 
     def click_start_thread_button(self):
         self.driver.implicitly_wait(30)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span")))
+
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span").click()
-        self.driver.find_element(By.ID, "create-thread-button").click()
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "create-thread-button")))
+
         return CanonizerCampForumPage(self.driver)
 
     def enter_thread_title(self, title):
@@ -87,65 +90,60 @@ class CanonizerCampForumPage(Page):
     def click_submit_button(self):
         self.driver.find_element(By.ID, "submit-btn").click()
 
+    def click_create_thread(self, title):
+        self.driver.find_element(By.ID, "create-thread-button").click()
+
     def create_thread(self, title):
+        self.driver.find_element(By.ID, "create-thread-button").click()
         self.enter_thread_title(title)
         self.click_submit_button()
 
     def create_thread_with_valid_data(self):
         title = "test"
-        link = self.driver.current_url
-        new_link = link.replace("statement/history", "topic")
-        self.driver.get(new_link)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span")))
         self.click_start_thread_button()
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "create-thread-button")))
         self.create_thread(title)
 
         return CanonizerCampForumPage(self.driver)
 
 
     def create_thread_with_blank_title_name(self, title):
-        link = self.driver.current_url
-        new_link = link.replace("statement/history", "topic")
-        self.driver.get(new_link)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span")))
+
         self.click_start_thread_button()
-        self.create_thread('')
+        self.create_thread(title)
         return CanonizerCampForumPage(self.driver)
 
     def create_thread_with_special_chars(self, title):
-        link = self.driver.current_url
-        new_link = link.replace("statement/history", "topic")
-        self.driver.get(new_link)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span")))
+
         self.click_start_thread_button()
-        self.create_thread("test @$#@$#@$")
+        self.create_thread(title)
         return CanonizerCampForumPage(self.driver)
 
     def create_thread_with_blank_mandatory_fields(self, title):
-        link = self.driver.current_url
-        new_link = link.replace("statement/history", "topic")
-        self.driver.get(new_link)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span")))
+
         self.click_start_thread_button()
         self.create_thread('')
         return CanonizerCampForumPage(self.driver)
 
     def create_thread_with_duplicate_title(self, title):
-        link = self.driver.current_url
-        new_link = link.replace("statement/history", "topic")
-        self.driver.get(new_link)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span")))
         self.click_start_thread_button()
         self.create_thread('')
         return CanonizerCampForumPage(self.driver)
 
     def create_thread_with_valid_data_with_enter_key(self, title):
-        link = self.driver.current_url
-        new_link = link.replace("statement/history", "topic")
-        self.driver.get(new_link)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span")))
         self.click_start_thread_button()
         self.create_thread('')
         return CanonizerCampForumPage(self.driver)
 
     def create_thread_with_trailing_spaces(self, title):
-        link = self.driver.current_url
-        new_link = link.replace("statement/history", "topic")
-        self.driver.get(new_link)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span")))
+
         self.click_start_thread_button()
         self.create_thread('       test')
         return CanonizerCampForumPage(self.driver)
@@ -325,24 +323,3 @@ class CanonizerCampForumPage(Page):
             return CanonizerCampForumPage(self.driver)
         else:
             print("Message not found or is not matching")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
