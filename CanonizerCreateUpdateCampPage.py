@@ -91,6 +91,7 @@ class CanonizerCreateCampPage(Page):
     def create_camp_with_valid_data(self, create_camp_list1):
         self.driver.implicitly_wait(10)
         self.create_camp(create_camp_list1)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/div[2]/div[1]/div/button/span")))
         return CanonizerCreateCampPage(self.driver)
     def disable_create_camp_with_valid_data(self, create_camp_list1):
         self.driver.implicitly_wait(10)
@@ -143,7 +144,8 @@ class CanonizerEditCampPage(Page):
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[1]/div[2]/div[2]/a/span/img").click()
         self.driver.find_element(By.ID, "threedot_dropdown_manage_camp_btn__menu_item_text").click()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div/div[1]/button/span").click()
-
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "cancel-btn")))
+        return CanonizerEditCampPage(self.driver)
     def add_statement_for_archived_camp(self):
         self.driver.find_element(By.ID, "is_archive").click()
         self.driver.find_element(By.ID, "create-camp-btn").click()
@@ -398,38 +400,3 @@ class CanonizerEditCampPage(Page):
             return CanonizerEditCampPage(self.driver)
         else:
             print("Error not found or is not matching")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
