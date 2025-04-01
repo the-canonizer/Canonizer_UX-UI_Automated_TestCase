@@ -166,5 +166,3 @@ class CanonizerEditNewsPage(Page):
         self.hover(*AddNewsIdentifiers.EDIT_CANCEL_BUTTON)
         self.find_element(*AddNewsIdentifiers.EDIT_CANCEL_BUTTON).click()
         return CanonizerEditNewsPage(self.driver)
-
-
