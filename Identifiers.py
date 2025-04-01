@@ -17,8 +17,8 @@ class RegistrationPageIdentifiers(object):
     """
     This class holds the User Registration Page Identifiers
     """
-    #REGISTER = (By.ID, 'register-btn')
-    REGISTER = (By.XPATH, "/html/body/div[1]/section/header/div/nav/ul/li[10]/a/span[1]")
+    REGISTER_BUTTON = (By.ID, 'register-btn')
+    REGISTER = (By.ID, "join-canonizer-text")
     FIRST_NAME = (By.ID, 'registration_first_name')
     LAST_NAME = (By.ID, 'registration_last_name')
     EMAIL = (By.ID, 'registration_email')
@@ -57,6 +57,7 @@ class RegistrationPageIdentifiers(object):
 
 
 class LoginPageIdentifiers(object):
+    LOGIN_BUTTON = (By.ID, "menu-item-19")
     EMAIL_ASTRK = (By.XPATH, '/html/body/div[3]/div/div[2]/div/div[2]/div/div/div/section/div/div[1]/div/form/div[1]/div/div[1]/label/span')
     PASSWORD_ASTRK = (By.XPATH, '/html/body/div[3]/div/div[2]/div/div[2]/div/div/div/section/div/div[1]/div/form/div[2]/div/div[1]/label/span')
     LOGIN_PAGE_BUTTON = (By.ID, 'menu-item-19')
@@ -125,6 +126,7 @@ class LoginPageIdentifiers(object):
     PASSWORD_VALIDATION = (By.CLASS_NAME, "ant-form-item-explain-error")
     VALID_EMAIL = (By.CLASS_NAME, "ant-form-item-explain-error")
     RESEND_OTP = (By.ID, "resent-otp-btn")
+    LOGIN_REQUEST_OTP = (By.ID, "login-request-otp-btn")
 
 
 class ProfileInfoIdentifiersPage(object):
@@ -292,10 +294,10 @@ class UpdateTopicIdentifiers(object):
     NICK_NAME_ON_PROFILE = (By.XPATH, '//span[@class="UserProfile_Bluecolor__El2lJ"]//b[1]')
     SUBMIT_UPDATE = (By.XPATH, '//div[@class="campHistory_campStatementCollapseButtons__LVwiX"]//button[1]')
     TOPIC_UPDATE_TITLE = (By.XPATH, '//div[text()="Topic Update"]')
-    UPDATE_TOPIC_NAME = (By.ID, 'topic_name')
-    SUBMIT_UPDATE_BUTTON = (By.XPATH, '//div[@class="ant-form-item-control-input-content"]//button[1]')
+    UPDATE_TOPIC_NAME = (By.ID, 'create_new_topic_topic_name')
+    SUBMIT_UPDATE_BUTTON = (By.ID, "create-topic-btn")
     DUPLICATE_TOPIC_NAME_ERROR = (By.XPATH, '/html/body/div[2]/div/div/div/div')
-    CANCEL_BUTTON = (By.XPATH,'(//div[@class="ant-form-item-control-input-content"]//button)[2]')
+    CANCEL_BUTTON = (By.ID, 'cancel-btn')
     PREVIEW_BUTTON = (By.XPATH, '(//div[@class="ant-form-item-control-input-content"]//button)[3]')
     TOPIC_PREVIEW_TITLE = (By.XPATH,'//div[text()="Topic Preview"]')
     SUBMITTER_NICK_NAME_LINK_ON_PREVIEW_MODAL = (By.XPATH, '//span[@class="ant-descriptions-item-content"]//a[1]')
@@ -358,6 +360,7 @@ class CampForumIdentifiers(object):
     DELETE_POST_ICON = (By.XPATH, '(//a[@class="linkCss"])[2]')
     DELETE_CONFIRM = (By.XPATH, '(//div[@class="ant-popover-buttons"]//button)[2]')
     POST_DELETE_MESSAGE = (By.XPATH, '/html/body/div[2]/div/div/div/div')
+    THREAD_TITLE_HELP = (By.ID, "create_new_thread_thread_title_help")
 
 
 class HomePageIdentifiers(object):
@@ -491,7 +494,7 @@ class CampStatementIdentifiers(object):
     EDIT_SUMMARY = (By.ID, 'edit_summary')
     SUBMIT_STATEMENT_BUTTON = (By.ID, "publish-button")
     UPDATE_CANCEL_BUTTON = (By.ID, "update-cancel-btn")
-    STATEMENT_TEXT = (By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div/form/div/div[2]/div/div/div/div/div/div/div[2]/div[2]/div")
+    STATEMENT_TEXT = (By.XPATH, "/html/body/div[1]/section/section/main/div/div[2]/div/div/div/form/div/div[2]/div/div/div/div/div/div/div[2]/div[2]/div/h2")
     CANCEL_BUTTON = (By.XPATH, '//button[contains(@class,"ant-btn ant-btn-ghost")]')
     CAMP_STATEMENT_HISTORY = (By.XPATH, '//h4[@class="ant-typography"]')
     NICK_NAME_ASTERISK = (By.XPATH, '//span[@class="required"]')
@@ -728,9 +731,3 @@ class CanonizerFooterIdentifiers(object):
     FOOTER_WHITEPAPER = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[2]/a/i")
     FOOTER_BLOG = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[3]/a/i")
     FOOTER_JOBS = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[4]/a/i")
-
-
-
-
-
-
