@@ -54,6 +54,8 @@ class CanonizerCampStatementPage(Page):
     def click_add_camp_statement(self):
         self.driver.implicitly_wait(30)
         self.find_element(*CampStatementIdentifiers.ADD_STATEMENT_BUTTON).click()
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "publish-button")))
+
         return CanonizerCampStatementPage(self.driver)
 
 
@@ -92,18 +94,24 @@ class CanonizerCampStatementPage(Page):
     def add_camp_statement(self):
         self.driver.implicitly_wait(20)
         self.click_add_camp_statement()
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "publish-button")))
         self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("create new statement")
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "publish-button")))
+
         self.driver.find_element(*CampStatementIdentifiers.SUBMIT_STATEMENT_BUTTON).click()
-        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/button[1]/span").click()
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[3]/div[1]/button[1]/span")))
+        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[3]/div[1]/button[1]/span").click()
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button/span")))
+
 
         return CanonizerCampStatementPage(self.driver)
 
     def add_camp_statement_asterisk(self):
         self.driver.implicitly_wait(20)
         self.click_add_camp_statement()
-        self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("create new statement")
         self.driver.find_element(*CampStatementIdentifiers.SUBMIT_STATEMENT_BUTTON).click()
-        self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button[1]/span").click()
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "publish-button")))
+
         return CanonizerCampStatementPage(self.driver)
 
     def add_camp_statement_without_mandatory_data(self):
@@ -199,9 +207,5 @@ class CanonizerCampStatementPage(Page):
         self.driver.find_element(*CampStatementIdentifiers.PUBLISH_BUTTON).click()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div[1]/div[2]/div/div[2]/div[1]/button[1]/span").click()
         return CanonizerCampStatementPage(self.driver)
-
-
-
-
 
 
