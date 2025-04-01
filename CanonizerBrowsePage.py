@@ -103,4 +103,3 @@ class CanonizerBrowsePage(Page):
 
         return CanonizerBrowsePage(self.driver)
 
-
