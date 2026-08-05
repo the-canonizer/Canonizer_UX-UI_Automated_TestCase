@@ -84,3 +84,50 @@ class CanonizerUploadFile(Page):
         self.driver.find_element(*HomePageIdentifiers.UPLOAD_FILE_NAME).send_keys("test"+add_name)
         self.driver.find_element(*HomePageIdentifiers.UPLOAD_BUTTON).click()
         return CanonizerUploadFile(self.driver)
+
+    def open_upload_file_manager(self):
+        self.driver.implicitly_wait(30)
+        self.driver.get(UPLOAD_FILE_URL)
+        WebDriverWait(self.driver, 15).until(
+            EC.visibility_of_element_located(UploadFileIdentifiers.CREATE_FOLDER_BUTTON)
+        )
+        return CanonizerUploadFile(self.driver)
+
+    def search_uploaded_files(self, query):
+        field = self.find_element(*UploadFileIdentifiers.SEARCH_INPUT)
+        field.clear()
+        field.send_keys(query)
+        return CanonizerUploadFile(self.driver)
+
+    def reset_upload_filters(self):
+        self.find_element(*UploadFileIdentifiers.RESET_BUTTON).click()
+        return CanonizerUploadFile(self.driver)
+
+    def switch_to_list_view(self):
+        self.find_element(*UploadFileIdentifiers.LIST_VIEW_TOGGLE).click()
+        return CanonizerUploadFile(self.driver)
+
+    def switch_to_grid_view(self):
+        self.find_element(*UploadFileIdentifiers.GRID_VIEW_TOGGLE).click()
+        return CanonizerUploadFile(self.driver)
+
+    def open_first_file_menu_if_available(self):
+        menus = self.driver.find_elements(*UploadFileIdentifiers.FILE_MENU_THREE_DOTS)
+        if not menus:
+            return False
+        menus[0].click()
+        return True
+
+    def file_menu_has_actions(self):
+        has_view = len(self.driver.find_elements(*UploadFileIdentifiers.FILE_ACTION_VIEW)) > 0
+        has_download = len(self.driver.find_elements(*UploadFileIdentifiers.FILE_ACTION_DOWNLOAD)) > 0
+        has_delete = len(self.driver.find_elements(*UploadFileIdentifiers.FILE_ACTION_DELETE)) > 0
+        return has_view or has_download or has_delete
+
+    def open_delete_modal_and_cancel(self):
+        self.find_element(*UploadFileIdentifiers.FILE_ACTION_DELETE).click()
+        WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(UploadFileIdentifiers.DELETE_MODAL_CANCEL)
+        )
+        self.find_element(*UploadFileIdentifiers.DELETE_MODAL_CANCEL).click()
+        return CanonizerUploadFile(self.driver)

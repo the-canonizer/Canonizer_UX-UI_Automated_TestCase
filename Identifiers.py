@@ -54,6 +54,13 @@ class RegistrationPageIdentifiers(object):
     PASSWORD_TYPE_VALIDATION = (By.CLASS_NAME, "ant-form-item-explain-error")
     VALID_EMAIL = (By.CLASS_NAME, "ant-form-item-explain-error")
     VALID_PHONE_NUMBER = (By.CLASS_NAME, "ant-form-item-explain-error")
+    CONFIRM_PASSWORD_VALIDATION = (By.ID, "registration_confirm_help")
+    PHONE_VALIDATION = (By.ID, "registration_phone_help")
+    SOCIAL_LOGIN_TITLE = (By.ID, "social-login-title")
+    FACEBOOK_LINK = (By.ID, "facebook-link")
+    GOOGLE_LINK = (By.ID, "google-link")
+    LINKEDIN_LINK = (By.ID, "linkedin-link")
+    GITHUB_LINK = (By.ID, "github-link")
 
 
 class LoginPageIdentifiers(object):
@@ -127,6 +134,47 @@ class LoginPageIdentifiers(object):
     VALID_EMAIL = (By.CLASS_NAME, "ant-form-item-explain-error")
     RESEND_OTP = (By.ID, "resent-otp-btn")
     LOGIN_REQUEST_OTP = (By.ID, "login-request-otp-btn")
+
+    # Current route-based authentication UI.  Keep these declarations at the
+    # end of the class so they take precedence over the legacy modal locators
+    # above, some of which reuse the same attribute names.
+    LOGIN_PAGE_BUTTON = (By.ID, "menu-item-19")
+    EMAIL = (By.ID, "login_form_username")
+    PASSWORD = (By.ID, "login_form_password")
+    SUBMIT = (By.ID, "login-submit-btn")
+    EMAIL_ASTRK = (By.XPATH, '(//*[@id="login_form"]//span[@class="required"])[1]')
+    PASSWORD_ASTRK = (By.XPATH, '(//*[@id="login_form"]//span[@class="required"])[2]')
+    CHECK_BOX = (By.ID, "login_form_remember")
+    FORGET_PASSWORD = (By.ID, "forgot-password-link")
+    REGISTER_NOW_LINK = (By.ID, "login-dont-account-link-tag")
+    FACEBOOK_LINK = (By.ID, "facebook-link")
+    GOOGLE_LINK = (By.ID, "google-link")
+    LINKEDIN_LINK = (By.ID, "linkedin-link")
+    GITHUB_LINK = (By.ID, "github-link")
+    SOCIAL_LOGIN_TITLE = (By.ID, "social-login-title")
+    PROFILE_MENU = (By.ID, "profile_link")
+    LOGOUT_MENU_ITEM = (By.ID, "menu-item-3")
+    LOGGED_OUT_LOGIN_LINK = (By.ID, "login-link")
+
+
+class AuthenticationFlowIdentifiers(object):
+    """Stable locators for forgot-password, OTP, and reset-password routes."""
+
+    FORGOT_TITLE = (By.ID, "forgot-password-title")
+    FORGOT_EMAIL = (By.ID, "forgotPassword_email_id")
+    FORGOT_EMAIL_ERROR = (By.ID, "forgotPassword_email_id_help")
+    FORGOT_SUBMIT = (By.ID, "submit-btn")
+    OTP_TITLE = (By.ID, "forgot-password-title")
+    OTP_INPUTS = (By.CSS_SELECTOR, 'input[name^="otp"]:not([type="hidden"])')
+    OTP_ERROR = (By.ID, "otpverify_otp_help")
+    OTP_SUBMIT = (By.ID, "submit-btn")
+    OTP_RESEND = (By.XPATH, '//button[contains(., "Resend OTP")]')
+    RESET_TITLE = (By.ID, "create-pass-title")
+    RESET_PASSWORD = (By.ID, "setPassword_password")
+    RESET_CONFIRM_PASSWORD = (By.ID, "setPassword_confirm")
+    RESET_PASSWORD_ERROR = (By.ID, "setPassword_password_help")
+    RESET_CONFIRM_ERROR = (By.ID, "setPassword_confirm_help")
+    RESET_SUBMIT = (By.ID, "save-btn")
 
 
 class ProfileInfoIdentifiersPage(object):
@@ -303,7 +351,7 @@ class UpdateTopicIdentifiers(object):
     SUBMITTER_NICK_NAME_LINK_ON_PREVIEW_MODAL = (By.XPATH, '//span[@class="ant-descriptions-item-content"]//a[1]')
     CANCEL_PREVIEW_BUTTON = (By.XPATH, '//div[@class="ant-modal-footer"]//button[1]')
     COMPARE_CHECKBOX1 = (By.XPATH, '/html/body/div/div/div[2]/div/div/div[3]/div[2]/div/div/div[1]/div/div/div/div[2]/div[1]/label/span[1]/input')
-    COMPARE_CHECKBOX2 = (By.XPATH, '(/html/body/div/div/div[2]/div/div/div[3]/div[2]/div/div/div[2]/div/div/div/div[2]/div[1]/label/span[1]/input')
+    COMPARE_CHECKBOX2 = (By.XPATH, '/html/body/div/div/div[2]/div/div/div[3]/div[2]/div/div/div[2]/div/div/div/div[2]/div[1]/label/span[1]/input')
     COMPARE_TOPIC_BUTTON = (By.ID, 'compare-topic')
     TOPIC_HISTORY_COMPARISON_TITLE = (By.XPATH, '//h4[text()="Topic "]')
     AGREEMENT_LINK = (By.XPATH, '//div[@class="topicDetails_breadcrumbLinks__7BG2D"]//a[1]')
@@ -618,6 +666,18 @@ class UploadFileIdentifiers(object):
     UPLOADED_OPTION = (By.ID, "threeDots")
     UPLOADED_IMAGE = (By.XPATH, "/html/body/div[1]/div/div[3]/div/div/div/div/form/div/div[2]/div[2]/div[1]/div/div/div/h3/span[1]")
     UPLOADED_IMAGE_VIEW = (By.XPATH, '/html/body/div[2]/div/div/ul/li[1]/span/span/span[2]')
+    SEARCH_INPUT = (By.ID, "datePickerText")
+    RESET_BUTTON = (By.CSS_SELECTOR, '[data-testid="add_AFile_Btn2"]')
+    CREATE_FOLDER_BUTTON = (By.ID, "createFolderBtn")
+    TABLE_VIEW = (By.ID, "tableColumn")
+    LIST_VIEW_TOGGLE = (By.XPATH, '//img[@alt="listView"]')
+    GRID_VIEW_TOGGLE = (By.XPATH, '//img[@alt="gridView"]')
+    FILE_MENU_THREE_DOTS = (By.ID, "menuFilesThreeDots")
+    FILE_ACTION_VIEW = (By.ID, "viewFile")
+    FILE_ACTION_DOWNLOAD = (By.ID, "downloadFile")
+    FILE_ACTION_DELETE = (By.ID, "deleteFile")
+    DELETE_MODAL_CANCEL = (By.CSS_SELECTOR, '[data-testid="cancel_modal"]')
+    DELETE_MODAL_CONFIRM = (By.CSS_SELECTOR, '[data-testid="remove_files"]')
     
 class ForgotPasswordIdentifiers(object):
     FORGOT_PASSWORD_LINK = (By.ID, 'forgot-password-link')
@@ -731,3 +791,57 @@ class CanonizerFooterIdentifiers(object):
     FOOTER_WHITEPAPER = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[2]/a/i")
     FOOTER_BLOG = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[3]/a/i")
     FOOTER_JOBS = (By.XPATH, "/html/body/div/div/footer/div[1]/div/div[2]/div/div/div[2]/ul/li[4]/a/i")
+
+
+class AdvancedSettingsIdentifiers(object):
+    """Stable IDs from current frontend pages for advanced settings flows."""
+
+    # Notifications page
+    NOTIFICATIONS_TITLE = (By.ID, "notifications-title")
+    NOTIFICATIONS_LIST = (By.ID, "notifications-list-container")
+    FILTER_ALL = (By.ID, "filter-all-button")
+    FILTER_READ = (By.ID, "filter-read-button")
+    FILTER_UNREAD = (By.ID, "filter-unread-button")
+    MARK_ALL_READ = (By.ID, "mark-all-read-button")
+    MARK_ALL_READ_CANCEL = (By.ID, "read-popup-cancel-button")
+    MARK_ALL_READ_CONFIRM = (By.ID, "read-popup-confirm-button")
+    DELETE_ALL_NOTIFICATIONS = (By.ID, "delete-all-button")
+    DELETE_ALL_GO_BACK = (By.ID, "go-back-button")
+    LOAD_MORE_BUTTON = (By.XPATH, '//button[normalize-space()="Load more"]')
+
+    # Direct supported camps
+    DIRECT_SEARCH = (By.ID, "direct_supported_camp_search_input")
+    DIRECT_SEARCH_MOBILE = (By.ID, "direct_supported_camp_search_icon")
+    DIRECT_TABLE = (By.ID, "direct_supported_camp_table_section")
+    DIRECT_TOPIC_LINK = (By.ID, "direct_supported_camp_link")
+    DIRECT_REMOVE_ICON = (By.ID, "direct_supported_camp_minus_img")
+
+    # Delegated supported camps
+    DELEGATED_SEARCH = (By.ID, "delegated_supported_camp_search_input")
+    DELEGATED_TABLE = (By.ID, "delegated_supported_camp_loader_section")
+    DELEGATED_REMOVE_ICON = (By.ID, "delegated_supported_columns_minus_btn")
+
+    # Shared support modal
+    SUPPORT_MODAL_CANCEL = (By.ID, "cancelBtn")
+    SUPPORT_MODAL_REMOVE = (By.ID, "removeBtn")
+
+    # Preferences
+    PREFERENCES_SECTION = (By.ID, "prefrence_section_unique")
+    PREFERENCE_TAG_SEARCH = (By.ID, "prefrence_tags_search_input_unique")
+    PREFERENCE_TAGS_CONTAINER = (By.ID, "prefrence_tags_checkbox_section_unique")
+    PREFERENCE_SAVE_BUTTON = (By.ID, "prefrence_tags_save_btn_unique")
+
+    # Social auth
+    SOCIAL_AUTH_CONTAINER = (By.XPATH, '//section[.//h3[contains(., "Social Auth")]]')
+    SOCIAL_LINK_BUTTONS = (By.CSS_SELECTOR, '[data-testid="linkBtn"]')
+
+
+class SearchPageIdentifiers(object):
+    """Stable IDs for advanced search result pages."""
+
+    ALL_RESULTS_SECTION = (By.ID, "auto_search_section")
+    TOPIC_HEADING = (By.ID, "elastic_topic_search_section_topic_text")
+    CAMP_HEADING = (By.ID, "search_camp_section_text_heading")
+    CAMP_STATEMENT_HEADING = (By.ID, "search_section_camp_statement_header_text")
+    NICKNAME_HEADING = (By.ID, "elastic_nickname_search_nickname_list_text")
+    PAGINATION = (By.CSS_SELECTOR, ".ant-pagination")

@@ -178,4 +178,46 @@ class CanonizerRegisterPage(Page):
 
         return CanonizerRegisterPage(self.driver)
 
+    def wait_for_registration_page(self):
+        WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(RegistrationPageIdentifiers.REGISTER_BUTTON)
+        )
+        return self
+
+    def fill_registration_form(
+        self,
+        first_name,
+        last_name,
+        email,
+        phone,
+        password,
+        confirm_password,
+    ):
+        values = (
+            (RegistrationPageIdentifiers.FIRST_NAME, first_name),
+            (RegistrationPageIdentifiers.LAST_NAME, last_name),
+            (RegistrationPageIdentifiers.EMAIL, email),
+            (RegistrationPageIdentifiers.MOBILE_NUMBER, phone),
+            (RegistrationPageIdentifiers.PASSWORD, password),
+            (RegistrationPageIdentifiers.CONFIRM_PASSWORD, confirm_password),
+        )
+        for locator, value in values:
+            field = self.find_element(*locator)
+            field.clear()
+            if value:
+                field.send_keys(value)
+        return self
+
+    def submit_registration(self):
+        self.find_element(*RegistrationPageIdentifiers.REGISTER_BUTTON).click()
+        return self
+
+    def social_signup_providers(self):
+        self.wait_for_registration_page()
+        return {
+            "facebook": self.find_element(*RegistrationPageIdentifiers.FACEBOOK_LINK),
+            "google": self.find_element(*RegistrationPageIdentifiers.GOOGLE_LINK),
+            "linkedin": self.find_element(*RegistrationPageIdentifiers.LINKEDIN_LINK),
+            "github": self.find_element(*RegistrationPageIdentifiers.GITHUB_LINK),
+        }
 

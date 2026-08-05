@@ -7,6 +7,13 @@ import random
 Set All Basic Configuration required for testing Framework
 """
 
+
+def env_or_default(name, default):
+    value = os.getenv(name)
+    if value:
+        return value
+    return default
+
 DEFAULT_BASE_URL = "https://ux-dev.canonizer.com/"
 
 ARCHIVED_CAMP_URL = "https://development.canonizer.com/topic/861-can-1462-test/2-camp-1"
@@ -60,10 +67,10 @@ import string
 def random_char(char_num):
     return ''.join(random.choice(string.ascii_letters) for _ in range(char_num))
 
-DEFAULT_USER = "akash.roshan@iffort.com"
+DEFAULT_USER = env_or_default("CANONIZER_DEFAULT_USER", "")
 NEW_USER = random_char(7)+"@gmail.com"
-DEFAULT_NAME = "Akash"
-INVALID_NAME = "Akash   ksndmsnd,mas"
+DEFAULT_NAME = "Rupali"
+INVALID_NAME = "Rupali   ksndmsnd,mas"
 INVALID_PASSWORD = "sfagf@@3 sfg gdahg"
 
 FIRST_NAME = "test"
@@ -73,14 +80,14 @@ LAST_NAME = "automation"
 
 DEFAULT_FIRST_NAME = "kumar"
 DEFAULT_LAST_NAME = "file"
-DEFAULT_EMAIL = "akash.roshan@iffort.com"
-DEFAULT_PASS = "Test@123"
+DEFAULT_EMAIL = env_or_default("CANONIZER_DEFAULT_EMAIL", "")
+DEFAULT_PASS = env_or_default("CANONIZER_DEFAULT_PASS", "")
 
 DEFAULT_PASSWORD = "Test@123"
 DEFAULT_CONFIRM_PASSWORD = "Test@123"
 INVALID_MOBILE_NUMBER = "12345"
 DEFAULT_MOBILE_NUMBER = ''.join(random.choices(string.digits, k=10))
-DEFAULT_INVALID_EMAIL = "akash222222gmail"
+DEFAULT_INVALID_EMAIL = "invalidusergmail.com"
 
 reg_list_1 = [
     "      ",
@@ -175,7 +182,7 @@ reg_list_10 = [
 ]
 reg_list_11 = [
     DEFAULT_FIRST_NAME,
-    "akash@@@@###@@",
+    "rupali@@@@###@@",
     DEFAULT_USER,
     DEFAULT_MOBILE_NUMBER,
     DEFAULT_PASS,
@@ -250,22 +257,20 @@ reg_list_18 = [
 # Forgot Password  Page Configuration Parameters
 UNREGISTERED_EMAIL = "can@gmail.com"
 INVALID_LONG_OTP = "7272727722"
-DEFAULT_EMAIL = "cano3@yopmail.com"
+DEFAULT_EMAIL = env_or_default("CANONIZER_DEFAULT_EMAIL", "")
 DEFAULT_USER_INVALID = "xcvxc"
 
-DEFAULT_USER = "akash.roshan@iffort.com"
-DEFAULT_PASS = "Test@123"
 DEFAULT_INVALID_USER = 'invaliduse22rgmail.com'
 DEFAULT_INVALID_PASSWORD = "invalid_password"
 
 # Account Setting page Configuration Parameters
 DEFAULT_NICK_NAME = "Ahasg"
-DEFAULT_NEW_PASSWORD = "Test@1234"
-DEFAULT_INVALID_NICK_NAME = "Akash Roshan"
-DEFAULT_INVALID_CONFIRM_PASSWORD = "Akash@   12333333"
-INVALID_NEW_PASSWORD = "Akash123333"
-INVALID_CURRENT_PASSWORD = "Akash@    12333"
-DEFAULT_CONFIRM_PASSWORD = "Akash@166666"
+DEFAULT_NEW_PASSWORD = "NewPass@1234"
+DEFAULT_INVALID_NICK_NAME = "Invalid Nick"
+DEFAULT_INVALID_CONFIRM_PASSWORD = "Invalid@12333333"
+INVALID_NEW_PASSWORD = "Invalid123333"
+INVALID_CURRENT_PASSWORD = "Invalid@12333"
+DEFAULT_CONFIRM_PASSWORD = "Confirm@166666"
 DEFAULT_FIRST_NAME = "  automation  testing"
 DEFAULT_LAST_NAME = "  testing  cases"
 DEFAULT_MIDDLE_NAME = "  test  case "
@@ -293,7 +298,7 @@ DEFAULT_TOPIC = "Test"
 DUPLICATE_THREAD_TITLE = "Automated thread"
 
 # Create New Camp Configuration Parameters
-DEFAULT_NICK_NAME = "Akash-New"
+DEFAULT_NICK_NAME = "Rupali-New"
 DEFAULT_PARENT_CAMP = ""
 DEFAULT_NOTE = "Automated note"
 DUPLICATE_CAMP_NAME = "New Camp"

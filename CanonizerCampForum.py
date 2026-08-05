@@ -41,25 +41,33 @@ class CanonizerCampForumPage(Page):
     def load_all_threads_page(self):
         self.driver.implicitly_wait(20)
         self.driver.find_element(By.ID, "all-thread-btn").click()
-        WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located((By.CLASS_NAME, "ant-table-cell ant-table-cell-row-hover")))
+        WebDriverWait(self.driver, 20).until(
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ant-table-cell.ant-table-cell-row-hover"))
+        )
         return CanonizerCampForumPage(self.driver)
 
     def load_my_threads_page(self):
         self.driver.implicitly_wait(20)
         self.driver.find_element(By.ID, "my-thread-btn").click()
-        WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located((By.CLASS_NAME, "ant-table-cell ant-table-cell-row-hover")))
+        WebDriverWait(self.driver, 20).until(
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ant-table-cell.ant-table-cell-row-hover"))
+        )
         return CanonizerCampForumPage(self.driver)
 
     def load_my_participation_page(self):
         self.driver.implicitly_wait(20)
         self.driver.find_element(By.ID, "participate-btn").click()
-        WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located((By.CLASS_NAME, "ant-table-cell ant-table-cell-row-hover")))
+        WebDriverWait(self.driver, 20).until(
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ant-table-cell.ant-table-cell-row-hover"))
+        )
         return CanonizerCampForumPage(self.driver)
 
     def load_top_10_threads_page(self):
         self.driver.implicitly_wait(20)
         self.driver.find_element(By.ID, "most-rep-btn").click()
-        WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located((By.CLASS_NAME, "ant-table-cell ant-table-cell-row-hover")))
+        WebDriverWait(self.driver, 20).until(
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ant-table-cell.ant-table-cell-row-hover"))
+        )
         return CanonizerCampForumPage(self.driver)
 
     def check_no_thread_availability(self):
@@ -67,7 +75,9 @@ class CanonizerCampForumPage(Page):
         self.find_element(*CampForumIdentifiers.CAMP_FORUM_BUTTON).click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.CLASS_NAME, "Forum_cardTitle__VagbD")))
         self.driver.find_element(By.ID, "all-thread-btn").click()
-        WebDriverWait(self.driver, 20).until(EC.invisibility_of_element_located((By.CLASS_NAME, "ant-empty ant-empty-normal")))
+        WebDriverWait(self.driver, 20).until(
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ant-empty.ant-empty-normal"))
+        )
         return CanonizerCampForumPage(self.driver)
 
     def click_start_thread_button(self):
@@ -94,9 +104,13 @@ class CanonizerCampForumPage(Page):
         self.driver.find_element(By.ID, "create-thread-button").click()
 
     def create_thread(self, title):
+        WebDriverWait(self.driver, 20).until(
+            EC.invisibility_of_element_located((By.CLASS_NAME, "ant-spin-spinning"))
+        )
         self.driver.find_element(By.ID, "create-thread-button").click()
         self.enter_thread_title(title)
         self.click_submit_button()
+        time.sleep(2)
 
     def create_thread_with_valid_data(self):
         title = "test"

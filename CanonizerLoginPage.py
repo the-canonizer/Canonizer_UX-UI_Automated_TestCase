@@ -42,6 +42,59 @@ class CanonizerLoginPage(Page):
         self.find_element(*LoginPageIdentifiers.LOGIN_PAGE_BUTTON).click()
         return CanonizerLoginPage(self.driver)
 
+    def wait_for_login_page(self):
+        WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(LoginPageIdentifiers.SUBMIT)
+        )
+        return self
+
+    def mandatory_fields_are_marked(self):
+        self.wait_for_login_page()
+        return all(
+            element.is_displayed()
+            for element in (
+                self.find_element(*LoginPageIdentifiers.EMAIL_ASTRK),
+                self.find_element(*LoginPageIdentifiers.PASSWORD_ASTRK),
+            )
+        )
+
+    def open_forgot_password(self):
+        self.wait_for_login_page()
+        self.find_element(*LoginPageIdentifiers.FORGET_PASSWORD).click()
+        WebDriverWait(self.driver, 10).until(EC.url_contains("/forgot-password"))
+        return self
+
+    def open_registration_from_login(self):
+        self.wait_for_login_page()
+        self.find_element(*LoginPageIdentifiers.REGISTER_NOW_LINK).click()
+        WebDriverWait(self.driver, 10).until(EC.url_contains("/registration"))
+        return self
+
+    def remember_me_is_selected(self):
+        self.wait_for_login_page()
+        return self.find_element(*LoginPageIdentifiers.CHECK_BOX).is_selected()
+
+    def social_login_providers(self):
+        self.wait_for_login_page()
+        return {
+            "facebook": self.find_element(*LoginPageIdentifiers.FACEBOOK_LINK),
+            "google": self.find_element(*LoginPageIdentifiers.GOOGLE_LINK),
+            "linkedin": self.find_element(*LoginPageIdentifiers.LINKEDIN_LINK),
+            "github": self.find_element(*LoginPageIdentifiers.GITHUB_LINK),
+        }
+
+    def logout(self):
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(LoginPageIdentifiers.PROFILE_MENU)
+        ).click()
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(LoginPageIdentifiers.LOGOUT_MENU_ITEM)
+        ).click()
+        WebDriverWait(self.driver, 10).until(
+            EC.visibility_of_element_located(LoginPageIdentifiers.LOGGED_OUT_LOGIN_LINK)
+        )
+        return self
+
     def enter_email(self, user):
         """
         "Enter User Email to the Email Box."

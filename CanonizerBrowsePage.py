@@ -98,8 +98,7 @@ class CanonizerBrowsePage(Page):
 
     def algo_dropdown_filter(self):
         self.driver.implicitly_wait(30)
-        self.driver.find_element(By.CLASS_NAME, "ant-btn ant-btn-default xl:w-[277px] text-canBlack border border-canGrey2 py-2.5 lg:px-5 !h-[44px] refine-btn lg:!text-sm !text-sm font-medium flex items-center justify-between gap-2.5 rounded-lg bg-canGray")
-        #self.driver.find_element(*CreateTopicIdentifiers.REFINE_BUTTON_FILTER).click()
+        self.find_element(*CreateTopicIdentifiers.REFINE_BUTTON_FILTER).click()
 
         return CanonizerBrowsePage(self.driver)
 

@@ -169,7 +169,8 @@ class CanonizerCreateNewTopic(Page):
         return CanonizerCreateNewTopic(self.driver)
 
     def create_topic_with_entering_data_only_in_mandatory_fields(self, summary, topic_name, namespace):
-        self.create_topic(" ", topic_name, namespace)
+        # Reuse the base create flow to submit only required fields for this scenario.
+        self.create_topic(topic_name)
         return CanonizerCreateNewTopic(self.driver)
 
     def click_on_cancel_button(self):
@@ -286,7 +287,7 @@ class CanonizerUpdateTopicPage(Page):
         self.find_element(*UpdateTopicIdentifiers.COMPARE_CHECKBOX1).click()
         self.find_element(*UpdateTopicIdentifiers.COMPARE_CHECKBOX2).click()
         self.find_element(*UpdateTopicIdentifiers.COMPARE_TOPIC_BUTTON).click()
-        self.find_element(*UpdateTopicIdentifiers.CREATE_TOPIC_).click()
+        self.find_element(*UpdateTopicIdentifiers.CREATE_TOPIC).click()
 
         return CanonizerUpdateTopicPage(self.driver)
 
