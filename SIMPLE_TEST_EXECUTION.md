@@ -10,25 +10,34 @@ Run all commands from:
 source .venv/bin/activate
 ```
 
-## 3) Set login credentials (required)
+## 3) Set login credentials (optional)
+If you ran `./setup.sh`, it may already have saved credentials in `.env.local`.
+Otherwise set them in your shell:
+
 ```bash
 export CANONIZER_DEFAULT_USER="your_email@example.com"
 export CANONIZER_DEFAULT_PASS="your_password"
 ```
 
+Or copy the template and edit it:
+
+```bash
+cp .env.local.example .env.local
+```
+
 ## 4) Run all tests
 ```bash
-pytest -v main.py
+./run_tests.sh -v
 ```
 
 ## 5) Run with summary report output
 ```bash
-pytest -v main.py --showcase-report-file ../showcase_test_results.json
+./run_tests.sh -v --showcase-report-file showcase_test_results.json
 ```
 
 ## 6) Run one test only (example)
 ```bash
-pytest -v main.py::TestPages::test_login_to_canonizer
+./run_tests.sh -v -k test_login_to_canonizer
 ```
 
 ## 7) Deactivate environment

@@ -2755,10 +2755,49 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/97-Mormon-Spirits/1-Agreement?is_tree_open=0" in result
 
+    # Backlog tests intentionally tracked in main.py until stable locators/
+    # deterministic fixtures are available for the underlying workflows.
+    @pytest.mark.xfail(reason="Needs stable support-management locators and safe reorder/petition fixtures.", strict=False)
+    def test_backlog_advanced_support_management_reorder_and_petitions(self):
+        """Backlog: support reorder persistence, petitions, and confirm-remove workflows."""
+        pytest.xfail("Pending new page-object methods/locators for advanced support management.")
+
+    @pytest.mark.xfail(reason="Needs deterministic notifications fixtures and item-level locators.", strict=False)
+    def test_backlog_notifications_single_item_read_and_confirm_actions(self):
+        """Backlog: single-item read behavior and confirmed mark/delete all notifications."""
+        pytest.xfail("Pending deterministic fixtures for notifications state transitions.")
+
+    @pytest.mark.xfail(reason="No stable AI-agent settings locators in current page objects.", strict=False)
+    def test_backlog_ai_agents_register_edit_password_deactivate(self):
+        """Backlog: AI-agent lifecycle flows from account settings."""
+        pytest.xfail("Pending locators and flows for AI-agent account operations.")
+
+    @pytest.mark.xfail(reason="Needs richer search assertions for algorithm/score/date combinations.", strict=False)
+    def test_backlog_advanced_search_filter_combination_result_counts(self):
+        """Backlog: deeper filter-combination assertions with deterministic result counts."""
+        pytest.xfail("Pending stable assertions for combined filter result counts.")
+
+    @pytest.mark.xfail(reason="Missing robust file-manager locators for rename/sort/delete persistence checks.", strict=False)
+    def test_backlog_file_manager_download_rename_delete_sort_persistence(self):
+        """Backlog: file manager persistence checks for download/rename/delete/sort."""
+        pytest.xfail("Pending file-manager action locators and deterministic fixture data.")
+
+    @pytest.mark.xfail(reason="Preferred-topic save/discard and wizard controls need stable selectors.", strict=False)
+    def test_backlog_preferred_topics_save_discard_and_wizard_flows(self):
+        """Backlog: preferred topics save/discard validation and wizard finish/skip flows."""
+        pytest.xfail("Pending preference controls and wizard flow locators.")
+
+    @pytest.mark.xfail(reason="Social account link/unlink requires callback-safe test strategy.", strict=False)
+    def test_backlog_social_account_link_unlink(self):
+        """Backlog: social account link/unlink workflows with provider callbacks."""
+        pytest.xfail("Pending callback-safe automation strategy and unlink locators.")
+
     
     def teardown_method(self):
 
         self.driver.close()
 
 if __name__ == "__main__":
-   print("ended")
+    import sys
+
+    raise SystemExit(pytest.main([__file__, *sys.argv[1:]]))

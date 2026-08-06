@@ -1,0 +1,14 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Canonizer: Run main.py",
+			"type": "python",
+			"request": "launch",
+			"program": "${workspaceFolder}/Canonizer_UX-UI_Automated_TestCase/main.py",
+			"console": "integratedTerminal",
+			"justMyCode": false,
+			"cwd": "${workspaceFolder}/Canonizer_UX-UI_Automated_TestCase"
+		}
+	]
+}

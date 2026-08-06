@@ -31,6 +31,8 @@ This file tracks scenarios from the large missing-test list that are not yet ful
 
 ## Needs New Page-Object Methods / Locators (Not Safe To Add Yet)
 
+These scenarios are now tracked in `main.py` as explicit `@pytest.mark.xfail` backlog tests so they remain visible in the central suite while implementation work continues.
+
 - Advanced support management (reorder persistence, petitions, full remove/confirm data-safe flows)
 - Full notifications matrix (single-item read behavior, confirmed mark-all/delete-all with deterministic fixtures)
 - AI agents workflows (register/edit/password/deactivate/guide actions)

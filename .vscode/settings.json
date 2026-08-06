@@ -1,0 +1,9 @@
+{
+	"python.defaultInterpreterPath": "${workspaceFolder}/Canonizer_UX-UI_Automated_TestCase/.venv",
+	"python.terminal.activateEnvironment": true,
+	"python.testing.pytestEnabled": true,
+	"python.testing.unittestEnabled": false,
+	"python.testing.pytestArgs": [
+		"Canonizer_UX-UI_Automated_TestCase/main.py"
+	]
+}

@@ -33,13 +33,29 @@ The suite currently targets deployed Canonizer environments configured in `Confi
 
 ## Setup
 
-From this repository root:
+From this repository root, run the bootstrap script:
+
+```sh
+./setup.sh
+```
+
+On Windows PowerShell:
+
+```powershell
+.\setup.ps1
+```
+
+The script creates `.venv`, installs dependencies from `requirements.txt`, and can store your local login credentials in `.env.local`.
+
+On first run, it also creates `.env.local` from `.env.local.example`.
+
+If you prefer to do it manually, the equivalent commands are:
 
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-pip install pytest selenium requests unittest-xml-reporting
+pip install -r requirements.txt
 ```
 
 ## Configure Credentials
@@ -56,6 +72,12 @@ Example:
 ```sh
 export CANONIZER_DEFAULT_USER="your_email@example.com"
 export CANONIZER_DEFAULT_PASS="your_password"
+```
+
+Alternative:
+
+```sh
+cp .env.local.example .env.local
 ```
 
 Then run the tests in the same terminal session.
@@ -77,25 +99,31 @@ At the time this README was updated, the suite collected 191 tests.
 Run a single smoke test:
 
 ```sh
-python -m pytest main.py -k test_click_on_join_now -q
+./run_tests.sh -k test_click_on_join_now -q
+```
+
+On Windows PowerShell:
+
+```powershell
+.\run_tests.ps1 -k test_click_on_join_now -q
 ```
 
 Run a single named test:
 
 ```sh
-python -m pytest main.py -k test_login_to_canonizer -q
+./run_tests.sh -k test_login_to_canonizer -q
 ```
 
 Run the full suite:
 
 ```sh
-python -m pytest main.py
+./run_tests.sh
 ```
 
 Generate a showcase-friendly summary file while running the suite:
 
 ```sh
-python -m pytest main.py --showcase-report-file showcase_test_results.json
+./run_tests.sh --showcase-report-file showcase_test_results.json
 ```
 
 This prints a terminal summary with the tests that ran, passed, failed, skipped, and whether the run was a partial success. It also writes a JSON file with the same information.
@@ -103,12 +131,18 @@ This prints a terminal summary with the tests that ran, passed, failed, skipped,
 Run with verbose output:
 
 ```sh
-python -m pytest main.py -v
+./run_tests.sh -v
 ```
+
+You can also click the Run button in VS Code while `main.py` is active. That now invokes pytest for this file instead of running it as a plain script.
 
 ## Run Tests In VS Code
 
 This suite keeps its tests in `main.py`, which does not match pytest's default test file naming pattern. Because of that, VS Code test discovery must point directly at `main.py`.
+
+The workspace is now preconfigured with `.vscode/settings.json`, `.vscode/launch.json`, and `.vscode/tasks.json`, so the interpreter, pytest discovery, and common run commands are already wired up after clone.
+
+`tasks.json` includes OS-specific commands so the same task labels work on macOS, Linux, and Windows.
 
 Use these steps in VS Code:
 
@@ -148,6 +182,12 @@ If the `Run Test` links or test icons do not appear in the editor:
 3. Reopen `main.py`.
 
 After discovery succeeds, VS Code should show test run controls above the `TestPages` class and each `test_...` method in `main.py`.
+
+The workspace also includes `.vscode/launch.json` and `.vscode/tasks.json` so you can:
+
+1. Run `Canonizer: Run main.py` from Run and Debug to execute the suite entrypoint.
+2. Run `canonizer: setup` to bootstrap the environment from VS Code.
+3. Run `canonizer: run all tests` or `canonizer: run filtered tests` from the Tasks menu.
 
 ## Test Inventory
 

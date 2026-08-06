@@ -1,0 +1,86 @@
+{
+	"version": "2.0.0",
+	"inputs": [
+		{
+			"id": "pytestExpr",
+			"type": "promptString",
+			"description": "Pytest -k expression",
+			"default": "test_login_to_canonizer"
+		}
+	],
+	"tasks": [
+		{
+			"label": "canonizer: setup",
+			"type": "shell",
+			"command": "./setup.sh",
+			"windows": {
+				"command": "powershell",
+				"args": [
+					"-ExecutionPolicy",
+					"Bypass",
+					"-File",
+					"setup.ps1"
+				]
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/Canonizer_UX-UI_Automated_TestCase"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "canonizer: run all tests",
+			"type": "shell",
+			"command": "./run_tests.sh",
+			"windows": {
+				"command": "powershell",
+				"args": [
+					"-ExecutionPolicy",
+					"Bypass",
+					"-File",
+					"run_tests.ps1"
+				]
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/Canonizer_UX-UI_Automated_TestCase"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "canonizer: run filtered tests",
+			"type": "shell",
+			"command": "./run_tests.sh",
+			"args": [
+				"-k",
+				"${input:pytestExpr}",
+				"-q"
+			],
+			"windows": {
+				"command": "powershell",
+				"args": [
+					"-ExecutionPolicy",
+					"Bypass",
+					"-File",
+					"run_tests.ps1",
+					"-k",
+					"${input:pytestExpr}",
+					"-q"
+				]
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/Canonizer_UX-UI_Automated_TestCase"
+			},
+			"isBackground": false
+		},
+		{
+			"label": "canonizer-git-push",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"push",
+				"origin",
+				"rupali-dev"
+			],
+			"isBackground": false
+		}
+	]
+}
