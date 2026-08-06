@@ -83,12 +83,14 @@ class TestPages:
 
 
     # Authentication and registration flow tests.
+    # Documentation: Login to canonizer.
     def test_login_to_canonizer(self):
         """Test case: Login to canonizer."""
         self.driver.implicitly_wait(30)
         self.login_to_canonizer_app()
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/div[2]/section/div/button/span[1]").text
         assert "Browse More" in result
+    # Documentation: Click on join now.
     def test_click_on_join_now(self):
         """Test case: Click on join now."""
         print("\n" + str(test_cases('TC_CLICK_ON_REGISTER_BUTTON')))
@@ -99,12 +101,14 @@ class TestPages:
         assert "Create your account" in result
 
     # TC_REGISTER_PAGE_MANDATORY_FIELDS_MARKED_WITH_ASTERISK
+    # Documentation: Register page mandatory fields are marked with asterisk.
     def test_register_page_mandatory_fields_are_marked_with_asterisk(self):
         """Test case: Register page mandatory fields are marked with asterisk."""
         assert CanonizerRegisterPage(
             self.driver).click_register_button().register_page_mandatory_fields_are_marked_with_asterisk()
 
 
+    # Documentation: Registration with valid credential.
     def test_registration_with_valid_credential(self):
         """Test case: Registration with valid credential."""
         self.driver.implicitly_wait(30)
@@ -112,6 +116,7 @@ class TestPages:
         result = self.driver.find_element(*RegistrationPageIdentifiers.OTP_SENT).text
         assert "Note : Registration code has been sent to your registered email address." in result
 
+    # Documentation: Registration first name with spaces.
     def test_registration_first_name_with_spaces(self):
         """Test case: Registration first name with spaces."""
         print("\n" + str(test_cases('TC_REGISTER_WITH_BLANK_SPACES_FIRST_NAME')))
@@ -121,6 +126,7 @@ class TestPages:
         assert "Note : Registration code has been sent to your registered email address." in result
 
     # TC_REGISTER_WITH_BLANK_FIRST_NAME
+    # Documentation: Registration with blank first name.
     def test_registration_with_blank_first_name(self, ):
         """Test case: Registration with blank first name."""
         print("\n" + str(test_cases('TC_REGISTER_WITH_BLANK_FIRST_NAME')))
@@ -130,6 +136,7 @@ class TestPages:
         assert "Please input your first name!" in result
 
     # TC_REGISTRATION_WITH_BLANK_EMAIL
+    # Documentation: Registration with blank email.
     def test_registration_with_blank_email(self):
         """Test case: Registration with blank email."""
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_BLANK_EMAIL')))
@@ -139,6 +146,7 @@ class TestPages:
         assert "Please input your E-mail!" in result
 
     # TC_REGISTER_WITH_BLANK_LAST_NAME
+    # Documentation: Registration with blank last name.
     def test_registration_with_blank_last_name(self):
         """Test case: Registration with blank last name."""
         print("\n" + str(test_cases('TC_REGISTER_WITH_BLANK_LAST_NAME')))
@@ -148,6 +156,7 @@ class TestPages:
         assert "Please input your last name!" in result
 
     # TC_REGISTRATION_WITH_BLANK_PASSWORD
+    # Documentation: Registration with blank password.
     def test_registration_with_blank_password(self):
         """Test case: Registration with blank password."""
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_BLANK_PASSWORD')))
@@ -157,6 +166,7 @@ class TestPages:
         assert "Please input your password!" in result
 
     # TC_REGISTRATION_WITH_INVALID_PASSWORD_LENGTH
+    # Documentation: Registration with invalid password length.
     def test_registration_with_invalid_password_length(self):
         """Test case: Registration with invalid password length."""
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_INVALID_PASSWORD_LENGTH')))
@@ -168,6 +178,7 @@ class TestPages:
     # TC_REGISTER_WITH_BLANK_SPACES_FIRST_NAME
 
     # TC_REGISTRATION_WITH_INVALID_EMAIL
+    # Documentation: Registration with invalid email.
     def test_registration_with_invalid_email(self):
         """Test case: Registration with invalid email."""
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_INVALID_EMAIL')))
@@ -177,6 +188,7 @@ class TestPages:
         assert "Please enter a valid email address." in result
 
     # TC_CHECK_LOGIN_PAGE_OPEN_CLICK_ON_LOGIN_HERE_LINK
+    # Documentation: Check login page open click login here link.
     def test_check_login_page_open_click_login_here_link(self):
         """Test case: Check login page open click login here link."""
         print("\n" + str(test_cases('TC_CHECK_LOGIN_PAGE_OPEN_CLICK_ON_LOGIN_HERE_LINK')))
@@ -187,6 +199,7 @@ class TestPages:
         assert "login" in result
 
     # TC_VERIFY_THE_FUNCTIONALITY_OF_REGISTRATION_WITH_MANDATORY_FIELDS
+    # Documentation: Verify the functionality of registration with entering data in mandatory fields.
     def test_verify_the_functionality_of_registration_with_entering_data_in_mandatory_fields(self):
         """Test case: Verify the functionality of registration with entering data in mandatory fields."""
         print("\n" + str(test_cases('TC_VERIFY_THE_FUNCTIONALITY_OF_REGISTRATION_WITH_MANDATORY_FIELDS')))
@@ -196,6 +209,7 @@ class TestPages:
         assert "Note : Registration code has been sent to your registered email address." in result
 
     # TC_VERIFY_THE_FUNCTIONALITY_OF_REGISTRATION_WITH_MOBILE_NUMBER_FIELDS
+    # Documentation: Verify the functionality 0f registration with entering data in mobile number field.
     def test_verify_the_functionality_0f_registration_with_entering_data_in_mobile_number_field(self):
         """Test case: Verify the functionality 0f registration with entering data in mobile number field."""
         print("\n" + str(test_cases('TC_VERIFY_THE_FUNCTIONALITY_OF_REGISTRATION_WITH_MOBILE_NUMBER_FIELDS')))
@@ -204,6 +218,7 @@ class TestPages:
         result = self.driver.find_element(*RegistrationPageIdentifiers.VALID_PHONE_NUMBER).text
         assert "Please input valid phone number!" in result
 
+    # Documentation: Click on login button.
     def test_click_on_login_button(self):
         """Test case: Click on login button."""
         print("\n" + str(test_cases('TC_CLICK_ON_LOGIN_BUTTON')))
@@ -215,6 +230,7 @@ class TestPages:
 
 
     # TC_LOGIN_WITH_REGISTERED_CREDENTIALS
+    # Documentation: Login with registered credentials.
     def test_login_with_registered_credentials(self):
         """Test case: Login with registered credentials."""
         print("\n" + str(test_cases('TC_LOGIN_WITH_REGISTERED_CREDENTIALS')))
@@ -224,6 +240,7 @@ class TestPages:
         assert "Start a Topic" in result
 
     # TC_VERIFY_THE_LOGIN_WITH_BLANK_EMAIL
+    # Documentation: Verify the login with blank email.
     def test_verify_the_login_with_blank_email(self):
         """Test case: Verify the login with blank email."""
         print("\n" + str(test_cases('TC_LOGIN_WITH_REGISTERED_CREDENTIALS')))
@@ -233,6 +250,7 @@ class TestPages:
         assert "Please input your Email!" in result
 
     # TC_VERIFY_THE_LOGIN_WITH_BLANK_PASSWORD
+    # Documentation: Verify the login with blank password.
     def test_verify_the_login_with_blank_password(self):
         """Test case: Verify the login with blank password."""
         print("\n" + str(test_cases('TC_VERIFY_THE_LOGIN_WITH_BLANK_PASSWORD')))
@@ -242,6 +260,7 @@ class TestPages:
         assert "Please input your Password!" in result
 
     # TC_LOGIN_WITH_INVALID_EMAIL
+    # Documentation: Login with invalid email.
     def test_login_with_invalid_email(self):
         """Test case: Login with invalid email."""
         self.driver.implicitly_wait(30)
@@ -250,6 +269,7 @@ class TestPages:
         assert "Input is not valid!" in result
 
     # TC_VERIFY_ONE_TIME_REQUEST_CODE_WITH_VALID_CREDENTIALS
+    # Documentation: Verify one time request code with valid credentials.
     def test_verify_one_time_request_code_with_valid_credentials(self):
         """Test case: Verify one time request code with valid credentials."""
         print("\n" + str(test_cases('TC_VERIFY_ONE_TIME_REQUEST_CODE_WITH_VALID_CREDENTIALS')))
@@ -258,16 +278,19 @@ class TestPages:
         result = self.driver.find_element(*LoginPageIdentifiers.RESEND_OTP).text
         assert "Resend OTP" in result
 
+    # Documentation: Login page mandatory fields are marked with asterisk.
     def test_login_page_mandatory_fields_are_marked_with_asterisk(self):
         """Test case: Login page mandatory fields are marked with asterisk."""
         login_page = CanonizerLoginPage(self.driver).click_on_login_page_button()
         assert login_page.mandatory_fields_are_marked()
 
+    # Documentation: Login remember me is selected by default.
     def test_login_remember_me_is_selected_by_default(self):
         """Test case: Login remember me is selected by default."""
         login_page = CanonizerLoginPage(self.driver).click_on_login_page_button()
         assert login_page.remember_me_is_selected()
 
+    # Documentation: Login register now link.
     def test_login_register_now_link(self):
         """Test case: Login register now link."""
         CanonizerLoginPage(self.driver).click_on_login_page_button().open_registration_from_login()
@@ -276,6 +299,7 @@ class TestPages:
             *RegistrationPageIdentifiers.REGISTRATION_TITLE
         ).is_displayed()
 
+    # Documentation: Forgot password link.
     def test_forgot_password_link(self):
         """Test case: Forgot password link."""
         CanonizerLoginPage(self.driver).click_on_login_page_button().open_forgot_password()
@@ -287,6 +311,7 @@ class TestPages:
     @pytest.mark.parametrize(
         "provider", ["facebook", "google", "linkedin", "github"]
     )
+    # Documentation: Login social provider is available.
     def test_login_social_provider_is_available(self, provider):
         """Test case: Login social provider is available."""
         login_page = CanonizerLoginPage(self.driver).click_on_login_page_button()
@@ -294,6 +319,7 @@ class TestPages:
         assert social_button.is_displayed()
         assert social_button.is_enabled()
 
+    # Documentation: Logout.
     def test_logout(self):
         """Test case: Logout."""
         self.login_to_canonizer_app()
@@ -302,6 +328,7 @@ class TestPages:
             *LoginPageIdentifiers.LOGGED_OUT_LOGIN_LINK
         ).is_displayed()
 
+    # Documentation: Forgot password with blank email.
     def test_forgot_password_with_blank_email(self):
         """Test case: Forgot password with blank email."""
         CanonizerLoginPage(self.driver).click_on_login_page_button().open_forgot_password()
@@ -309,6 +336,7 @@ class TestPages:
         auth_page.submit_forgot_password_email("")
         assert auth_page.forgot_password_error() == "Please input your E-mail!"
 
+    # Documentation: Forgot password with invalid email.
     def test_forgot_password_with_invalid_email(self):
         """Test case: Forgot password with invalid email."""
         CanonizerLoginPage(self.driver).click_on_login_page_button().open_forgot_password()
@@ -316,6 +344,7 @@ class TestPages:
         auth_page.submit_forgot_password_email("not-an-email")
         assert auth_page.forgot_password_error() == "Please enter a valid email address."
 
+    # Documentation: Forgot password with unregistered email.
     def test_forgot_password_with_unregistered_email(self):
         """Test case: Forgot password with unregistered email."""
         CanonizerLoginPage(self.driver).click_on_login_page_button().open_forgot_password()
@@ -324,11 +353,13 @@ class TestPages:
         error = auth_page.forgot_password_error()
         assert error != ""
 
+    # Documentation: Close login modal.
     def test_close_login_modal(self):
         """Test case: Close login modal."""
         CanonizerLoginPage(self.driver).click_on_login_page_button().click_on_close_icon_button()
         assert self.driver.find_element(*LoginPageIdentifiers.LOGIN_BUTTON).is_displayed()
 
+    # Documentation: Forgot password otp with invalid code.
     def test_forgot_password_otp_with_invalid_code(self):
         """Test case: Forgot password otp with invalid code."""
         CanonizerLoginPage(self.driver).click_on_login_page_button().open_forgot_password()
@@ -338,6 +369,7 @@ class TestPages:
         error = self.driver.find_element(*AuthenticationFlowIdentifiers.OTP_ERROR).text
         assert error != ""
 
+    # Documentation: Forgot password otp with blank code.
     def test_forgot_password_otp_with_blank_code(self):
         """Test case: Forgot password otp with blank code."""
         CanonizerLoginPage(self.driver).click_on_login_page_button().open_forgot_password()
@@ -347,6 +379,7 @@ class TestPages:
         error = self.driver.find_element(*AuthenticationFlowIdentifiers.OTP_ERROR).text
         assert error != ""
 
+    # Documentation: Resend forgot password otp.
     def test_resend_forgot_password_otp(self):
         """Test case: Resend forgot password otp."""
         CanonizerLoginPage(self.driver).click_on_login_page_button().open_forgot_password()
@@ -355,6 +388,7 @@ class TestPages:
         auth_page.resend_otp()
         assert self.driver.find_element(*AuthenticationFlowIdentifiers.OTP_TITLE).is_displayed()
 
+    # Documentation: Reset password with mismatched passwords.
     def test_reset_password_with_mismatched_passwords(self):
         """Test case: Reset password with mismatched passwords."""
         CanonizerLoginPage(self.driver).click_on_login_page_button().open_forgot_password()
@@ -365,6 +399,7 @@ class TestPages:
         self.driver.find_element(*AuthenticationFlowIdentifiers.RESET_SUBMIT).click()
         assert auth_page.reset_confirmation_error() == "Confirm Password does not match!"
 
+    # Documentation: Registration with blank confirm password.
     def test_registration_with_blank_confirm_password(self):
         """Test case: Registration with blank confirm password."""
         register_page = CanonizerRegisterPage(self.driver).click_on_register_button()
@@ -387,6 +422,7 @@ class TestPages:
         ).text
         assert error == "Please confirm your password!"
 
+    # Documentation: Registration with mismatched passwords.
     def test_registration_with_mismatched_passwords(self):
         """Test case: Registration with mismatched passwords."""
         register_page = CanonizerRegisterPage(self.driver).click_on_register_button()
@@ -405,6 +441,7 @@ class TestPages:
         ).text
         assert error == "Confirm Password does not match!"
 
+    # Documentation: Registration with invalid mobile number.
     def test_registration_with_invalid_mobile_number(self):
         """Test case: Registration with invalid mobile number."""
         register_page = CanonizerRegisterPage(self.driver).click_on_register_button()
@@ -423,6 +460,7 @@ class TestPages:
         ).text
         assert error == "Contact number must be at least 10 digits!"
 
+    # Documentation: Registration social providers are available.
     def test_registration_social_providers_are_available(self):
         """Test case: Registration social providers are available."""
         register_page = CanonizerRegisterPage(self.driver).click_on_register_button()
@@ -434,6 +472,7 @@ class TestPages:
     # Topic creation and topic lifecycle tests.
 
     # TC_CLICK_CREATE_TOPIC_WITH_USER_LOGIN
+    # Documentation: Click create new topic page button.
     def test_click_create_new_topic_page_button(self):
         """Test case: Click create new topic page button."""
         print("\n" + str(test_cases('TC_CLICK_CREATE_TOPIC_WITH_USER_LOGIN')))
@@ -444,6 +483,7 @@ class TestPages:
         assert "/create/topic" in result
 
     # TC_CLICK_CREATE_TOPIC_WITHOUT_USER_LOGIN
+    # Documentation: Click create topic without user login.
     def test_click_create_topic_without_user_login(self):
         """Test case: Click create topic without user login."""
         print("\n" + str(test_cases('TC_CLICK_CREATE_TOPIC_WITHOUT_USER_LOGIN')))
@@ -453,6 +493,7 @@ class TestPages:
         assert "/login?returnUrl=%2Fcreate%2Ftopic" in result
 
     # TC_CREATE_TOPIC_WITH_BLANK_TOPIC_NAME
+    # Documentation: Create topic with blank topic name.
     def test_create_topic_with_blank_topic_name(self):
         """Test case: Create topic with blank topic name."""
         print("\n" + str(test_cases('TC_CREATE_TOPIC_WITH_BLANK_TOPIC_NAME')))
@@ -464,6 +505,7 @@ class TestPages:
         assert "Topic name cannot start with a space" in result
 
     # TC_CREATE_NEW_TOPIC_WITH_VALID_DATA
+    # Documentation: Create topic name with valid data.
     def test_create_topic_name_with_valid_data(self):
         """Test case: Create topic name with valid data."""
         print("\n" + str(test_cases('TC_CREATE_TOPIC_WITH_VALID_DATA')))
@@ -475,6 +517,7 @@ class TestPages:
         result = self.driver.current_url
         assert "1-Agreement" in result
 
+    # Documentation: Create same topic name with valid data.
     def test_create_same_topic_name_with_valid_data(self):
         """Test case: Create same topic name with valid data."""
         print("\n" + str(test_cases('TC_CREATE_TOPIC_WITH_VALID_DATA')))
@@ -485,6 +528,7 @@ class TestPages:
         result = self.driver.find_element(*CreateTopicIdentifiers.SAME_TOPIC_NAME).text
         assert "A Topic with this exact name already exists!" in result
 
+    # Documentation: Create same topic name error link.
     def test_create_same_topic_name_error_link(self):
         """Test case: Create same topic name error link."""
         print("\n" + str(test_cases('TC_CREATE_TOPIC_WITH_VALID_DATA')))
@@ -497,6 +541,7 @@ class TestPages:
         result = self.driver.find_element(*CreateTopicIdentifiers.SAME_TOPIC_TITLE).text
         assert "same topic" in result
     # TC_CREATE_NEW_TOPIC_WITH_SPECIAL_CHARS
+    # Documentation: Create topic with special chars.
     def test_create_topic_with_special_chars(self):
         """Test case: Create topic with special chars."""
         print("\n", str(test_cases('TC_CREATE_NEW_TOPIC_WITH_SPECIAL_CHARS')))
@@ -509,6 +554,7 @@ class TestPages:
         assert "topic" in result
 
     # TC_CREATE_NEW_WITHOUT_MANDATORY_FIELDS_DATA
+    # Documentation: Create topic without entering mandatory fields.
     def test_create_topic_without_entering_mandatory_fields(self):
         """Test case: Create topic without entering mandatory fields."""
         print("\n", str(test_cases('TC_CREATE_NEW_WITHOUT_MANDATORY_FIELDS_DATA')))
@@ -519,6 +565,7 @@ class TestPages:
         result = self.driver.current_url        
         assert "create/topic" in result
 
+    # Documentation: Create topic mandatory fields are marked with asterisk.
     def test_create_topic_mandatory_fields_are_marked_with_asterisk(self):
         """Test case: Create topic mandatory fields are marked with asterisk."""
         self.driver.implicitly_wait(30)
@@ -526,6 +573,7 @@ class TestPages:
         page = CanonizerCreateNewTopic(self.driver).click_create_topic_button()
         assert page.topic_page_mandatory_fields_are_marked_with_asterisk()
 
+    # Documentation: Create topic with trailing spaces.
     def test_create_topic_with_trailing_spaces(self):
         """Test case: Create topic with trailing spaces."""
         print("\n" + str(test_cases('TC_CREATE_NEW_TOPIC_WITH_TRAILING_SPACES')))
@@ -536,6 +584,7 @@ class TestPages:
         result = self.driver.current_url
         assert "topic" in result
 
+    # Documentation: Create topic using enter key.
     def test_create_topic_using_enter_key(self):
         """Test case: Create topic using enter key."""
         print("\n" + str(test_cases('TC_CREATE_NEW_TOPIC_WITH_ENTER_KEY')))
@@ -547,6 +596,7 @@ class TestPages:
         result = self.driver.current_url
         assert "topic" in result
 
+    # Documentation: Create topic with only mandatory fields.
     def test_create_topic_with_only_mandatory_fields(self):
         """Test case: Create topic with only mandatory fields."""
         self.driver.implicitly_wait(30)
@@ -561,6 +611,7 @@ class TestPages:
         result = self.driver.current_url
         assert "topic" in result
 
+    # Documentation: Cancel create topic.
     def test_cancel_create_topic(self):
         """Test case: Cancel create topic."""
         print("\n" + str(test_cases('TC_CLICK_ON_CANCEL_BUTTON')))
@@ -574,6 +625,7 @@ class TestPages:
     # Topic update and topic history tests.
 
     # TC_LOAD_TOPIC_HISTORY_PAGE
+    # Documentation: Load topic history page.
     def test_load_topic_history_page(self):
         """Test case: Load topic history page."""
         print("\n" + str(test_cases('TC_LOAD_TOPIC_HISTORY_PAGE')))
@@ -587,6 +639,7 @@ class TestPages:
         assert "Update Topic" in result
 
     # TC_VERIFY_TOPIC_NAME_ON_TOPIC_HISTORY_PAGE
+    # Documentation: Verify topic name on topic history page.
     def test_verify_topic_name_on_topic_history_page(self):
         """Test case: Verify topic name on topic history page."""
         print("\n" + str(test_cases('TC_VERIFY_TOPIC_NAME_ON_TOPIC_HISTORY_PAGE')))
@@ -601,6 +654,7 @@ class TestPages:
         assert add_name in result
 
     # TC_VERIFY_SUBMITTER_NICK_NAME_LINK_ON_USER_PROFILE
+    # Documentation: Verify submitter nick name link on user profile.
     def test_verify_submitter_nick_name_link_on_user_profile(self):
         """Test case: Verify submitter nick name link on user profile."""
         print("\n" + str(test_cases('TC_VERIFY_SUBMITTER_NICK_NAME_LINK_ON_USER_PROFILE')))
@@ -615,6 +669,7 @@ class TestPages:
         assert "$%$%$%$%" in result
 
     # TC_VERIFY_SUBMIT_TOPIC_UPDATE_BUTTON
+    # Documentation: Verify submit topic update button.
     def test_verify_submit_topic_update_button(self):
         """Test case: Verify submit topic update button."""
         print("\n" + str(test_cases('TC_VERIFY_SUBMIT_TOPIC_UPDATE_BUTTON')))
@@ -632,6 +687,7 @@ class TestPages:
 
 
     # TC_VERIFY_CANCEL_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE
+    # Documentation: Verify cancel button functionality on topic update page.
     def test_verify_cancel_button_functionality_on_topic_update_page(self):
         """Test case: Verify cancel button functionality on topic update page."""
         print("\n" + str(test_cases('TC_VERIFY_CANCEL_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE')))
@@ -649,6 +705,7 @@ class TestPages:
 
 
     # TC_UPDATE_TOPIC_NAME_AND_VERIFY_SUBMIT_UPDATE_BUTTON
+    # Documentation: Update topic name.
     def test_update_topic_name(self):
         """Test case: Update topic name."""
         print("\n" + str(test_cases('TC_UPDATE_TOPIC_NAME_AND_VERIFY_SUBMIT_UPDATE_BUTTON')))
@@ -664,6 +721,7 @@ class TestPages:
 
         assert "topic/history/" in result
 
+    # Documentation: Topic update preview.
     def test_topic_update_preview(self):
         """Test case: Topic update preview."""
         print("\n" + str(test_cases('TC_VERIFY_PREVIEW_BUTTON_FUNCTIONALITY_ON_TOPIC_UPDATE_PAGE')))
@@ -677,6 +735,7 @@ class TestPages:
         result = self.driver.find_element(*UpdateTopicIdentifiers.TOPIC_PREVIEW_TITLE).text
         assert "Topic Preview" in result
 
+    # Documentation: Topic preview cancel.
     def test_topic_preview_cancel(self):
         """Test case: Topic preview cancel."""
         print("\n" + str(test_cases('TC_VERIFY_CANCEL_BUTTON_ON_PREVIEW_MODAL')))
@@ -690,6 +749,7 @@ class TestPages:
         result = self.driver.current_url
         assert "topic/history" in result
 
+    # Documentation: Topic preview submitter nickname.
     def test_topic_preview_submitter_nickname(self):
         """Test case: Topic preview submitter nickname."""
         print("\n" + str(test_cases('TC_VERIFY_SUBMITTER_NICK_NAME_ON_PREVIEW_MODAL')))
@@ -703,6 +763,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/profile/" in result
 
+    # Documentation: Compare topic versions.
     def test_compare_topic_versions(self):
         """Test case: Compare topic versions."""
         self.driver.implicitly_wait(30)
@@ -715,6 +776,7 @@ class TestPages:
         result = self.driver.current_url
         assert "compare" in result
 
+    # Documentation: Topic comparison agreement link.
     def test_topic_comparison_agreement_link(self):
         """Test case: Topic comparison agreement link."""
         print("\n" + str(test_cases('TC_VERIFY_AGREEMENT_LINK_ON_TOPIC_COMPARISON_PAGE')))
@@ -728,6 +790,7 @@ class TestPages:
         result = self.driver.current_url
         assert "1-Agreement" in result
 
+    # Documentation: Topic comparison create camp button.
     def test_topic_comparison_create_camp_button(self):
         """Test case: Topic comparison create camp button."""
         print("\n" + str(test_cases('TC_VERIFY_CREATE_CAMP_BUTTON_FUNCTIONALITY_ON_TOPIC_COMPARISON_PAGE')))
@@ -741,6 +804,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/camp/create/" in result
 
+    # Documentation: Topic comparison create topic button.
     def test_topic_comparison_create_topic_button(self):
         """Test case: Topic comparison create topic button."""
         print("\n" + str(test_cases('TC_VERIFY_CREATE_TOPIC_BUTTON_FUNCTIONALITY_ON_TOPIC_COMPARISON_PAGE')))
@@ -754,6 +818,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/create/topic" in result
 
+    # Documentation: Topic comparison back button.
     def test_topic_comparison_back_button(self):
         """Test case: Topic comparison back button."""
         self.driver.implicitly_wait(30)
@@ -766,6 +831,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/topic/history/" in result
 
+    # Documentation: Topic history view this version.
     def test_topic_history_view_this_version(self):
         """Test case: Topic history view this version."""
         self.driver.implicitly_wait(30)
@@ -779,6 +845,7 @@ class TestPages:
         assert "/topic/" in result
     # TC_LOAD_CREATE_CAMP_PAGE
     # Camp creation and camp management tests.
+    # Documentation: Load create camp page.
     def test_load_create_camp_page(self):
         """Test case: Load create camp page."""
         print("\n" + str(test_cases('TC_LOAD_CREATE_CAMP_PAGE')))
@@ -792,6 +859,7 @@ class TestPages:
 
         assert "/camp/create/" in result
         # TC_CREATE_CAMP_WITH_VALID_DATA
+    # Documentation: Create camp with valid data.
     def test_create_camp_with_valid_data(self):
         """Test case: Create camp with valid data."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_VALID_DATA')))
@@ -805,6 +873,7 @@ class TestPages:
         assert "topic" in result
 
     # TC_CREATE_CAMP_WITH_BLANK_CAMP_NAME
+    # Documentation: Create camp with blank camp name.
     def test_create_camp_with_blank_camp_name(self):
         """Test case: Create camp with blank camp name."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_BLANK_CAMP_NAME')))
@@ -818,6 +887,7 @@ class TestPages:
         assert "Please enter camp name!" in result
 
     # TC_CREATE_CAMP_WITH_DUPLICATE_CAMP_NAME
+    # Documentation: Create camp with duplicate camp name.
     def test_create_camp_with_duplicate_camp_name(self):
         """Test case: Create camp with duplicate camp name."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_DUPLICATE_CAMP_NAME')))
@@ -831,6 +901,7 @@ class TestPages:
         assert "/camp/create/" in result
 
     # TC_CREATE_CAMP_WITH_INVALID_CAMP_ABOUT_URL
+    # Documentation: Create camp with invalid camp about url.
     def test_create_camp_with_invalid_camp_about_url(self):
         """Test case: Create camp with invalid camp about url."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_INVALID_CAMP_ABOUT_URL')))
@@ -844,6 +915,7 @@ class TestPages:
         assert "/camp/create/" in result
     
     # TC_CREATE_CAMP_WITHOUT_ENTERING_DATA_IN_MANDATORY_FIELDS
+    # Documentation: Create camp without entering data in mandatory fields.
     def test_create_camp_without_entering_data_in_mandatory_fields(self):
         """Test case: Create camp without entering data in mandatory fields."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITHOUT_ENTERING_DATA_IN_MANDATORY_FIELDS')))
@@ -855,6 +927,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/camp/create/" in result
 
+    # Documentation: Create camp mandatory fields are marked with asterisk.
     def test_create_camp_mandatory_fields_are_marked_with_asterisk(self):
         """Test case: Create camp mandatory fields are marked with asterisk."""
         self.driver.implicitly_wait(30)
@@ -865,6 +938,7 @@ class TestPages:
         page = CanonizerCreateCampPage(self.driver).load_create_camp_page()
         assert page.new_camp_mandatory_fields_are_marked_with_asterisk()
 
+    # Documentation: Cancel create camp.
     def test_cancel_create_camp(self):
         """Test case: Cancel create camp."""
         self.driver.implicitly_wait(30)
@@ -876,6 +950,7 @@ class TestPages:
         result = self.driver.current_url
         assert "topic" in result
 
+    # Documentation: Create camp with only mandatory fields.
     def test_create_camp_with_only_mandatory_fields(self):
         """Test case: Create camp with only mandatory fields."""
         self.driver.implicitly_wait(30)
@@ -887,6 +962,7 @@ class TestPages:
         result = self.driver.current_url
         assert "topic" in result
 
+    # Documentation: Update camp with valid data.
     def test_update_camp_with_valid_data(self):
         """Test case: Update camp with valid data."""
         self.driver.implicitly_wait(30)
@@ -899,6 +975,7 @@ class TestPages:
         result = self.driver.current_url
         assert "manage/camp" in result
 
+    # Documentation: Verify submit camp update button.
     def test_verify_submit_camp_update_button(self):
         """Test case: Verify submit camp update button."""
         self.driver.implicitly_wait(30)
@@ -910,6 +987,7 @@ class TestPages:
         result = CanonizerEditCampPage(self.driver).verify_submit_camp_update_button()
         assert "/manage/camp/" in result.get_url()
 
+    # Documentation: Camp preview fields.
     def test_camp_preview_fields(self):
         """Test case: Camp preview fields."""
         self.driver.implicitly_wait(30)
@@ -921,6 +999,7 @@ class TestPages:
         result = CanonizerEditCampPage(self.driver).verify_fields_on_preview_modal()
         assert result is not None
 
+    # Documentation: Camp preview cancel.
     def test_camp_preview_cancel(self):
         """Test case: Camp preview cancel."""
         self.driver.implicitly_wait(30)
@@ -932,6 +1011,7 @@ class TestPages:
         result = CanonizerEditCampPage(self.driver).verify_cancel_button_on_preview_modal()
         assert "/manage/camp/" in result.get_url()
 
+    # Documentation: Camp preview submitter nickname.
     def test_camp_preview_submitter_nickname(self):
         """Test case: Camp preview submitter nickname."""
         self.driver.implicitly_wait(30)
@@ -943,6 +1023,7 @@ class TestPages:
         result = CanonizerEditCampPage(self.driver).verify_submitter_nick_name_on_preview_modal()
         assert result is not None
 
+    # Documentation: Compare camp versions.
     def test_compare_camp_versions(self):
         """Test case: Compare camp versions."""
         self.driver.implicitly_wait(30)
@@ -954,6 +1035,7 @@ class TestPages:
         result = CanonizerEditCampPage(self.driver).verify_compare_camps_button_functionality()
         assert "compare" in result.get_url()
 
+    # Documentation: Camp comparison displays both versions.
     def test_camp_comparison_displays_both_versions(self):
         """Test case: Camp comparison displays both versions."""
         self.driver.implicitly_wait(30)
@@ -965,6 +1047,7 @@ class TestPages:
         result = CanonizerEditCampPage(self.driver).verify_camps_name_on_camp_history_comparison_page()
         assert result is not None
 
+    # Documentation: Load camp manage edit page.
     def test_load_camp_manage_edit_page(self):
         """Test case: Load camp manage edit page."""
         self.driver.implicitly_wait(30)
@@ -977,6 +1060,7 @@ class TestPages:
         result = self.driver.current_url
         assert "manage/camp" in result
 
+    # Documentation: Add statement for archived camp.
     def test_add_statement_for_archived_camp(self):
         """Test case: Add statement for archived camp."""
         self.driver.implicitly_wait(30)
@@ -996,6 +1080,7 @@ class TestPages:
 
 
     # TC_UPDATE_CAMP_WITH_INVALID_URL
+    # Documentation: Submit camp update with invalid url.
     def test_submit_camp_update_with_invalid_url(self):
         """Test case: Submit camp update with invalid url."""
         self.login_to_canonizer_app()
@@ -1004,6 +1089,7 @@ class TestPages:
         assert "/manage/camp/" in result.get_url()
 
     # TC_UPDATE_CAMP_WITH_DUPLICATE_CAMP_NAME
+    # Documentation: Update camp with duplicate camp name.
     def test_update_camp_with_duplicate_camp_name(self):
         """Test case: Update camp with duplicate camp name."""
         self.login_to_canonizer_app()
@@ -1013,6 +1099,7 @@ class TestPages:
 
 
     # TC_VERIFY_CANCEL_BUTTON_FUNCTIONALITY_ON_CAMP_UPDATE_PAGE
+    # Documentation: Verify cancel button functionality on camp update page.
     def test_verify_cancel_button_functionality_on_camp_update_page(self):
         """Test case: Verify cancel button functionality on camp update page."""
         self.login_to_canonizer_app()
@@ -1021,6 +1108,7 @@ class TestPages:
         assert "/camp/history/" in result.get_url()
 
     # TC_VERIFY_PREVIEW_BUTTON_FUNCTIONALITY_ON_CAMP_UPDATE_PAGE
+    # Documentation: Verify preview button functionality on camp update page.
     def test_verify_preview_button_functionality_on_camp_update_page(self):
         """Test case: Verify preview button functionality on camp update page."""
         self.login_to_canonizer_app()
@@ -1030,6 +1118,7 @@ class TestPages:
     # TC_LOAD_ADD_NEW_CAMP_STATEMENT_PAGE
     # Camp statement creation and editing tests.
 
+    # Documentation: Camp statement button.
     def test_camp_statement_button(self):
         """Test case: Camp statement button."""
         self.driver.implicitly_wait(30)
@@ -1040,6 +1129,7 @@ class TestPages:
         CanonizerCreateCampPage(self.driver).load_create_camp_page().create_camp_with_valid_data(CREATE_CAMP_LIST_1)
         result = self.driver.find_element(*CampStatementIdentifiers.ADD_STATEMENT_BUTTON).text
         assert "Add Statement" in result
+    # Documentation: Load camp statement page.
     def test_load_camp_statement_page(self):
         """Test case: Load camp statement page."""
         self.driver.implicitly_wait(30)
@@ -1052,6 +1142,7 @@ class TestPages:
         result = self.driver.find_element(*CampStatementIdentifiers.ADDING_CAMP_STATEMENT_POP_UP).text
         assert "Adding Camp Statement" in result
 
+    # Documentation: Add camp statement with valid data.
     def test_add_camp_statement_with_valid_data(self):
         """Test case: Add camp statement with valid data."""
         self.driver.implicitly_wait(30)
@@ -1063,6 +1154,7 @@ class TestPages:
         CanonizerCampStatementPage(self.driver).add_camp_statement()
         result = self.driver.find_element(*CampStatementIdentifiers.EDIT_BASED_ON_THIS).text
         assert "Edit Based on This" in result
+    # Documentation: Add camp statement page with asterisk.
     def test_add_camp_statement_page_with_asterisk(self):
         """Test case: Add camp statement page with asterisk."""
         self.driver.implicitly_wait(30)
@@ -1075,6 +1167,7 @@ class TestPages:
         result = self.driver.find_element(*CampStatementIdentifiers.PUBLISH_BUTTON).text
         assert "Publish Statement" in result
 
+    # Documentation: Add camp statement without mandatory field.
     def test_add_camp_statement_without_mandatory_field(self):
         """Test case: Add camp statement without mandatory field."""
         self.driver.implicitly_wait(30)
@@ -1087,6 +1180,7 @@ class TestPages:
         result = self.driver.find_element(*CampStatementIdentifiers.PUBLISH_BUTTON).text
         assert "Publish Statement" in result
 
+    # Documentation: Add camp statement with trailing spaces.
     def test_add_camp_statement_with_trailing_spaces(self):
         """Test case: Add camp statement with trailing spaces."""
         self.driver.implicitly_wait(30)
@@ -1099,6 +1193,7 @@ class TestPages:
         result = self.driver.find_element(*CampStatementIdentifiers.EDIT_BASED_ON_THIS).text
         assert "Edit Based On This" in result
 
+    # Documentation: Add camp statement with blank data.
     def test_add_camp_statement_with_blank_data(self):
         """Test case: Add camp statement with blank data."""
         self.driver.implicitly_wait(30)
@@ -1111,6 +1206,7 @@ class TestPages:
         result = self.driver.find_element(*CampStatementIdentifiers.PUBLISH_STATEMENT).text
         assert "Publish Statement" in result
 
+    # Documentation: Cancel create camp statement.
     def test_cancel_create_camp_statement(self):
         """Test case: Cancel create camp statement."""
         print("\n" + str(test_cases('TC_CLICK_ON_STATEMENT_CANCEL_BUTTON')))
@@ -1124,6 +1220,7 @@ class TestPages:
         result = self.driver.current_url
         assert "topic" in result
 
+    # Documentation: Preview camp statement.
     def test_preview_camp_statement(self):
         """Test case: Preview camp statement."""
         print("\n" + str(test_cases('TC_CLICK_ON_STATEMENT_PREVIEW_BUTTON')))
@@ -1137,6 +1234,7 @@ class TestPages:
         result = self.driver.find_element(*CampStatementIdentifiers.ADD_STATEMENT_TITLE).text
         assert "Add Camp Statement" in result
         
+    # Documentation: Camp statement template.
     def test_camp_statement_template(self):
         """Test case: Camp statement template."""
         self.driver.implicitly_wait(30)
@@ -1150,6 +1248,7 @@ class TestPages:
         result = self.driver.find_element(*CampStatementIdentifiers.CAMP_NAME_2).text
         assert campname in result
        #EDIT_CAMP_SATEMENT
+    # Documentation: Load edit camp statement.
     def test_load_edit_camp_statement(self):
         """Test case: Load edit camp statement."""
         self.driver.implicitly_wait(30)
@@ -1163,6 +1262,7 @@ class TestPages:
         result = self.driver.current_url
         assert "manage" in result
 
+    # Documentation: Edit camp statement.
     def test_edit_camp_statement(self):
         """Test case: Edit camp statement."""
         self.driver.implicitly_wait(30)
@@ -1176,6 +1276,7 @@ class TestPages:
         CanonizerCampStatementPage(self.driver).edit_camp_statement()
         result = self.driver.current_url
         assert "statement/history" in result
+    # Documentation: Update camp statement with mandatory field.
     def test_update_camp_statement_with_mandatory_field(self):
         """Test case: Update camp statement with mandatory field."""
         self.driver.implicitly_wait(30)
@@ -1190,6 +1291,7 @@ class TestPages:
         result = self.driver.current_url
         assert "statement/history" in result
 
+    # Documentation: Edit camp statement with trailing spaces.
     def test_edit_camp_statement_with_trailing_spaces(self):
         """Test case: Edit camp statement with trailing spaces."""
         self.driver.implicitly_wait(30)
@@ -1204,6 +1306,7 @@ class TestPages:
         result = self.driver.current_url
         assert "statement/history" in result
 
+    # Documentation: Edit camp statement with blank data.
     def test_edit_camp_statement_with_blank_data(self):
         """Test case: Edit camp statement with blank data."""
         self.driver.implicitly_wait(30)
@@ -1218,6 +1321,7 @@ class TestPages:
         result = self.driver.current_url
         assert "statement/history" in result
 
+    # Documentation: Compare camp statement.
     def test_compare_camp_statement(self):
         """Test case: Compare camp statement."""
         self.driver.implicitly_wait(30)
@@ -1234,6 +1338,7 @@ class TestPages:
 
         assert "compare" in result
     
+    # Documentation: Click create thread button.
     def test_click_create_thread_button(self):
         """Test case: Click create thread button."""
         print("\n" + str(test_cases('TC_CLICK_CREATE_THREAD_BUTTON')))
@@ -1246,6 +1351,7 @@ class TestPages:
         assert "/threads" in result
 
     # TC_CREATE_THREAD_WITH_VALID_DATA
+    # Documentation: Create thread with valid data.
     def test_create_thread_with_valid_data(self):
         """Test case: Create thread with valid data."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_VALID_DATA')))
@@ -1260,6 +1366,7 @@ class TestPages:
         assert "forum" in result
 
     # TC_CREATE_THREAD_WITH_BLANK_TITLE
+    # Documentation: Create thread with blank title.
     def test_create_thread_with_blank_title(self):
         """Test case: Create thread with blank title."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_BLANK_TITLE')))
@@ -1274,6 +1381,7 @@ class TestPages:
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_SPECIAL_CHARS
+    # Documentation: Create thread with special chars.
     def test_create_thread_with_special_chars(self):
         """Test case: Create thread with special chars."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_SPECIAL_CHARS')))
@@ -1288,6 +1396,7 @@ class TestPages:
         assert "forum" in result
 
     # TC_CREATE_THREAD_WITH_BLANK_MANDATORY_FIELDS
+    # Documentation: Create thread with blank mandatory fields.
     def test_create_thread_with_blank_mandatory_fields(self):
         """Test case: Create thread with blank mandatory fields."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_BLANK_MANDATORY_FIELDS')))
@@ -1302,6 +1411,7 @@ class TestPages:
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_DUPLICATE_TITLE
+    # Documentation: Create thread with duplicate title.
     def test_create_thread_with_duplicate_title(self):
         """Test case: Create thread with duplicate title."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_DUPLICATE_TITLE')))
@@ -1316,6 +1426,7 @@ class TestPages:
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_VALID_DATA_WITH_ENTER_KEY
+    # Documentation: Create thread with valid data with enter key.
     def test_create_thread_with_valid_data_with_enter_key(self):
         """Test case: Create thread with valid data with enter key."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_VALID_DATA_WITH_ENTER_KEY')))
@@ -1330,6 +1441,7 @@ class TestPages:
         assert "test" in result
 
     # TC_CREATE_THREAD_WITH_TRAILING_SPACES
+    # Documentation: Create thread with trailing spaces.
     def test_create_thread_with_trailing_spaces(self):
         """Test case: Create thread with trailing spaces."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_TRAILING_SPACES')))
@@ -1342,6 +1454,7 @@ class TestPages:
         CanonizerCampForumPage(self.driver).create_thread_with_trailing_spaces()
         result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
+    # Documentation: Load edit thread page.
     def test_load_edit_thread_page(self):
         """Test case: Load edit thread page."""
         self.driver.implicitly_wait(30)
@@ -1356,6 +1469,7 @@ class TestPages:
         result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
 
+    # Documentation: Edit thread.
     def test_edit_thread(self):
         """Test case: Edit thread."""
         self.driver.implicitly_wait(30)
@@ -1369,6 +1483,7 @@ class TestPages:
         result = self.driver.find_element(*CampStatementIdentifiers.TEST_CAMP).text
         assert "test" in result
    
+    # Documentation: Create post.
     def test_create_post(self):
         """Test case: Create post."""
         self.driver.implicitly_wait(30)
@@ -1383,6 +1498,7 @@ class TestPages:
         result = self.driver.find_element(By.ID, "card-title").text
         assert "test" in result
 
+    # Documentation: Edit post.
     def test_edit_post(self):
         """Test case: Edit post."""
         self.driver.implicitly_wait(30)
@@ -1396,6 +1512,7 @@ class TestPages:
         result = CanonizerCampForumPage(self.driver).verify_post_edit_functionality("updated post reply")
         assert result is not None
 
+    # Documentation: Delete post.
     def test_delete_post(self):
         """Test case: Delete post."""
         self.driver.implicitly_wait(30)
@@ -1410,6 +1527,7 @@ class TestPages:
         assert result is not None
 
     # Camp forum thread filter tests.
+    # Documentation: Load my threads page.
     def test_load_my_threads_page(self):
         """Test case: Load my threads page."""
         print("\n" + str(test_cases('TC_LOAD_MY_THREADS_PAGE')))
@@ -1425,6 +1543,7 @@ class TestPages:
         result = self.driver.current_url
         assert "forum" in result and self.driver.find_element(*CampForumIdentifiers.MY_THREADS_BUTTON).is_displayed()
 
+    # Documentation: Load my participation page.
     def test_load_my_participation_page(self):
         """Test case: Load my participation page."""
         print("\n" + str(test_cases('TC_LOAD_MY_PARTICIPATION_PAGE')))
@@ -1440,6 +1559,7 @@ class TestPages:
         result = self.driver.current_url
         assert "forum" in result and self.driver.find_element(*CampForumIdentifiers.MY_PARTICIPATION).is_displayed()
 
+    # Documentation: Load top 10 threads page.
     def test_load_top_10_threads_page(self):
         """Test case: Load top 10 threads page."""
         print("\n" + str(test_cases('TC_LOAD_TOP_10_THREADS_PAGE')))
@@ -1459,6 +1579,7 @@ class TestPages:
 
 # TC_LOAD_ADD_NEWS_FEED_PAGE
     # News feed creation and validation tests.
+    # Documentation: Load add news page.
     def test_load_add_news_page(self):
         """Test case: Load add news page."""
         print("\n" + str(test_cases('TC_LOAD_ADD_NEWS_FEED_PAGE')))
@@ -1471,6 +1592,7 @@ class TestPages:
         assert "/addnews/" in result
 
     # TC_ADD_NEWS_PAGE_MANDATORY_FIELDS_ARE_MARKED_WITH_ASTERISK
+    # Documentation: Add news page mandatory fields are marked with asterisk.
     def test_add_news_page_mandatory_fields_are_marked_with_asterisk(self):
         """Test case: Add news page mandatory fields are marked with asterisk."""
         print("\n" + str(test_cases('TC_ADD_NEWS_PAGE_MANDATORY_FIELDS_ARE_MARKED_WITH_ASTERISK')))
@@ -1483,6 +1605,7 @@ class TestPages:
         assert CanonizerAddNewsPage(self.driver).load_add_news_page(DEFAULT_TOPIC).add_news_page_mandatory_fields_are_marked_with_asterisk()
 
     # TC_CREATE_NEWS_WITH_VALID_DATA
+    # Documentation: Create news with valid data.
     def test_create_news_with_valid_data(self):
         """Test case: Create news with valid data."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_VALID_DATA')))
@@ -1496,6 +1619,7 @@ class TestPages:
         assert "/1-Agreement" in result
 
     # TC_CREATE_NEWS_WITH_BLANK_DISPLAY_TEXT
+    # Documentation: Create news with blank display text.
     def test_create_news_with_blank_display_text(self):
         """Test case: Create news with blank display text."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_BLANK_DISPLAY_TEXT')))
@@ -1508,6 +1632,7 @@ class TestPages:
         assert "Display text is required" in result
 
     # TC_CREATE_NEWS_WITH_BLANK_LINK
+    # Documentation: Create news with blank link.
     def test_create_news_with_blank_link(self):
         """Test case: Create news with blank link."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_BLANK_LINK')))
@@ -1519,6 +1644,7 @@ class TestPages:
         result = self.driver.find_element(*AddNewsIdentifiers.LINK_VALIDATION).text
         assert "Link is required." in result
     # TC_NEW_FEED_WITH_BLANK_FIELDS
+    # Documentation: Create new with blank fields.
     def test_create_new_with_blank_fields(self):
         """Test case: Create new with blank fields."""
         print("\n", str(test_cases('TC_NEW_FEED_WITH_BLANK_FIELDS')))
@@ -1531,6 +1657,7 @@ class TestPages:
         assert "Link is required." in result
 
     # TC_CLICK_ADD_NEWS_CANCEL_BUTTON
+    # Documentation: Click add news cancel button.
     def test_click_add_news_cancel_button(self):
         """Test case: Click add news cancel button."""
         print("\n" + str(test_cases('TC_CLICK_ADD_NEWS_CANCEL_BUTTON')))
@@ -1540,6 +1667,7 @@ class TestPages:
         assert "Topic :" in result
 
     # TC_CREATE_NEWS_WITH_INVALID_LINK_FORMAT
+    # Documentation: Create news with invalid link format.
     def test_create_news_with_invalid_link_format(self):
         """Test case: Create news with invalid link format."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_INVALID_LINK_FORMAT')))
@@ -1552,6 +1680,7 @@ class TestPages:
         assert "Link is invalid. (Example: https://www.example.com?post=1234)." in result
 
     # TC_CREATE_NEWS_WITH_ENTER_KEY
+    # Documentation: Create news using enter key.
     def test_create_news_using_enter_key(self):
         """Test case: Create news using enter key."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_ENTER_KEY')))
@@ -1565,6 +1694,7 @@ class TestPages:
 
 
     # TC_CREATE_NEWS_WITH_DUPLICATE_DATA
+    # Documentation: Create news with duplicate data.
     def test_create_news_with_duplicate_data(self):
         """Test case: Create news with duplicate data."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_DUPLICATE_DATA')))
@@ -1574,6 +1704,7 @@ class TestPages:
         assert "Manage/Edit Camp Statement" not in result
 
     # TC_CREATE_NEWS_WITH_TRAILING_SPACES
+    # Documentation: Create news with trailing spaces.
     def test_create_news_with_trailing_spaces(self):
         """Test case: Create news with trailing spaces."""
         print("\n", str(test_cases("TC_CREATE_NEWS_WITH_TRAILING_SPACES")))
@@ -1586,6 +1717,7 @@ class TestPages:
         assert "/1-Agreement" in result
 
     # Edit news form coverage tests.
+    # Documentation: Load edit news page.
     def test_load_edit_news_page(self):
         """Test case: Load edit news page."""
         print("\n" + str(test_cases('TC_LOAD_EDIT_NEWS_PAGE')))
@@ -1599,6 +1731,7 @@ class TestPages:
         assert self.driver.find_element(*AddNewsIdentifiers.DISPLAY_TEXT).is_displayed()
         assert self.driver.find_element(*AddNewsIdentifiers.LINK).is_displayed()
 
+    # Documentation: Click edit news cancel button.
     def test_click_edit_news_cancel_button(self):
         """Test case: Click edit news cancel button."""
         print("\n" + str(test_cases('TC_CLICK_EDIT_NEWS_CANCEL_BUTTON')))
@@ -1612,6 +1745,7 @@ class TestPages:
         result = self.driver.find_element(*AddNewsIdentifiers.TOPIC).text
         assert "Topic :" in result
 
+    # Documentation: Update news with blank display text.
     def test_update_news_with_blank_display_text(self):
         """Test case: Update news with blank display text."""
         print("\n" + str(test_cases('TC_UPDATE_NEWS_WITH_BLANK_DISPLAY_TEXT')))
@@ -1625,6 +1759,7 @@ class TestPages:
         result = self.driver.find_element(*AddNewsIdentifiers.BLANK_DISPLAY_TEXT_ERROR).text
         assert "Display text is required" in result
 
+    # Documentation: Update news with blank link.
     def test_update_news_with_blank_link(self):
         """Test case: Update news with blank link."""
         print("\n" + str(test_cases('TC_UPDATE_NEWS_WITH_BLANK_LINK')))
@@ -1638,6 +1773,7 @@ class TestPages:
         result = self.driver.find_element(*AddNewsIdentifiers.BLANK_LINK_ERROR).text
         assert "Link is required." in result
 
+    # Documentation: Edit news with valid data.
     def test_edit_news_with_valid_data(self):
         """Test case: Edit news with valid data."""
         self.driver.implicitly_wait(30)
@@ -1650,6 +1786,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/topic/" in result
 
+    # Documentation: Edit news with invalid link.
     def test_edit_news_with_invalid_link(self):
         """Test case: Edit news with invalid link."""
         self.driver.implicitly_wait(30)
@@ -1662,6 +1799,7 @@ class TestPages:
         result = self.driver.find_element(*AddNewsIdentifiers.LINK_VALIDATION_NOTE).text
         assert "Link is invalid. (Example: https://www.example.com?post=1234)." in result
 
+    # Documentation: Edit news with trailing spaces.
     def test_edit_news_with_trailing_spaces(self):
         """Test case: Edit news with trailing spaces."""
         self.driver.implicitly_wait(30)
@@ -1674,6 +1812,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/topic/" in result
 
+    # Documentation: Create news available for child camps.
     def test_create_news_available_for_child_camps(self):
         """Test case: Create news available for child camps."""
         self.driver.implicitly_wait(30)
@@ -1686,6 +1825,7 @@ class TestPages:
         assert "/topic/" in result
 
     # Browse, discovery, and event timeline tests.
+    # Documentation: Eventline.
     def test_eventline(self):
         """Test case: Eventline."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_VALID_DATA')))
@@ -1699,6 +1839,7 @@ class TestPages:
         assert "eventline" in result
    
 
+    # Documentation: Browse start topic.
     def test_browse_start_topic(self):
         """Test case: Browse start topic."""
         self.driver.implicitly_wait(30)
@@ -1707,6 +1848,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/create/topic" in result
 
+    # Documentation: Browse only my topics.
     def test_browse_only_my_topics(self):
         """Test case: Browse only my topics."""
         self.driver.implicitly_wait(30)
@@ -1715,6 +1857,7 @@ class TestPages:
         result = self.driver.current_url
         assert "browse" in result
 
+    # Documentation: Browse namespace filter.
     def test_browse_namespace_filter(self):
         """Test case: Browse namespace filter."""
         self.driver.implicitly_wait(30)
@@ -1723,6 +1866,7 @@ class TestPages:
         result = self.driver.find_element(*BrowsePageIdentifiers.NAMESPACE).text
         assert result != ""
 
+    # Documentation: Browse algorithm filter.
     def test_browse_algorithm_filter(self):
         """Test case: Browse algorithm filter."""
         self.driver.implicitly_wait(30)
@@ -1731,6 +1875,7 @@ class TestPages:
         result = self.driver.current_url
         assert "browse" in result
 
+    # Documentation: Browse search by topic tag.
     def test_browse_search_by_topic_tag(self):
         """Test case: Browse search by topic tag."""
         self.driver.implicitly_wait(30)
@@ -1739,6 +1884,7 @@ class TestPages:
         result = self.driver.current_url
         assert "browse" in result
 
+    # Documentation: Advanced search topic tab navigation.
     def test_advanced_search_topic_tab_navigation(self):
         """Test case: Advanced search topic tab navigation."""
         self.driver.implicitly_wait(30)
@@ -1747,6 +1893,7 @@ class TestPages:
         result = self.driver.find_element(*SearchPageIdentifiers.TOPIC_HEADING).text
         assert "Topic" in result
 
+    # Documentation: Advanced search camp tab navigation.
     def test_advanced_search_camp_tab_navigation(self):
         """Test case: Advanced search camp tab navigation."""
         self.driver.implicitly_wait(30)
@@ -1755,6 +1902,7 @@ class TestPages:
         result = self.driver.find_element(*SearchPageIdentifiers.CAMP_HEADING).text
         assert "Camp" in result
 
+    # Documentation: Advanced search camp statement tab navigation.
     def test_advanced_search_camp_statement_tab_navigation(self):
         """Test case: Advanced search camp statement tab navigation."""
         self.driver.implicitly_wait(30)
@@ -1763,6 +1911,7 @@ class TestPages:
         result = self.driver.find_element(*SearchPageIdentifiers.CAMP_STATEMENT_HEADING).text
         assert "Camp Statement" in result
 
+    # Documentation: Advanced search nickname tab navigation.
     def test_advanced_search_nickname_tab_navigation(self):
         """Test case: Advanced search nickname tab navigation."""
         self.driver.implicitly_wait(30)
@@ -1771,6 +1920,7 @@ class TestPages:
         result = self.driver.find_element(*SearchPageIdentifiers.NICKNAME_HEADING).text
         assert "Nickname" in result
 
+    # Documentation: Advanced search topic review filter route.
     def test_advanced_search_topic_review_filter_route(self):
         """Test case: Advanced search topic review filter route."""
         self.driver.implicitly_wait(30)
@@ -1779,6 +1929,7 @@ class TestPages:
         result = self.driver.current_url
         assert "asof=review" in result and "/search/topic" in result
 
+    # Documentation: Advanced search camp bydate filter route.
     def test_advanced_search_camp_bydate_filter_route(self):
         """Test case: Advanced search camp bydate filter route."""
         self.driver.implicitly_wait(30)
@@ -1787,6 +1938,7 @@ class TestPages:
         result = self.driver.current_url
         assert "asof=bydate" in result and "/search/camp" in result
 
+    # Documentation: Advanced search topic pagination visibility.
     def test_advanced_search_topic_pagination_visibility(self):
         """Test case: Advanced search topic pagination visibility."""
         self.driver.implicitly_wait(30)
@@ -1796,6 +1948,7 @@ class TestPages:
         assert result
 
     # Upload and profile media tests.
+    # Documentation: Upload files.
     def test_upload_files(self):
         """Test case: Upload files."""
         self.driver.implicitly_wait(30)
@@ -1804,6 +1957,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/uploadFile" in result
 
+    # Documentation: Browse videos.
     def test_browse_videos(self):
         """Test case: Browse videos."""
         self.driver.implicitly_wait(30)
@@ -1812,6 +1966,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/videos" in result
 
+    # Documentation: Browse help.
     def test_browse_help(self):
         """Test case: Browse help."""
         self.driver.implicitly_wait(30)
@@ -1820,6 +1975,7 @@ class TestPages:
         result = self.driver.current_url
         assert "/topic/132-Help/1-Agreement?is_tree_open=1" in result
 
+    # Documentation: Browse notification.
     def test_browse_notification(self):
         """Test case: Browse notification."""
         self.driver.implicitly_wait(30)
@@ -1828,6 +1984,7 @@ class TestPages:
         result = self.driver.find_element(*BrowsePageIdentifiers.NOTIFICATIONS).text
         assert "notifications" in result
 
+    # Documentation: Browse profile setting.
     def test_browse_profile_setting(self):
         """Test case: Browse profile setting."""
         self.driver.implicitly_wait(30)
@@ -1836,6 +1993,7 @@ class TestPages:
         result = self.driver.find_element(*BrowsePageIdentifiers.PROFILE_SETTING).text
         assert "Account Settings" in result
 
+    # Documentation: Browse profile setting account setting.
     def test_browse_profile_setting_account_setting(self):
         """Test case: Browse profile setting account setting."""
         self.driver.implicitly_wait(30)
@@ -1845,6 +2003,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/settings?tab=profile_info" in result
 
+    # Documentation: Browse profile setting supported camps.
     def test_browse_profile_setting_supported_camps(self):
         """Test case: Browse profile setting supported camps."""
         self.driver.implicitly_wait(30)
@@ -1854,6 +2013,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/settings?tab=direct_supported_camps" in result
 
+    # Documentation: Upload profile picture.
     def test_upload_profile_picture(self):
         """Test case: Upload profile picture."""
         self.login_to_canonizer_app()
@@ -1866,6 +2026,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.IMAGE_UPLOADED_SUCCESFULLY).text
         assert "Profile updated successfully" in result
 
+    # Documentation: View profile picture.
     def test_view_profile_picture(self):
         """Test case: View profile picture."""
         self.login_to_canonizer_app()
@@ -1874,6 +2035,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.VIEW_IMAGE_POP_UP).text
         assert "Profile picture" in result
 
+    # Documentation: Delete profile picture.
     def test_delete_profile_picture(self):
         """Test case: Delete profile picture."""
         self.login_to_canonizer_app()
@@ -1882,6 +2044,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.IMAGE_DELETED_POP_UP).text
         assert "Image Deleted" in result
 
+    # Documentation: Delete profile picture when no image exists.
     def test_delete_profile_picture_when_no_image_exists(self):
         """Test case: Delete profile picture when no image exists."""
         self.login_to_canonizer_app()
@@ -1891,6 +2054,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.IMAGE_DELETED_POP_UP).text
         assert "Image Deleted" not in result
 
+    # Documentation: Alphabets for no profile image.
     def test_alphabets_for_no_profile_image(self):
         """Test case: Alphabets for no profile image."""
         self.login_to_canonizer_app()
@@ -1899,6 +2063,7 @@ class TestPages:
         assert "AR" in result
 
     # Footer and public navigation tests.
+    # Documentation: Footer browse button.
     def test_footer_browse_button(self):
         """Test case: Footer browse button."""
         self.driver.implicitly_wait(30)
@@ -1908,6 +2073,7 @@ class TestPages:
         assert "https://ux-dev.canonizer.com/browse" in result
 
 
+    # Documentation: Footer create topic button.
     def test_footer_create_topic_button(self):
         """Test case: Footer create topic button."""
         self.driver.implicitly_wait(30)
@@ -1916,6 +2082,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/create/topic" in result
 
+    # Documentation: Footer upload file button.
     def test_footer_upload_file_button(self):
         """Test case: Footer upload file button."""
         self.driver.implicitly_wait(30)
@@ -1924,6 +2091,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/uploadFile" in result
 
+    # Documentation: Footer sitemap button.
     def test_footer_sitemap_button(self):
         """Test case: Footer sitemap button."""
         self.driver.implicitly_wait(30)
@@ -1932,6 +2100,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/sitemap" in result
 
+    # Documentation: Footer videos button.
     def test_footer_videos_button(self):
         """Test case: Footer videos button."""
         self.driver.implicitly_wait(30)
@@ -1940,6 +2109,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/videos" in result
 
+    # Documentation: Footer help button.
     def test_footer_help_button(self):
         """Test case: Footer help button."""
         self.driver.implicitly_wait(30)
@@ -1948,6 +2118,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1" in result
 
+    # Documentation: Footer white paper button.
     def test_footer_white_paper_button(self):
         """Test case: Footer white paper button."""
         self.driver.implicitly_wait(30)
@@ -1956,6 +2127,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/files/2012_amplifying_final.pdf" in result
 
+    # Documentation: Footer jobs button.
     def test_footer_jobs_button(self):
         """Test case: Footer jobs button."""
         self.driver.implicitly_wait(30)
@@ -1964,6 +2136,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/6-Canonizer-Jobs/1-Agreement?is_tree_open=1" in result
 
+    # Documentation: Footer privacy policy button.
     def test_footer_privacy_policy_button(self):
         """Test case: Footer privacy policy button."""
         self.driver.implicitly_wait(30)
@@ -1972,6 +2145,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/privacy-policy" in result
 
+    # Documentation: Footer term and services button.
     def test_footer_term_and_services_button(self):
         """Test case: Footer term and services button."""
         self.driver.implicitly_wait(30)
@@ -1980,6 +2154,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/terms-and-services" in result
    
+    # Documentation: Footer upload file button repeat navigation.
     def test_footer_upload_file_button_repeat_navigation(self):
         """Test case: Footer upload file button repeat navigation."""
         self.driver.implicitly_wait(30)
@@ -1989,6 +2164,7 @@ class TestPages:
         assert "https://ux-dev.canonizer.com/uploadFile" in result 
 
     # Authentication expiry and protected-route checks.
+    # Documentation: Authentication expiry for create topic.
     def test_authentication_expiry_for_create_topic(self):
         """Test case: Authentication expiry for create topic."""
         self.driver.implicitly_wait(30)
@@ -1998,6 +2174,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication expiry for create camp.
     def test_authentication_expiry_for_create_camp(self):
         """Test case: Authentication expiry for create camp."""
         self.driver.implicitly_wait(30)
@@ -2012,6 +2189,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication expiry for create statement.
     def test_authentication_expiry_for_create_statement(self):
         """Test case: Authentication expiry for create statement."""
         self.driver.implicitly_wait(30)
@@ -2027,6 +2205,7 @@ class TestPages:
         assert "https://ux-dev.canonizer.com/login" in result
 
 
+    # Documentation: Authentication expiry for upload file.
     def test_authentication_expiry_for_upload_file(self):
         """Test case: Authentication expiry for upload file."""
         self.driver.implicitly_wait(30)
@@ -2037,6 +2216,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication expiry for account setting.
     def test_authentication_expiry_for_account_setting(self):
         """Test case: Authentication expiry for account setting."""
         self.driver.implicitly_wait(30)
@@ -2046,6 +2226,7 @@ class TestPages:
         assert "https://ux-dev.canonizer.com/login" in result
 
 
+    # Documentation: Authentication expiry for supported camp.
     def test_authentication_expiry_for_supported_camp(self):
         """Test case: Authentication expiry for supported camp."""
         self.driver.implicitly_wait(30)
@@ -2056,6 +2237,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication expiry for nicknames.
     def test_authentication_expiry_for_nicknames(self):
         """Test case: Authentication expiry for nicknames."""
         self.driver.implicitly_wait(30)
@@ -2064,6 +2246,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication expiry for user preference.
     def test_authentication_expiry_for_user_preference(self):
         """Test case: Authentication expiry for user preference."""
         self.driver.implicitly_wait(30)
@@ -2072,6 +2255,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication expiry for direct supported camp.
     def test_authentication_expiry_for_direct_supported_camp(self):
         """Test case: Authentication expiry for direct supported camp."""
         self.driver.implicitly_wait(30)
@@ -2081,6 +2265,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication expiry for delegate supported camp.
     def test_authentication_expiry_for_delegate_supported_camp(self):
         """Test case: Authentication expiry for delegate supported camp."""
         self.driver.implicitly_wait(30)
@@ -2089,6 +2274,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication expiry for subscriptions.
     def test_authentication_expiry_for_subscriptions(self):
         """Test case: Authentication expiry for subscriptions."""
         self.driver.implicitly_wait(30)
@@ -2097,6 +2283,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication social oauth verification.
     def test_authentication_social_oauth_verification(self):
         """Test case: Authentication social oauth verification."""
         self.driver.implicitly_wait(30)
@@ -2105,6 +2292,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication change password.
     def test_authentication_change_password(self):
         """Test case: Authentication change password."""
         self.driver.implicitly_wait(30)
@@ -2113,6 +2301,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication add news.
     def test_authentication_add_news(self):
         """Test case: Authentication add news."""
         self.driver.implicitly_wait(30)
@@ -2127,6 +2316,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication homepage.
     def test_authentication_homepage(self):
         """Test case: Authentication homepage."""
         self.driver.implicitly_wait(30)
@@ -2137,6 +2327,7 @@ class TestPages:
         assert "https://ux-dev.canonizer.com/login" in result
 
 
+    # Documentation: Authentication notification page.
     def test_authentication_notification_page(self):
         """Test case: Authentication notification page."""
         self.driver.implicitly_wait(30)
@@ -2148,6 +2339,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication notification delete.
     def test_authentication_notification_delete(self):
         """Test case: Authentication notification delete."""
         self.driver.implicitly_wait(30)
@@ -2160,6 +2352,7 @@ class TestPages:
         assert "https://ux-dev.canonizer.com/login" in result
 
 
+    # Documentation: Authentication header browse pge.
     def test_authentication_header_browse_pge(self):
         """Test case: Authentication header browse pge."""
         self.driver.implicitly_wait(30)
@@ -2175,6 +2368,7 @@ class TestPages:
           result = "pass"
         assert "pass" in result
 
+    # Documentation: Authentication header videos.
     def test_authentication_header_videos(self):
         """Test case: Authentication header videos."""
         self.driver.implicitly_wait(30)
@@ -2185,6 +2379,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication header help.
     def test_authentication_header_help(self):
         """Test case: Authentication header help."""
         self.driver.implicitly_wait(30)
@@ -2195,6 +2390,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication footer browse.
     def test_authentication_footer_browse(self):
         """Test case: Authentication footer browse."""
         self.driver.implicitly_wait(30)
@@ -2210,6 +2406,7 @@ class TestPages:
           result = "pass"
         assert "pass" in result
 
+    # Documentation: Authentication footer create topic.
     def test_authentication_footer_create_topic(self):
         """Test case: Authentication footer create topic."""
         self.driver.implicitly_wait(30)
@@ -2221,6 +2418,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication footer upload file.
     def test_authentication_footer_upload_file(self):
         """Test case: Authentication footer upload file."""
         self.driver.implicitly_wait(30)
@@ -2232,6 +2430,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" in result
 
+    # Documentation: Authentication footer videos.
     def test_authentication_footer_videos(self):
         """Test case: Authentication footer videos."""
         self.driver.implicitly_wait(30)
@@ -2243,6 +2442,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/videos" in result
 
+    # Documentation: Authentication footer help.
     def test_authentication_footer_help(self):
         """Test case: Authentication footer help."""
         self.driver.implicitly_wait(30)
@@ -2254,6 +2454,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/132-Help/1-Agreement?is_tree_open=1" in result
 
+    # Documentation: Authentication footer white paper.
     def test_authentication_footer_white_paper(self):
         """Test case: Authentication footer white paper."""
         self.driver.implicitly_wait(30)
@@ -2266,6 +2467,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/files/2012_amplifying_final.pdf" in result
 
+    # Documentation: Authentication footer policy.
     def test_authentication_footer_policy(self):
         """Test case: Authentication footer policy."""
         self.driver.implicitly_wait(30)
@@ -2277,6 +2479,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/privacy-policy" in result
 
+    # Documentation: Authentication footer terms and services.
     def test_authentication_footer_terms_and_services(self):
         """Test case: Authentication footer terms and services."""
         self.driver.implicitly_wait(30)
@@ -2290,6 +2493,7 @@ class TestPages:
 
 
 
+    # Documentation: Authentication topic history.
     def test_authentication_topic_history(self):
         """Test case: Authentication topic history."""
         self.driver.implicitly_wait(30)
@@ -2301,6 +2505,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/login" not in result
 
+    # Documentation: Statement image more than 5mb.
     def test_statement_image_more_than_5mb(self):
         """Test case: Statement image more than 5mb."""
         self.driver.implicitly_wait(30)
@@ -2314,6 +2519,7 @@ class TestPages:
         result = self.driver.find_element(*CampStatementIdentifiers.IMAGE_SIZE_EXCEEDED).text
         assert "Alert: Image size exceed" in result
 
+    # Documentation: Statement image more than 5mb note.
     def test_statement_image_more_than_5mb_note(self):
         """Test case: Statement image more than 5mb note."""
         self.driver.implicitly_wait(30)
@@ -2324,6 +2530,7 @@ class TestPages:
 
         assert "Note: You can drag and drop image files into the editor. The maximum allowed file size is 5 MB." in result
 
+    # Documentation: Upload file without userlogin.
     def test_upload_file_without_userlogin(self):
         """Test case: Upload file without userlogin."""
         self.driver.implicitly_wait(30)
@@ -2331,6 +2538,7 @@ class TestPages:
         result = self.driver.current_url
         assert "login" in result
 
+    # Documentation: Upload file with admin.
     def test_upload_file_with_admin(self):
         """Test case: Upload file with admin."""
         self.driver.implicitly_wait(30)
@@ -2340,6 +2548,7 @@ class TestPages:
         assert "uploadFile" in result
 
 
+    # Documentation: Upload file less than 5mb.
     def test_upload_file_less_than_5mb(self):
         """Test case: Upload file less than 5mb."""
         self.driver.implicitly_wait(30)
@@ -2348,6 +2557,7 @@ class TestPages:
         result = self.driver.current_url
         assert "uploadFile" in result
 
+    # Documentation: Upload file more than 5mb.
     def test_upload_file_more_than_5mb(self):
         """Test case: Upload file more than 5mb."""
         self.driver.implicitly_wait(30)
@@ -2356,6 +2566,7 @@ class TestPages:
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[2]/div[1]/span/div[2]/div/div/div/div/p").text
         assert "This file is exceeding the max limit and will not be uploaded" in result
 
+    # Documentation: Upload in create new folder.
     def test_upload_in_create_new_folder(self):
         """Test case: Upload in create new folder."""
         self.driver.implicitly_wait(30)
@@ -2364,6 +2575,7 @@ class TestPages:
         result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[1]/div/div[2]/button/span[1]").text
         assert "Upload New File" in result
 
+    # Documentation: Upload file in new folder.
     def test_upload_file_in_new_folder(self):
         """Test case: Upload file in new folder."""
         self.driver.implicitly_wait(30)
@@ -2373,6 +2585,7 @@ class TestPages:
         result = self.driver.current_url
         assert "uploadFile" in result
 
+    # Documentation: Upload file manager search and reset.
     def test_upload_file_manager_search_and_reset(self):
         """Test case: Upload file manager search and reset."""
         self.driver.implicitly_wait(30)
@@ -2383,6 +2596,7 @@ class TestPages:
         result = self.driver.find_element(*UploadFileIdentifiers.SEARCH_INPUT).get_attribute("value")
         assert result == ""
 
+    # Documentation: Upload file manager toggle views.
     def test_upload_file_manager_toggle_views(self):
         """Test case: Upload file manager toggle views."""
         self.driver.implicitly_wait(30)
@@ -2393,6 +2607,7 @@ class TestPages:
         result = self.driver.find_element(*UploadFileIdentifiers.CREATE_FOLDER_BUTTON).is_displayed()
         assert result
 
+    # Documentation: Upload file manager file actions menu.
     def test_upload_file_manager_file_actions_menu(self):
         """Test case: Upload file manager file actions menu."""
         self.driver.implicitly_wait(30)
@@ -2405,6 +2620,7 @@ class TestPages:
             result = self.driver.find_element(*UploadFileIdentifiers.CREATE_FOLDER_BUTTON).is_displayed()
         assert result
 
+    # Documentation: Upload file manager delete modal cancel.
     def test_upload_file_manager_delete_modal_cancel(self):
         """Test case: Upload file manager delete modal cancel."""
         self.driver.implicitly_wait(30)
@@ -2416,6 +2632,7 @@ class TestPages:
         result = self.driver.find_element(*UploadFileIdentifiers.CREATE_FOLDER_BUTTON).is_displayed()
         assert result
 
+    # Documentation: Profile page name change.
     def test_profile_page_name_change(self):
         """Test case: Profile page name change."""
             # Profile, account settings, and preference tests.
@@ -2428,6 +2645,7 @@ class TestPages:
 
         assert "Akashing" in result
 
+    # Documentation: Cafe text in address bar.
     def test_cafe_text_in_address_bar(self):
         """Test case: Cafe text in address bar."""
         self.driver.implicitly_wait(30)
@@ -2439,6 +2657,7 @@ class TestPages:
 
         assert "Profile updated successfully." in result
 
+    # Documentation: Topic name in recent activities.
     def test_topic_name_in_recent_activities(self):
         """Test case: Topic name in recent activities."""
         self.driver.implicitly_wait(30)
@@ -2450,6 +2669,7 @@ class TestPages:
         result = self.driver.find_element(*CreateTopicIdentifiers.RECENT_TOPIC_NAME).text
         assert "Recent Topic" in result
 
+    # Documentation: Categories page.
     def test_categories_page(self):
         """Test case: Categories page."""
         self.driver.implicitly_wait(30)
@@ -2465,6 +2685,7 @@ class TestPages:
 
         assert "Relationships" in result
 
+    # Documentation: Elastic search count.
     def test_elastic_search_count(self):
         """Test case: Elastic search count."""
         self.driver.implicitly_wait(30)
@@ -2473,6 +2694,7 @@ class TestPages:
         result = self.driver.find_element(*BrowsePageIdentifiers.TOPIC_SEARCH_COUNT).text
         assert "1121" in result
 
+    # Documentation: Videos thumbnail.
     def test_videos_thumbnail(self):
         """Test case: Videos thumbnail."""
         self.driver.implicitly_wait(30)
@@ -2482,6 +2704,7 @@ class TestPages:
         thumnail_link = "https://ux-dev.canonizer.com/_next/image?url=https%3A%2F%2Fux-dev.canonizer.com%2Ffiles%2Fvideos%2Fconsciousness%2Fintroduction_thumb.png&w=3840&q=75"
         assert thumnail_link in result
 
+    # Documentation: Tree search crash.
     def test_tree_search_crash(self):
         """Test case: Tree search crash."""
         self.driver.implicitly_wait(30)
@@ -2490,6 +2713,7 @@ class TestPages:
         result = self.driver.find_element(*BrowsePageIdentifiers.ELASTIC_SEARCH_URL).text
         assert "Search Results for " in result
 
+    # Documentation: Agree search crash.
     def test_agree_search_crash(self):
         """Test case: Agree search crash."""
         self.driver.implicitly_wait(30)
@@ -2498,6 +2722,7 @@ class TestPages:
         result = self.driver.find_element(*BrowsePageIdentifiers.ELASTIC_SEARCH_URL).text
         assert "Search Results for " in result
 
+    # Documentation: Support camp error first time.
     def test_support_camp_error_first_time(self):
         """Test case: Support camp error first time."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_VALID_DATA')))
@@ -2513,6 +2738,7 @@ class TestPages:
         result = self.driver.find_element(*SupportValueIdentifiers.SUPPORT_POP_UP).text
         assert "Thank you for adding your support to camp" in result
 
+    # Documentation: Notifications filters matrix.
     def test_notifications_filters_matrix(self):
         """Test case: Notifications filters matrix."""
         self.driver.implicitly_wait(30)
@@ -2521,6 +2747,7 @@ class TestPages:
         result = self.driver.find_element(*AdvancedSettingsIdentifiers.NOTIFICATIONS_LIST).is_displayed()
         assert result
 
+    # Documentation: Notifications mark all read cancel.
     def test_notifications_mark_all_read_cancel(self):
         """Test case: Notifications mark all read cancel."""
         self.driver.implicitly_wait(30)
@@ -2529,6 +2756,7 @@ class TestPages:
         result = self.driver.find_element(*AdvancedSettingsIdentifiers.NOTIFICATIONS_TITLE).is_displayed()
         assert result
 
+    # Documentation: Notifications delete all cancel.
     def test_notifications_delete_all_cancel(self):
         """Test case: Notifications delete all cancel."""
         self.driver.implicitly_wait(30)
@@ -2537,6 +2765,7 @@ class TestPages:
         result = self.driver.find_element(*AdvancedSettingsIdentifiers.NOTIFICATIONS_TITLE).is_displayed()
         assert result
 
+    # Documentation: Notifications load more if available.
     def test_notifications_load_more_if_available(self):
         """Test case: Notifications load more if available."""
         self.driver.implicitly_wait(30)
@@ -2545,6 +2774,7 @@ class TestPages:
         result = self.driver.find_element(*AdvancedSettingsIdentifiers.NOTIFICATIONS_LIST).is_displayed()
         assert result or (was_clicked is False)
 
+    # Documentation: Direct supported search.
     def test_direct_supported_search(self):
         """Test case: Direct supported search."""
         self.driver.implicitly_wait(30)
@@ -2553,6 +2783,7 @@ class TestPages:
         result = self.driver.find_element(*AdvancedSettingsIdentifiers.DIRECT_TABLE).is_displayed()
         assert result
 
+    # Documentation: Direct supported remove modal cancel.
     def test_direct_supported_remove_modal_cancel(self):
         """Test case: Direct supported remove modal cancel."""
         self.driver.implicitly_wait(30)
@@ -2561,6 +2792,7 @@ class TestPages:
         result = self.driver.find_element(*AdvancedSettingsIdentifiers.DIRECT_TABLE).is_displayed()
         assert result
 
+    # Documentation: Delegated supported search.
     def test_delegated_supported_search(self):
         """Test case: Delegated supported search."""
         self.driver.implicitly_wait(30)
@@ -2569,6 +2801,7 @@ class TestPages:
         result = self.driver.find_element(*AdvancedSettingsIdentifiers.DELEGATED_TABLE).is_displayed()
         assert result
 
+    # Documentation: Delegated supported remove modal cancel.
     def test_delegated_supported_remove_modal_cancel(self):
         """Test case: Delegated supported remove modal cancel."""
         self.driver.implicitly_wait(30)
@@ -2577,6 +2810,7 @@ class TestPages:
         result = self.driver.find_element(*AdvancedSettingsIdentifiers.DELEGATED_TABLE).is_displayed()
         assert result
 
+    # Documentation: Preferences topic tag search.
     def test_preferences_topic_tag_search(self):
         """Test case: Preferences topic tag search."""
         self.driver.implicitly_wait(30)
@@ -2585,6 +2819,7 @@ class TestPages:
         result = self.driver.find_element(*AdvancedSettingsIdentifiers.PREFERENCE_TAGS_CONTAINER).is_displayed()
         assert result
 
+    # Documentation: Social auth link controls visible.
     def test_social_auth_link_controls_visible(self):
         """Test case: Social auth link controls visible."""
         self.driver.implicitly_wait(30)
@@ -2593,6 +2828,7 @@ class TestPages:
         result = page.social_link_button_count()
         assert result >= 1
 
+    # Documentation: Create topic edit draft crash.
     def test_create_topic_edit_draft_crash(self):
         """Test case: Create topic edit draft crash."""
         self.driver.implicitly_wait(30)
@@ -2613,6 +2849,7 @@ class TestPages:
         assert "Save As Draft" in result
 
 
+    # Documentation: Profile page nickname tab.
     def test_profile_page_nickname_tab(self):
         """Test case: Profile page nickname tab."""
         self.driver.implicitly_wait(30)
@@ -2622,6 +2859,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.NICKNAME).text
         assert "NICKNAMES" in result
 
+    # Documentation: Profile page preferences tab.
     def test_profile_page_preferences_tab(self):
         """Test case: Profile page preferences tab."""
         self.driver.implicitly_wait(30)
@@ -2630,6 +2868,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.PREFERENCE).text
         assert "PREFERENCES" in result
 
+    # Documentation: Profile page direct supported camp tab.
     def test_profile_page_direct_supported_camp_tab(self):
         """Test case: Profile page direct supported camp tab."""
         self.driver.implicitly_wait(30)
@@ -2638,6 +2877,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.DIRECT_SUPPORTED).text
         assert "DIRECT SUPPORTED CAMPS" in result
 
+    # Documentation: Profile page delegate supported camp tab.
     def test_profile_page_delegate_supported_camp_tab(self):
         """Test case: Profile page delegate supported camp tab."""
         self.driver.implicitly_wait(30)
@@ -2645,6 +2885,7 @@ class TestPages:
         CanonizerPofilePage(self.driver).profile_page_delegate_supported_camp_tab()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.DELEGATE_SUPPORT).text
         assert "DELEGATED SUPPORTED CAMPS" in result
+    # Documentation: Profile page mysubscription tab.
     def test_profile_page_mysubscription_tab(self):
         """Test case: Profile page mysubscription tab."""
         self.driver.implicitly_wait(30)
@@ -2653,6 +2894,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.MY_SUBCRIPTION).text
         assert "My Subscriptions" in result
 
+    # Documentation: Profile page account setting social auth tab.
     def test_profile_page_account_setting_social_auth_tab(self):
         """Test case: Profile page account setting social auth tab."""
         self.driver.implicitly_wait(30)
@@ -2661,6 +2903,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.SOCIAL_AUTH).text
         assert "SOCIAL AUTH" in result
 
+    # Documentation: Profile page account setting password tab.
     def test_profile_page_account_setting_password_tab(self):
         """Test case: Profile page account setting password tab."""
         self.driver.implicitly_wait(30)
@@ -2669,6 +2912,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.CHANGE_PASSWORD).text
         assert "CHANGE PASSWORD" in result
 
+    # Documentation: Update first name.
     def test_update_first_name(self):
         """Test case: Update first name."""
         self.driver.implicitly_wait(30)
@@ -2679,6 +2923,7 @@ class TestPages:
         assert "Profile updated successfully." in result
 
 
+    # Documentation: Update last name.
     def test_update_last_name(self):
         """Test case: Update last name."""
         self.driver.implicitly_wait(30)
@@ -2688,6 +2933,7 @@ class TestPages:
 
         assert "Profile updated successfully." in result
 
+    # Documentation: Update date of birth.
     def test_update_date_of_birth(self):
         """Test case: Update date of birth."""
         self.driver.implicitly_wait(30)
@@ -2697,6 +2943,7 @@ class TestPages:
 
         assert "Profile updated successfully." in result
 
+    # Documentation: Update gender.
     def test_update_gender(self):
         """Test case: Update gender."""
         self.driver.implicitly_wait(30)
@@ -2706,6 +2953,7 @@ class TestPages:
 
         assert "Profile updated successfully." in result
 
+    # Documentation: Update phone number.
     def test_update_phone_number(self):
         """Test case: Update phone number."""
         self.driver.implicitly_wait(30)
@@ -2715,6 +2963,7 @@ class TestPages:
 
         assert "Profile updated successfully." in result
 
+    # Documentation: Update address 1.
     def test_update_address_1(self):
         """Test case: Update address 1."""
         self.driver.implicitly_wait(30)
@@ -2723,6 +2972,7 @@ class TestPages:
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
         assert "Profile updated successfully." in result
 
+    # Documentation: Profile setting public crash.
     def test_profile_setting_public_crash(self):
         """Test case: Profile setting public crash."""
         self.driver.implicitly_wait(30)
@@ -2733,6 +2983,7 @@ class TestPages:
 
         assert "Profile updated successfully." in result
 
+    # Documentation: Asp old urls for topics.
     def test_asp_old_urls_for_topics(self):
         """Test case: Asp old urls for topics."""
             # Legacy URL coverage for backward compatibility.
@@ -2741,6 +2992,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/105-Consciousness-Consensus-Projct/1-Agreement?is_tree_open=0" in result
 
+    # Documentation: Asp old urls for camps.
     def test_asp_old_urls_for_camps(self):
         """Test case: Asp old urls for camps."""
         self.driver.implicitly_wait(30)
@@ -2748,6 +3000,7 @@ class TestPages:
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/6669-Test-dlkskndlksndl/1-Agreement?is_tree_open=0" in result
 
+    # Documentation: Asp old urls for support.
     def test_asp_old_urls_for_support(self):
         """Test case: Asp old urls for support."""
         self.driver.implicitly_wait(30)
@@ -2758,36 +3011,43 @@ class TestPages:
     # Backlog tests intentionally tracked in main.py until stable locators/
     # deterministic fixtures are available for the underlying workflows.
     @pytest.mark.xfail(reason="Needs stable support-management locators and safe reorder/petition fixtures.", strict=False)
+    # Documentation: Backlog advanced support management reorder and petitions.
     def test_backlog_advanced_support_management_reorder_and_petitions(self):
         """Backlog: support reorder persistence, petitions, and confirm-remove workflows."""
         pytest.xfail("Pending new page-object methods/locators for advanced support management.")
 
     @pytest.mark.xfail(reason="Needs deterministic notifications fixtures and item-level locators.", strict=False)
+    # Documentation: Backlog notifications single item read and confirm actions.
     def test_backlog_notifications_single_item_read_and_confirm_actions(self):
         """Backlog: single-item read behavior and confirmed mark/delete all notifications."""
         pytest.xfail("Pending deterministic fixtures for notifications state transitions.")
 
     @pytest.mark.xfail(reason="No stable AI-agent settings locators in current page objects.", strict=False)
+    # Documentation: Backlog ai agents register edit password deactivate.
     def test_backlog_ai_agents_register_edit_password_deactivate(self):
         """Backlog: AI-agent lifecycle flows from account settings."""
         pytest.xfail("Pending locators and flows for AI-agent account operations.")
 
     @pytest.mark.xfail(reason="Needs richer search assertions for algorithm/score/date combinations.", strict=False)
+    # Documentation: Backlog advanced search filter combination result counts.
     def test_backlog_advanced_search_filter_combination_result_counts(self):
         """Backlog: deeper filter-combination assertions with deterministic result counts."""
         pytest.xfail("Pending stable assertions for combined filter result counts.")
 
     @pytest.mark.xfail(reason="Missing robust file-manager locators for rename/sort/delete persistence checks.", strict=False)
+    # Documentation: Backlog file manager download rename delete sort persistence.
     def test_backlog_file_manager_download_rename_delete_sort_persistence(self):
         """Backlog: file manager persistence checks for download/rename/delete/sort."""
         pytest.xfail("Pending file-manager action locators and deterministic fixture data.")
 
     @pytest.mark.xfail(reason="Preferred-topic save/discard and wizard controls need stable selectors.", strict=False)
+    # Documentation: Backlog preferred topics save discard and wizard flows.
     def test_backlog_preferred_topics_save_discard_and_wizard_flows(self):
         """Backlog: preferred topics save/discard validation and wizard finish/skip flows."""
         pytest.xfail("Pending preference controls and wizard flow locators.")
 
     @pytest.mark.xfail(reason="Social account link/unlink requires callback-safe test strategy.", strict=False)
+    # Documentation: Backlog social account link unlink.
     def test_backlog_social_account_link_unlink(self):
         """Backlog: social account link/unlink workflows with provider callbacks."""
         pytest.xfail("Pending callback-safe automation strategy and unlink locators.")
@@ -2796,6 +3056,36 @@ class TestPages:
     def teardown_method(self):
 
         self.driver.close()
+
+
+def _humanize_test_name(test_name):
+    """Convert a test function name like test_login_with_invalid_email to a readable sentence fragment."""
+    return test_name.replace("test_", "", 1).replace("_", " ").strip().capitalize()
+
+
+def _enrich_test_docstrings():
+    """Attach a detailed structured docstring to every test method for readability in editor and reports."""
+    for attr_name in dir(TestPages):
+        if not attr_name.startswith("test_"):
+            continue
+
+        test_func = getattr(TestPages, attr_name)
+        if not callable(test_func):
+            continue
+
+        scenario = _humanize_test_name(attr_name)
+        test_func.__doc__ = (
+            f"Purpose:\n"
+            f"        - Validate {scenario}.\n\n"
+            f"        Preconditions:\n"
+            f"        - Browser session is initialized by setup_method.\n"
+            f"        - Required page objects and locators for this flow are available.\n\n"
+            f"        Expected Outcome:\n"
+            f"        - The scenario completes and this test's final assertion confirms expected UI behavior.\n"
+        )
+
+
+_enrich_test_docstrings()
 
 if __name__ == "__main__":
     import sys
