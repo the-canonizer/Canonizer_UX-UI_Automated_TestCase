@@ -17,10 +17,9 @@ class CanonizerAuthenticationPage(Page):
 
     def submit_forgot_password_email(self, email):
         self.wait_for_forgot_password_page()
-        field = self.find_element(*AuthenticationFlowIdentifiers.FORGOT_EMAIL)
-        field.clear()
+        field = self.set_input_value(AuthenticationFlowIdentifiers.FORGOT_EMAIL, email)
         if email:
-            field.send_keys(email)
+            pass
         else:
             field.send_keys(Keys.TAB)
         self.find_element(*AuthenticationFlowIdentifiers.FORGOT_SUBMIT).click()
@@ -59,16 +58,10 @@ class CanonizerAuthenticationPage(Page):
         return self
 
     def fill_reset_password(self, password, confirmation):
-        password_field = self.find_element(
-            *AuthenticationFlowIdentifiers.RESET_PASSWORD
+        self.set_input_value(AuthenticationFlowIdentifiers.RESET_PASSWORD, password)
+        confirmation_field = self.set_input_value(
+            AuthenticationFlowIdentifiers.RESET_CONFIRM_PASSWORD, confirmation
         )
-        confirmation_field = self.find_element(
-            *AuthenticationFlowIdentifiers.RESET_CONFIRM_PASSWORD
-        )
-        password_field.clear()
-        password_field.send_keys(password)
-        confirmation_field.clear()
-        confirmation_field.send_keys(confirmation)
         confirmation_field.send_keys(Keys.TAB)
         return self
 

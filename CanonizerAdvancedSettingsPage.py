@@ -65,9 +65,7 @@ class CanonizerAdvancedSettingsPage(Page):
         return self
 
     def search_direct_supported(self, text):
-        field = self.find_element(*AdvancedSettingsIdentifiers.DIRECT_SEARCH)
-        field.clear()
-        field.send_keys(text)
+        field = self.set_input_value(AdvancedSettingsIdentifiers.DIRECT_SEARCH, text)
         field.send_keys(Keys.ENTER)
         return self
 
@@ -87,9 +85,7 @@ class CanonizerAdvancedSettingsPage(Page):
         return self
 
     def search_delegated_supported(self, text):
-        field = self.find_element(*AdvancedSettingsIdentifiers.DELEGATED_SEARCH)
-        field.clear()
-        field.send_keys(text)
+        field = self.set_input_value(AdvancedSettingsIdentifiers.DELEGATED_SEARCH, text)
         field.send_keys(Keys.ENTER)
         return self
 
@@ -105,9 +101,7 @@ class CanonizerAdvancedSettingsPage(Page):
         return self
 
     def search_preference_tags(self, text):
-        field = self.find_element(*AdvancedSettingsIdentifiers.PREFERENCE_TAG_SEARCH)
-        field.clear()
-        field.send_keys(text)
+        self.set_input_value(AdvancedSettingsIdentifiers.PREFERENCE_TAG_SEARCH, text)
         return self
 
     def open_social_auth(self):

@@ -1,6 +1,8 @@
 import time
 
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import (
+    TimeoutException,
+)
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 
@@ -38,8 +40,7 @@ class CanonizerLoginPage(Page):
         :return:
         Return the result to the main page.
         """
-        self.hover(*LoginPageIdentifiers.LOGIN_PAGE_BUTTON)
-        self.find_element(*LoginPageIdentifiers.LOGIN_PAGE_BUTTON).click()
+        self.safe_click(LoginPageIdentifiers.LOGIN_PAGE_BUTTON, timeout=10, hover_first=True)
         return CanonizerLoginPage(self.driver)
 
     def wait_for_login_page(self):
@@ -60,13 +61,13 @@ class CanonizerLoginPage(Page):
 
     def open_forgot_password(self):
         self.wait_for_login_page()
-        self.find_element(*LoginPageIdentifiers.FORGET_PASSWORD).click()
+        self.safe_click(LoginPageIdentifiers.FORGET_PASSWORD)
         WebDriverWait(self.driver, 10).until(EC.url_contains("/forgot-password"))
         return self
 
     def open_registration_from_login(self):
         self.wait_for_login_page()
-        self.find_element(*LoginPageIdentifiers.REGISTER_NOW_LINK).click()
+        self.safe_click(LoginPageIdentifiers.REGISTER_NOW_LINK)
         WebDriverWait(self.driver, 10).until(EC.url_contains("/registration"))
         return self
 
@@ -173,10 +174,8 @@ class CanonizerLoginPage(Page):
         return CanonizerLoginPage(self.driver)
 
     def verify_the_login_page(self, email, password):
-        self.find_element(*LoginPageIdentifiers.EMAIL).clear()
-        self.find_element(*LoginPageIdentifiers.EMAIL).send_keys(email)
-        self.find_element(*LoginPageIdentifiers.PASSWORD).clear()
-        self.find_element(*LoginPageIdentifiers.PASSWORD).send_keys(password)
+        self.set_input_value(LoginPageIdentifiers.EMAIL, email)
+        self.set_input_value(LoginPageIdentifiers.PASSWORD, password)
         self.driver.find_element(By.ID, "login-submit-btn").click()
 
     def click_on_close_icon_button(self):
@@ -230,9 +229,8 @@ class CanonizerLoginPage(Page):
 
     def verify_the_remember_me_checkbox(self, default_user, default_pass):
         self.click_on_login_button()
-        self.find_element(*LoginPageIdentifiers.EMAIL).clear()
-        self.find_element(*LoginPageIdentifiers.EMAIL).send_keys(default_user)
-        self.find_element(*LoginPageIdentifiers.PASSWORD).send_keys(default_pass)
+        self.set_input_value(LoginPageIdentifiers.EMAIL, default_user)
+        self.set_input_value(LoginPageIdentifiers.PASSWORD, default_pass)
         self.find_element(*LoginPageIdentifiers.CHECK_BOX).click()
         self.find_element(*LoginPageIdentifiers.SUBMIT).click()
 

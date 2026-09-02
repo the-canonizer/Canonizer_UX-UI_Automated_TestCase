@@ -94,9 +94,7 @@ class CanonizerUploadFile(Page):
         return CanonizerUploadFile(self.driver)
 
     def search_uploaded_files(self, query):
-        field = self.find_element(*UploadFileIdentifiers.SEARCH_INPUT)
-        field.clear()
-        field.send_keys(query)
+        self.set_input_value(UploadFileIdentifiers.SEARCH_INPUT, query)
         return CanonizerUploadFile(self.driver)
 
     def reset_upload_filters(self):

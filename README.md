@@ -134,6 +134,24 @@ Run with verbose output:
 ./run_tests.sh -v
 ```
 
+Run smoke checks only:
+
+```sh
+./run_tests.sh -m smoke -q
+```
+
+Run non-destructive regression checks:
+
+```sh
+./run_tests.sh -m "regression and not destructive" -q
+```
+
+Run destructive flows only (use a safe environment):
+
+```sh
+./run_tests.sh -m destructive -q
+```
+
 You can also click the Run button in VS Code while `main.py` is active. That now invokes pytest for this file instead of running it as a plain script.
 
 ## Run Tests In VS Code
@@ -187,7 +205,7 @@ The workspace also includes `.vscode/launch.json` and `.vscode/tasks.json` so yo
 
 1. Run `Canonizer: Run main.py` from Run and Debug to execute the suite entrypoint.
 2. Run `canonizer: setup` to bootstrap the environment from VS Code.
-3. Run `canonizer: run all tests` or `canonizer: run filtered tests` from the Tasks menu.
+3. Run `canonizer: run all tests`, `canonizer: run filtered tests`, `canonizer: run smoke tests`, or `canonizer: run non-destructive regression` from the Tasks menu.
 
 ## Test Inventory
 

@@ -1,6 +1,11 @@
 import time
 
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import (
+    ElementClickInterceptedException,
+    InvalidElementStateException,
+    StaleElementReferenceException,
+    TimeoutException,
+)
 from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome import webdriver
 from selenium.webdriver.common.by import By
@@ -30,8 +35,7 @@ class CanonizerRegisterPage(Page):
             Return the control to the main Program
         """
 
-        self.hover(*RegistrationPageIdentifiers.REGISTER)
-        self.find_element(*RegistrationPageIdentifiers.REGISTER).click()
+        self.safe_click(RegistrationPageIdentifiers.REGISTER, timeout=10, hover_first=True)
 
         return CanonizerRegisterPage(self.driver)
 
@@ -74,11 +78,10 @@ class CanonizerRegisterPage(Page):
                     (By.CLASS_NAME, 'ant-btn ant-btn-primary ant-btn-block login-form-button')))
         except TimeoutException:
             pass'''
-        self.find_element(*RegistrationPageIdentifiers.REGISTER_NOW).click()
+        self.safe_click(RegistrationPageIdentifiers.REGISTER_NOW)
 
     def click_register_button(self):
-
-        self.find_element(*RegistrationPageIdentifiers.REGISTER_BUTTON).click()
+        self.safe_click(RegistrationPageIdentifiers.REGISTER_BUTTON)
 
     def register(self, *args):
         self.enter_first_name(args[0])
@@ -90,8 +93,7 @@ class CanonizerRegisterPage(Page):
         self.click_register_button()
 
     def join_now(self):
-
-        self.find_element(*RegistrationPageIdentifiers.JOIN_NOW).click()
+        self.safe_click(RegistrationPageIdentifiers.JOIN_NOW)
 
     def registration_with_valid_credential(self, reg_list_17):
         self.register(reg_list_17[0], reg_list_17[1], reg_list_17[2], reg_list_17[3], reg_list_17[4], reg_list_17[5])
@@ -166,7 +168,7 @@ class CanonizerRegisterPage(Page):
 
     def click_on_register_button(self):
         self.driver.implicitly_wait(30)
-        self.find_element(*RegistrationPageIdentifiers.REGISTER).click()
+        self.safe_click(RegistrationPageIdentifiers.REGISTER)
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "register-btn")))
 
         return CanonizerRegisterPage(self.driver)
@@ -202,11 +204,45 @@ class CanonizerRegisterPage(Page):
             (RegistrationPageIdentifiers.CONFIRM_PASSWORD, confirm_password),
         )
         for locator, value in values:
-            field = self.find_element(*locator)
-            field.clear()
-            if value:
-                field.send_keys(value)
+            self._set_input_value(locator, value)
         return self
+
+    def _wait_for_loading_overlay(self):
+        """Wait for Ant spinner overlays to disappear when they transiently block inputs."""
+        try:
+            WebDriverWait(self.driver, 10).until(
+                EC.invisibility_of_element_located((By.CSS_SELECTOR, "div.ant-spin-spinning"))
+            )
+        except TimeoutException:
+            # Some pages never show spinner; continue with direct element interaction.
+            pass
+
+    def _set_input_value(self, locator, value):
+        """Wait for a stable interactable input before clear/type to avoid transient modal/animation states."""
+        for _ in range(2):
+            try:
+                self._wait_for_loading_overlay()
+                field = WebDriverWait(self.driver, 10).until(
+                    EC.element_to_be_clickable(locator)
+                )
+                self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", field)
+                field.clear()
+                if value:
+                    field.send_keys(value)
+                return
+            except (
+                ElementClickInterceptedException,
+                InvalidElementStateException,
+                StaleElementReferenceException,
+            ):
+                time.sleep(0.2)
+
+        # Final attempt with a fresh lookup so failures are explicit and debuggable.
+        self._wait_for_loading_overlay()
+        field = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
+        field.clear()
+        if value:
+            field.send_keys(value)
 
     def submit_registration(self):
         self.find_element(*RegistrationPageIdentifiers.REGISTER_BUTTON).click()

@@ -72,6 +72,58 @@
 			"isBackground": false
 		},
 		{
+			"label": "canonizer: run smoke tests",
+			"type": "shell",
+			"command": "./run_tests.sh",
+			"args": [
+				"-m",
+				"smoke",
+				"-q"
+			],
+			"windows": {
+				"command": "powershell",
+				"args": [
+					"-ExecutionPolicy",
+					"Bypass",
+					"-File",
+					"run_tests.ps1",
+					"-m",
+					"smoke",
+					"-q"
+				]
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/Canonizer_UX-UI_Automated_TestCase"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "canonizer: run non-destructive regression",
+			"type": "shell",
+			"command": "./run_tests.sh",
+			"args": [
+				"-m",
+				"regression and not destructive",
+				"-q"
+			],
+			"windows": {
+				"command": "powershell",
+				"args": [
+					"-ExecutionPolicy",
+					"Bypass",
+					"-File",
+					"run_tests.ps1",
+					"-m",
+					"regression and not destructive",
+					"-q"
+				]
+			},
+			"options": {
+				"cwd": "${workspaceFolder}/Canonizer_UX-UI_Automated_TestCase"
+			},
+			"problemMatcher": []
+		},
+		{
 			"label": "canonizer-git-push",
 			"type": "shell",
 			"command": "git",
