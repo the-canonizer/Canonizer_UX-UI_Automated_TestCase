@@ -34,6 +34,7 @@ from CanonizerRegistrationPage import CanonizerRegisterPage
 from CanonizerSearchPage import CanonizerSearchPage
 from CanonizerTestCases import test_cases
 from CanonizerUploadFile import CanonizerUploadFile
+from test_assets import image_over_5mb, image_under_5mb
 from Config import *
 from Identifiers import *
 from Identifiers import CreateTopicIdentifiers, RegistrationPageIdentifiers

@@ -1,42 +1,27 @@
+import pytest
+
 from .shared import *
 
+
 class BaseFlow:
+    """Browser lifecycle and shared helpers for every test module.
 
-    def setup_method(self):
-        """
-            Initialize the Things
-            :return:
-        """
-        driver_location = DEFAULT_CHROME_DRIVER_LOCATION
-        options = webdriver.ChromeOptions()
-        options.binary_location = DEFAULT_BINARY_LOCATION
-        # will run all the test cases
-        # options.add_argument('headless')
+    The browser itself is built by the `driver` fixture in conftest.py. This
+    class only attaches it to the test instance, so all existing tests keep
+    using `self.driver` unchanged.
+    """
 
-        options.add_argument("--start-maximized")
-
-        self.driver = webdriver.Chrome()
-        self.driver.get(DEFAULT_BASE_URL)
-        self.driver.implicitly_wait(30)
-
-
-    def driver(self):
-        self.driver = webdriver.Chrome()
-        self.action = ActionChains(self.driver)
-
+    @pytest.fixture(autouse=True)
+    def _browser_session(self, request):
+        """Attach a browser to the test instance, unless it does not need one."""
+        if request.node.get_closest_marker("no_browser"):
+            self.driver = None
+            return
+        self.driver = request.getfixturevalue("driver")
 
     def login_to_canonizer_app(self):
-        """
-            This Application will allow you to login to canonizer App on need basis
-        :param flag:
-        :return:
-        """
+        """Log in with the configured credentials, for tests that need a session."""
+        require_credentials()
         self.driver.implicitly_wait(30)
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_functionality_by_entering_the_registered_credential(DEFAULT_USER, DEFAULT_PASS)
         self.driver.maximize_window()
-
-
-    
-    def teardown_method(self):
-
-        self.driver.close()

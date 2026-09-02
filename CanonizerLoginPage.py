@@ -29,9 +29,6 @@ class CanonizerLoginPage(Page):
     Attributes: None
     """
 
-    def driver(self):
-        self.driver = webdriver.Chrome()
-        self.action = ActionChains(self.driver)
     def click_on_login_page_button(self):
         """
         This function is to click on the login button

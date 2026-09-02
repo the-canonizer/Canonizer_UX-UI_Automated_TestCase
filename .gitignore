@@ -4,3 +4,5 @@ showcase_test_results.json
 __pycache__/
 *.pyc
 .pytest_cache/
+artifacts/
+.test_assets/

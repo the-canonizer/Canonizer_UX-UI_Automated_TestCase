@@ -123,6 +123,7 @@ class AuthRegistrationTests:
         ).is_displayed()
 
     # Documentation: Login social provider is available.
+    @pytest.mark.parametrize("provider", ["facebook", "google", "linkedin", "github"])
     def test_login_social_provider_is_available(self, provider):
         """Test case: Login social provider is available."""
         login_page = CanonizerLoginPage(self.driver).click_on_login_page_button()

@@ -1,23 +1,31 @@
 # Canonizer_UX-UI_Automated_TestCase
 
-Python Selenium UI automation tests for Canonizer.
+Python + Selenium UI automation for Canonizer, driven by pytest.
 
-## Quick Start
-
-For the shortest path to run tests, see [SIMPLE_TEST_EXECUTION.md](SIMPLE_TEST_EXECUTION.md).
+For the shortest path to a running test, see [SIMPLE_TEST_EXECUTION.md](SIMPLE_TEST_EXECUTION.md).
 
 ## Overview
 
-This repository contains a page-object based UI automation suite.
+A page-object suite covering authentication, topics, camps, statements, forum
+and news, browse and search, profile, uploads and account settings.
 
-- Test entry point: `main.py`
-- Test runner: `pytest`
-- Browser automation: `selenium`
-- Page objects: `Canonizer*Page.py`
-- Locators: `Identifiers.py`
-- Test data and environment config: `Config.py`
+| Piece | Where |
+| --- | --- |
+| Test cases | `test_suites/*_tests.py` |
+| Suite composition | `main.py` (`TestPages` mixes the modules together) |
+| Page objects | `Canonizer*Page.py`, `CanonizerCampForum.py`, `CanonizerUploadFile.py` |
+| Locators | `Identifiers.py` |
+| Environment URLs and test data | `Config.py` |
+| Shared imports for test modules | `test_suites/shared.py` |
+| Login helper, browser attachment | `test_suites/base_flow.py` |
+| Browser fixtures, reporting, failure artifacts | `conftest.py`, `pytest.ini` |
+| Generated upload images | `test_assets.py` |
 
-The suite currently targets deployed Canonizer environments configured in `Config.py`, including `https://ux-dev.canonizer.com/`.
+The suite targets the deployed environments configured in `Config.py`, primarily
+`https://ux-dev.canonizer.com/`.
+
+Current size: **263 collected tests** — 256 executable plus 7 `xfail` backlog
+placeholders in `test_suites/backlog_tests.py`.
 
 ## Prerequisites
 
@@ -25,15 +33,7 @@ The suite currently targets deployed Canonizer environments configured in `Confi
 - Google Chrome installed
 - Network access to the configured Canonizer environment
 
-## Environment Notes
-
-- Many tests use the URLs and credentials defined in `Config.py`.
-- Some tests create or modify data in the target environment.
-- Some upload tests use machine-specific file paths and will need local adjustment before they can pass on another machine.
-
 ## Setup
-
-From this repository root, run the bootstrap script:
 
 ```sh
 ./setup.sh
@@ -45,11 +45,10 @@ On Windows PowerShell:
 .\setup.ps1
 ```
 
-The script creates `.venv`, installs dependencies from `requirements.txt`, and can store your local login credentials in `.env.local`.
+The script creates `.venv`, installs `requirements.txt`, and creates `.env.local`
+from `.env.local.example` so you can store local credentials.
 
-On first run, it also creates `.env.local` from `.env.local.example`.
-
-If you prefer to do it manually, the equivalent commands are:
+Manual equivalent:
 
 ```sh
 python3 -m venv .venv
@@ -60,196 +59,196 @@ pip install -r requirements.txt
 
 ## Configure Credentials
 
-The suite reads the main login credentials from `Config.py`. It now also supports environment-variable overrides, which is the safer option because the password does not need to be edited in the repository.
-
-Supported variables:
+Login-required tests read credentials from environment variables:
 
 - `CANONIZER_DEFAULT_USER`
 - `CANONIZER_DEFAULT_PASS`
-
-Example:
 
 ```sh
 export CANONIZER_DEFAULT_USER="your_email@example.com"
 export CANONIZER_DEFAULT_PASS="your_password"
 ```
 
-Alternative:
+Or put them in `.env.local` (git-ignored); `run_tests.sh` sources it automatically.
 
-```sh
-cp .env.local.example .env.local
-```
+If they are missing, any test that calls `login_to_canonizer_app()` now fails
+immediately with a clear message rather than silently submitting a blank form.
 
-Then run the tests in the same terminal session.
-
-Note: this is better than hardcoding the password in source control. True encryption is not especially useful for this test suite, because the Selenium login flow still needs the plaintext password at runtime.
+Note: encrypting these is not useful here, because the Selenium login flow needs
+the plaintext password at runtime. Keeping them out of source control is the point.
 
 ## Verify Installation
-
-Collect the test suite without running browser actions:
 
 ```sh
 python -m pytest --collect-only main.py
 ```
 
-At the time this README was updated, the suite collected 191 tests.
-
 ## Run Tests
 
-Run a single smoke test:
+```sh
+./run_tests.sh                                   # everything
+./run_tests.sh -k test_click_on_join_now -q      # one smoke test
+./run_tests.sh -v                                # verbose
+./run_tests.sh -m smoke -q                       # smoke only
+./run_tests.sh -m "regression and not destructive" -q
+./run_tests.sh -m destructive -q                 # use a safe environment
+```
+
+On Windows PowerShell, use `.\run_tests.ps1` with the same arguments.
+
+### Browsers
+
+The browser is built by the `driver` fixture in `conftest.py`, one session per
+test. Pick which one with `--browser` (or `CANONIZER_BROWSER`):
 
 ```sh
-./run_tests.sh -k test_click_on_join_now -q
+./run_tests.sh --browser chrome -m smoke -q
+./run_tests.sh --browser firefox -m smoke -q
+./run_tests.sh --browser edge -m smoke -q
 ```
 
-On Windows PowerShell:
+One browser per run; cover several with a CI matrix. Selenium 4.6+ downloads the
+matching driver binary itself, so nothing has to be checked in.
 
-```powershell
-.\run_tests.ps1 -k test_click_on_join_now -q
-```
-
-Run a single named test:
+Run headless with the `--headless` flag or `CANONIZER_HEADLESS=1`:
 
 ```sh
-./run_tests.sh -k test_login_to_canonizer -q
+./run_tests.sh --headless -m smoke -q
+CANONIZER_HEADLESS=1 ./run_tests.sh -m smoke -q
 ```
 
-Run the full suite:
+The implicit wait defaults to 30s and can be tuned with
+`CANONIZER_IMPLICIT_WAIT` while the suite migrates to explicit waits.
 
-```sh
-./run_tests.sh
-```
-
-Generate a showcase-friendly summary file while running the suite:
+Showcase summary, printed to the terminal and written as JSON:
 
 ```sh
 ./run_tests.sh --showcase-report-file showcase_test_results.json
 ```
 
-This prints a terminal summary with the tests that ran, passed, failed, skipped, and whether the run was a partial success. It also writes a JSON file with the same information.
+It reports passed / failed / skipped / xfailed / xpassed counts and flags a
+partial success.
 
-Run with verbose output:
+### Markers
 
-```sh
-./run_tests.sh -v
-```
+Markers are applied automatically in `main.py` by `_apply_test_markers()`:
 
-Run smoke checks only:
+- `regression` — every test
+- `smoke` — a named short list of core health checks
+- `destructive` — name contains delete/remove/update/edit/create_/upload; these
+  create or modify data in the target environment
+- `slow` — upload, search, history and notification flows
+- `no_browser` — test needs no browser session, so none is started (currently
+  the backlog placeholders)
 
-```sh
-./run_tests.sh -m smoke -q
-```
+### Failure artifacts
 
-Run non-destructive regression checks:
+When a test fails, `conftest.py` writes a screenshot, the page DOM and the current
+URL to `artifacts/<browser>/<nodeid>.{png,html,url.txt}`. The directory is
+git-ignored, and namespaced by browser so a matrix run does not overwrite itself.
 
-```sh
-./run_tests.sh -m "regression and not destructive" -q
-```
+### Upload fixtures
 
-Run destructive flows only (use a safe environment):
-
-```sh
-./run_tests.sh -m destructive -q
-```
-
-You can also click the Run button in VS Code while `main.py` is active. That now invokes pytest for this file instead of running it as a plain script.
+`test_assets.py` generates the images the upload tests need — one PNG over the
+5 MB limit and one under it — into `.test_assets/` on first use. No local files
+need setting up.
 
 ## Run Tests In VS Code
 
-This suite keeps its tests in `main.py`, which does not match pytest's default test file naming pattern. Because of that, VS Code test discovery must point directly at `main.py`.
+Tests are composed into `main.py`, which does not match pytest's default
+`test_*.py` discovery pattern, so discovery must point directly at `main.py`.
+`.vscode/settings.json`, `launch.json` and `tasks.json` are already wired up.
 
-The workspace is now preconfigured with `.vscode/settings.json`, `.vscode/launch.json`, and `.vscode/tasks.json`, so the interpreter, pytest discovery, and common run commands are already wired up after clone.
+1. Open the workspace root containing `Canonizer_UX-UI_Automated_TestCase`.
+2. `Python: Select Interpreter` → `.venv/bin/python`.
+3. `Python: Configure Tests` → pytest.
+4. `Testing: Refresh Tests`.
 
-`tasks.json` includes OS-specific commands so the same task labels work on macOS, Linux, and Windows.
+If run icons do not appear: `Testing: Refresh Tests`, then
+`Developer: Reload Window`, then reopen `main.py`.
 
-Use these steps in VS Code:
-
-1. Open the workspace root that contains `Canonizer_UX-UI_Automated_TestCase`.
-2. Select the interpreter from `.venv`.
-3. Configure Python testing to use `pytest`.
-4. Refresh test discovery.
-
-Recommended VS Code flow:
-
-```text
-Cmd+Shift+P
-Python: Select Interpreter
-Choose Canonizer_UX-UI_Automated_TestCase/.venv/bin/python
-
-Cmd+Shift+P
-Python: Configure Tests
-Choose pytest
-```
-
-Workspace test discovery should use this setting:
-
-```json
-{
-	"python.testing.pytestArgs": [
-		"Canonizer_UX-UI_Automated_TestCase/main.py"
-	],
-	"python.testing.unittestEnabled": false,
-	"python.testing.pytestEnabled": true
-}
-```
-
-If the `Run Test` links or test icons do not appear in the editor:
-
-1. Run `Testing: Refresh Tests` from the Command Palette.
-2. Run `Developer: Reload Window`.
-3. Reopen `main.py`.
-
-After discovery succeeds, VS Code should show test run controls above the `TestPages` class and each `test_...` method in `main.py`.
-
-The workspace also includes `.vscode/launch.json` and `.vscode/tasks.json` so you can:
-
-1. Run `Canonizer: Run main.py` from Run and Debug to execute the suite entrypoint.
-2. Run `canonizer: setup` to bootstrap the environment from VS Code.
-3. Run `canonizer: run all tests`, `canonizer: run filtered tests`, `canonizer: run smoke tests`, or `canonizer: run non-destructive regression` from the Tasks menu.
+Available tasks: `canonizer: setup`, `canonizer: run all tests`,
+`canonizer: run filtered tests`, `canonizer: run smoke tests`,
+`canonizer: run non-destructive regression`.
 
 ## Test Inventory
 
-If you want one place to review the suite coverage, use [TEST_INVENTORY.md](TEST_INVENTORY.md). It groups the current `main.py` tests by feature area and is the best starting point for implementing the next automation slice.
+[TEST_INVENTORY.md](TEST_INVENTORY.md) groups coverage by feature area.
+[REMAINING_TEST_GAPS.md](REMAINING_TEST_GAPS.md) tracks what is not yet covered.
 
 ## Project Structure
 
 ```text
 Canonizer_UX-UI_Automated_TestCase/
-├── main.py
-├── Config.py
-├── Identifiers.py
-├── CanonizerBase.py
+├── main.py                        # composes TestPages from the suite mixins, applies markers
+├── conftest.py                    # browser fixtures, showcase report, failure screenshots
+├── test_assets.py                 # generates upload test images on demand
+├── pytest.ini                     # marker registry
+├── Config.py                      # URLs, credentials, test data
+├── Identifiers.py                 # all locators
+├── CanonizerBase.py               # Page base class: safe_click, set_input_value, waits
+├── CanonizerTestCases.py          # test-case descriptions printed during runs
+├── CanonizerValidationCheckMessages.py
+├── test_suites/
+│   ├── shared.py                  # common imports for every suite module
+│   ├── base_flow.py               # attaches the driver fixture, login helper
+│   ├── auth_registration_tests.py
+│   ├── topic_tests.py
+│   ├── camp_tests.py
+│   ├── statement_tests.py
+│   ├── forum_news_tests.py
+│   ├── browse_search_tests.py
+│   ├── profile_upload_access_tests.py
+│   ├── misc_tests.py
+│   └── backlog_tests.py           # xfail placeholders for unimplemented coverage
 ├── CanonizerLoginPage.py
+├── CanonizerAuthenticationPage.py
 ├── CanonizerRegistrationPage.py
 ├── CanonizerCreateUpdateTopicPage.py
 ├── CanonizerCreateUpdateCampPage.py
 ├── CanonizerCampStatementPage.py
 ├── CanonizerCampForum.py
 ├── CanonizerBrowsePage.py
+├── CanonizerSearchPage.py
 ├── CanonizerAddEditNewsPage.py
 ├── CanonizerAccountPage.py
+├── CanonizerAdvancedSettingsPage.py
 ├── CanonizerProfileUpdatePage.py
-├── CanonizerUploadFile.py
-└── CanonizerTestCases.py
+└── CanonizerUploadFile.py
 ```
 
 ## How The Framework Works
 
-- `main.py` contains the pytest-discovered test class and test methods.
-- `setup_method()` opens Chrome and loads the base URL before each test.
-- Page object classes encapsulate workflows for login, registration, topic creation, camp creation, statements, forums, profile settings, and uploads.
-- `Config.py` centralizes environment URLs, user credentials, and test input data.
+- Each `test_suites/*_tests.py` module defines a plain mixin class of test methods.
+- `main.py` combines them into a single `TestPages` class, which is what pytest
+  discovers, then applies markers to every method.
+- The `driver` fixture in `conftest.py` builds a browser, lands it on the base
+  URL, and quits it after each test. `BaseFlow` attaches it to the test instance
+  via an autouse fixture, so tests keep using `self.driver`.
+- Page objects wrap the workflows; `CanonizerBase.Page` supplies `safe_click()`
+  and `set_input_value()`, which retry through loading overlays and stale elements.
+- `Config.py` centralizes environment URLs, credentials and test data.
 
 ## Known Limitations
 
-- The suite currently uses direct `webdriver.Chrome()` calls in multiple files.
-- Chrome and ChromeDriver compatibility must be available on the machine.
-- Some tests depend on shared environment state and may be flaky if run repeatedly against the same environment.
-- File upload scenarios may fail until local file paths are updated.
+- **Serial execution.** No `pytest-xdist`; a full run is long. The browser is
+  function-scoped so it parallelizes cleanly, but the suite shares environment
+  data (topics, camps, one login account), which has to be sorted out first.
+- **Firefox and Edge are wired but unproven.** The fixtures exist; the locators
+  have only ever been exercised against Chrome, so expect failures to fix.
+- **Mixed waits.** `implicitly_wait(30)` is set alongside explicit `WebDriverWait`
+  calls. Selenium advises against combining them, and any legitimately empty
+  `find_elements()` blocks for the full 30 seconds.
+- **Fragile locators.** Of 719 locators, 381 are XPath, ~70 absolute
+  (`/html/body/div[1]/...`) and ~183 index-based; only 4 use `data-testid`.
+  This is the main source of flakiness.
+- **No cleanup.** Destructive tests leave topics, camps and threads behind in the
+  target environment permanently.
+- **No CI.** There is no pipeline configuration in the repository.
+- **Shared environment state.** Some tests assume data created by earlier runs
+  and can be order-dependent.
 
 ## Recommended First Run
-
-Use this order on a new machine:
 
 ```sh
 source .venv/bin/activate
@@ -257,4 +256,4 @@ python -m pytest --collect-only main.py
 python -m pytest main.py -k test_click_on_join_now -q
 ```
 
-If the smoke test passes, expand to a small subset before attempting the entire suite.
+If the smoke test passes, expand to a subset before attempting the full suite.

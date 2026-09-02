@@ -293,7 +293,7 @@ class StatementTests:
         self.login_to_canonizer_app()
 
         self.driver.get("https://ux-dev.canonizer.com/manage/statement/8215-update")
-        image_statement = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/10mb.jpg"
+        image_statement = image_over_5mb()
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
         upload_image.send_keys(image_statement)
 

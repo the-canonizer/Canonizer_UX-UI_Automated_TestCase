@@ -35,7 +35,7 @@ class ProfileUploadAccessTests:
         """Test case: Upload profile picture."""
         self.login_to_canonizer_app()
         self.driver.get("https://ux-dev.canonizer.com/settings")
-        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/10mb.jpg"
+        image = image_under_5mb()
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
         upload_image.send_keys(image)
         self.driver.find_element(*ProfileInfoIdentifiersPage.UPLOAD_IMAGE_OK).click()

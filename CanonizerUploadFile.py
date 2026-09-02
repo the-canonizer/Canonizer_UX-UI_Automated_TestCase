@@ -19,17 +19,13 @@ from selenium import webdriver
 import Config
 from Config import *
 from CanonizerLoginPage import CanonizerLoginPage
+from test_assets import image_over_5mb, image_under_5mb
 
 
 
 
 
 class CanonizerUploadFile(Page):
-
-    def driver(self):
-        self.driver = webdriver.Chrome()
-        self.action = ActionChains(self.driver)
-
 
     def upload_file_without_userlogin(self):
         self.driver.implicitly_wait(30)
@@ -45,7 +41,7 @@ class CanonizerUploadFile(Page):
     def upload_file_more_than_5mb(self):
         self.driver.implicitly_wait(30)
         self.driver.get(UPLOAD_FILE_URL)
-        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/10mb.jpg"
+        image = image_over_5mb()
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
         upload_image.send_keys(image)
         return CanonizerUploadFile(self.driver)
@@ -53,7 +49,7 @@ class CanonizerUploadFile(Page):
     def uploading_file_less_than_5mb(self):
         self.driver.implicitly_wait(30)
         self.driver.get(UPLOAD_FILE_URL)
-        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/image.png"
+        image = image_under_5mb()
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
         upload_image.send_keys(image)
         print("wrinting file name")
@@ -78,7 +74,7 @@ class CanonizerUploadFile(Page):
         self.driver.implicitly_wait(30)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[2]/div[2]/div[7]/div/div/div/div/div[1]/span").click()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
-        image = "/home/vivekkumar/PycharmProjects/Canonizer_UX _Github/UI/image.png"
+        image = image_under_5mb()
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
         upload_image.send_keys(image)
         self.driver.find_element(*HomePageIdentifiers.UPLOAD_FILE_NAME).send_keys("test"+add_name)
