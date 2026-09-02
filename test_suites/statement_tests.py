@@ -6,7 +6,7 @@ class StatementTests:
     # Documentation: Add statement for archived camp.
     def test_add_statement_for_archived_camp(self):
         """Test case: Add statement for archived camp."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -27,7 +27,7 @@ class StatementTests:
     # Documentation: Camp statement button.
     def test_camp_statement_button(self):
         """Test case: Camp statement button."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -39,7 +39,7 @@ class StatementTests:
     # Documentation: Load camp statement page.
     def test_load_camp_statement_page(self):
         """Test case: Load camp statement page."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -53,7 +53,7 @@ class StatementTests:
     # Documentation: Add camp statement with valid data.
     def test_add_camp_statement_with_valid_data(self):
         """Test case: Add camp statement with valid data."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -66,7 +66,7 @@ class StatementTests:
     # Documentation: Add camp statement page with asterisk.
     def test_add_camp_statement_page_with_asterisk(self):
         """Test case: Add camp statement page with asterisk."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -80,7 +80,7 @@ class StatementTests:
     # Documentation: Add camp statement without mandatory field.
     def test_add_camp_statement_without_mandatory_field(self):
         """Test case: Add camp statement without mandatory field."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -94,7 +94,7 @@ class StatementTests:
     # Documentation: Add camp statement with trailing spaces.
     def test_add_camp_statement_with_trailing_spaces(self):
         """Test case: Add camp statement with trailing spaces."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -108,7 +108,7 @@ class StatementTests:
     # Documentation: Add camp statement with blank data.
     def test_add_camp_statement_with_blank_data(self):
         """Test case: Add camp statement with blank data."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -123,7 +123,7 @@ class StatementTests:
     def test_cancel_create_camp_statement(self):
         """Test case: Cancel create camp statement."""
         print("\n" + str(test_cases('TC_CLICK_ON_STATEMENT_CANCEL_BUTTON')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -138,7 +138,7 @@ class StatementTests:
     def test_preview_camp_statement(self):
         """Test case: Preview camp statement."""
         print("\n" + str(test_cases('TC_CLICK_ON_STATEMENT_PREVIEW_BUTTON')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -152,7 +152,7 @@ class StatementTests:
     # Documentation: Camp statement template.
     def test_camp_statement_template(self):
         """Test case: Camp statement template."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -167,7 +167,7 @@ class StatementTests:
     # Documentation: Load edit camp statement.
     def test_load_edit_camp_statement(self):
         """Test case: Load edit camp statement."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -182,7 +182,7 @@ class StatementTests:
     # Documentation: Edit camp statement.
     def test_edit_camp_statement(self):
         """Test case: Edit camp statement."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -197,7 +197,7 @@ class StatementTests:
     # Documentation: Update camp statement with mandatory field.
     def test_update_camp_statement_with_mandatory_field(self):
         """Test case: Update camp statement with mandatory field."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -213,7 +213,7 @@ class StatementTests:
     # Documentation: Edit camp statement with trailing spaces.
     def test_edit_camp_statement_with_trailing_spaces(self):
         """Test case: Edit camp statement with trailing spaces."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -229,7 +229,7 @@ class StatementTests:
     # Documentation: Edit camp statement with blank data.
     def test_edit_camp_statement_with_blank_data(self):
         """Test case: Edit camp statement with blank data."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -245,7 +245,7 @@ class StatementTests:
     # Documentation: Compare camp statement.
     def test_compare_camp_statement(self):
         """Test case: Compare camp statement."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -263,7 +263,7 @@ class StatementTests:
     # Documentation: Advanced search camp statement tab navigation.
     def test_advanced_search_camp_statement_tab_navigation(self):
         """Test case: Advanced search camp statement tab navigation."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerSearchPage(self.driver).open_all_results("tree").click_sidebar_tab("/search/camp_statement")
         result = self.driver.find_element(*SearchPageIdentifiers.CAMP_STATEMENT_HEADING).text
@@ -273,7 +273,7 @@ class StatementTests:
     # Documentation: Authentication expiry for create statement.
     def test_authentication_expiry_for_create_statement(self):
         """Test case: Authentication expiry for create statement."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -289,7 +289,7 @@ class StatementTests:
     # Documentation: Statement image more than 5mb.
     def test_statement_image_more_than_5mb(self):
         """Test case: Statement image more than 5mb."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
 
         self.driver.get("https://ux-dev.canonizer.com/manage/statement/8215-update")
@@ -304,7 +304,7 @@ class StatementTests:
     # Documentation: Statement image more than 5mb note.
     def test_statement_image_more_than_5mb_note(self):
         """Test case: Statement image more than 5mb note."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
 
         self.driver.get("https://ux-dev.canonizer.com/manage/statement/8215-update")

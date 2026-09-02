@@ -1,0 +1,7 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/ajay/Desktop/Canonizer/Canonizer_UX-UI_Automated_TestCase/.venv/bin/python
+rootdir: /Users/ajay/Desktop/Canonizer/Canonizer_UX-UI_Automated_TestCase
+configfile: pytest.ini
+collecting ... collected 1 item
+
+main.py::TestPages::test_registration_with_blank_email 

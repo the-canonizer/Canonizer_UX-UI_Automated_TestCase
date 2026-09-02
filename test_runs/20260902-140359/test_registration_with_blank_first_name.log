@@ -1,0 +1,114 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/ajay/Desktop/Canonizer/Canonizer_UX-UI_Automated_TestCase/.venv/bin/python
+rootdir: /Users/ajay/Desktop/Canonizer/Canonizer_UX-UI_Automated_TestCase
+configfile: pytest.ini
+collecting ... collected 1 item
+
+main.py::TestPages::test_registration_with_blank_first_name FAILED       [100%]
+
+=================================== FAILURES ===================================
+______________ TestPages.test_registration_with_blank_first_name _______________
+
+self = <main.TestPages object at 0x1096524f0>
+
+    def test_registration_with_blank_first_name(self, ):
+        """Test case: Registration with blank first name."""
+        print("\n" + str(test_cases('TC_REGISTER_WITH_BLANK_FIRST_NAME')))
+        self.driver.implicitly_wait(30)
+>       CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_3)
+
+test_suites/misc_tests.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+CanonizerRegistrationPage.py:99: in registration_with_valid_credential
+    self.register(reg_list_17[0], reg_list_17[1], reg_list_17[2], reg_list_17[3], reg_list_17[4], reg_list_17[5])
+CanonizerRegistrationPage.py:93: in register
+    self.click_register_button()
+CanonizerRegistrationPage.py:84: in click_register_button
+    self.safe_click(RegistrationPageIdentifiers.REGISTER_BUTTON)
+CanonizerBase.py:97: in safe_click
+    element = WebDriverWait(self.driver, timeout).until(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <selenium.webdriver.support.wait.WebDriverWait (session="68294a58bba134912fa5f6c7777f075f")>
+method = <function element_to_be_clickable.<locals>._predicate at 0x109687f70>
+message = ''
+
+    def until(self, method: Callable[[D], Union[Literal[False], T]], message: str = "") -> T:
+        """Wait until the method returns a value that is not False.
+    
+        Calls the method provided with the driver as an argument until the
+        return value does not evaluate to ``False``.
+    
+        Parameters:
+        -----------
+        method: callable(WebDriver)
+            - A callable object that takes a WebDriver instance as an argument.
+    
+        message: str
+            - Optional message for :exc:`TimeoutException`
+    
+        Return:
+        -------
+        object: T
+            - The result of the last call to `method`
+    
+        Raises:
+        -------
+        TimeoutException
+            - If 'method' does not return a truthy value within the WebDriverWait
+            object's timeout
+    
+        Example:
+        --------
+        >>> from selenium.webdriver.common.by import By
+        >>> from selenium.webdriver.support.ui import WebDriverWait
+        >>> from selenium.webdriver.support import expected_conditions as EC
+    
+        # Wait until an element is visible on the page
+        >>> wait = WebDriverWait(driver, 10)
+        >>> element = wait.until(EC.visibility_of_element_located((By.ID, "exampleId")))
+        >>> print(element.text)
+        """
+        screen = None
+        stacktrace = None
+    
+        end_time = time.monotonic() + self._timeout
+        while True:
+            try:
+                value = method(self._driver)
+                if value:
+                    return value
+            except self._ignored_exceptions as exc:
+                screen = getattr(exc, "screen", None)
+                stacktrace = getattr(exc, "stacktrace", None)
+            if time.monotonic() > end_time:
+                break
+            time.sleep(self._poll)
+>       raise TimeoutException(message, screen, stacktrace)
+E       selenium.common.exceptions.TimeoutException: Message:
+
+.venv/lib/python3.9/site-packages/selenium/webdriver/support/wait.py:138: TimeoutException
+----------------------------- Captured stdout call -----------------------------
+
+['Moderate', "In User Registration Page, When user doesn't put First Name, user must see Error Message"]
+=============================== warnings summary ===============================
+.venv/lib/python3.9/site-packages/urllib3/__init__.py:35
+  /Users/ajay/Desktop/Canonizer/Canonizer_UX-UI_Automated_TestCase/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================== Canonizer showcase summary ==========================
+Total tests run: 1
+Passed: 0
+Failed: 1
+Skipped: 0
+XFailed: 0
+XPassed: 0
+Partial success: no
+Report file: /Users/ajay/Desktop/Canonizer/Canonizer_UX-UI_Automated_TestCase/showcase_test_results.json
+
+Failed tests:
+  FAIL main.py::TestPages::test_registration_with_blank_first_name (133.551s)
+=========================== short test summary info ============================
+FAILED main.py::TestPages::test_registration_with_blank_first_name - selenium...
+=================== 1 failed, 1 warning in 178.16s (0:02:58) ===================

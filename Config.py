@@ -17,6 +17,12 @@ def env_or_default(name, default):
 
 DEFAULT_BASE_URL = "https://ux-dev.canonizer.com/"
 
+# Selenium implicit wait, in seconds. Tests and page objects that used to
+# hardcode implicitly_wait(30) now read this, so it can be tuned per run:
+#   export CANONIZER_IMPLICIT_WAIT=3
+# The explicit WebDriverWait calls in CanonizerBase (10-20s) are unaffected.
+IMPLICIT_WAIT_SECONDS = int(env_or_default("CANONIZER_IMPLICIT_WAIT", "30"))
+
 ARCHIVED_CAMP_URL = "https://development.canonizer.com/topic/861-can-1462-test/2-camp-1"
 ARCHIVED_EDIT_CAMP_URL = "https://development.canonizer.com/camp/history/861-can-1462-test/2-camp-1"
 UPLOAD_FILE_URL = "https://ux-dev.canonizer.com/uploadFile"

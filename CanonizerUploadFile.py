@@ -28,18 +28,18 @@ from test_assets import image_over_5mb, image_under_5mb
 class CanonizerUploadFile(Page):
 
     def upload_file_without_userlogin(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.get(UPLOAD_FILE_URL)
         return CanonizerUploadFile(self.driver)
 
 
     def upload_file_with_admin(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.get(UPLOAD_FILE_URL)
         return CanonizerUploadFile(self.driver)
 
     def upload_file_more_than_5mb(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.get(UPLOAD_FILE_URL)
         image = image_over_5mb()
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
@@ -47,7 +47,7 @@ class CanonizerUploadFile(Page):
         return CanonizerUploadFile(self.driver)
 
     def uploading_file_less_than_5mb(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.get(UPLOAD_FILE_URL)
         image = image_under_5mb()
         upload_image = self.driver.find_element(By.CSS_SELECTOR, "input[type='file']")
@@ -60,7 +60,7 @@ class CanonizerUploadFile(Page):
 
 
     def upload_in_create_new_folder(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.get(UPLOAD_FILE_URL)
         self.driver.find_element(By.ID, "createFolderBtn").click()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
@@ -71,7 +71,7 @@ class CanonizerUploadFile(Page):
 
 
     def upload_file_in_new_folder(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/form/div/div[2]/div/div[2]/div[2]/div[7]/div/div/div/div/div[1]/span").click()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         image = image_under_5mb()
@@ -82,7 +82,7 @@ class CanonizerUploadFile(Page):
         return CanonizerUploadFile(self.driver)
 
     def open_upload_file_manager(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.get(UPLOAD_FILE_URL)
         WebDriverWait(self.driver, 15).until(
             EC.visibility_of_element_located(UploadFileIdentifiers.CREATE_FOLDER_BUTTON)

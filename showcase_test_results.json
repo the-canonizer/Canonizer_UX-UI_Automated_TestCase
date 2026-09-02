@@ -8,9 +8,9 @@
   "partial_success": false,
   "tests": [
     {
-      "nodeid": "main.py::TestPages::test_login_with_registered_credentials",
+      "nodeid": "test_all.py::TestPages::test_footer_browse_button",
       "outcome": "failed",
-      "duration": 155.908
+      "duration": 29.101
     }
   ]
 }

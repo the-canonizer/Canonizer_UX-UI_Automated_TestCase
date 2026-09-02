@@ -8,9 +8,15 @@ class AuthRegistrationTests:
     # Documentation: Login to canonizer.
     def test_login_to_canonizer(self):
         """Test case: Login to canonizer."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
-        result = self.driver.find_element(By.XPATH, "/html/body/div[1]/section/div[2]/section/div/button/span[1]").text
+        # Explicit wait instead of a bare find_element: the post-login landing
+        # page renders asynchronously and must not race the global implicit wait.
+        result = WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located(
+                (By.XPATH, '//span[contains(normalize-space(.), "Browse More")]')
+            )
+        ).text
         assert "Browse More" in result
 
 
@@ -27,7 +33,7 @@ class AuthRegistrationTests:
     def test_check_login_page_open_click_login_here_link(self):
         """Test case: Check login page open click login here link."""
         print("\n" + str(test_cases('TC_CHECK_LOGIN_PAGE_OPEN_CLICK_ON_LOGIN_HERE_LINK')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button()
         CanonizerRegisterPage(self.driver).check_login_page_open_click_login_here_link()
         result = self.driver.current_url
@@ -38,7 +44,7 @@ class AuthRegistrationTests:
     def test_click_on_login_button(self):
         """Test case: Click on login button."""
         print("\n" + str(test_cases('TC_CLICK_ON_LOGIN_BUTTON')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerLoginPage(self.driver).click_on_login_page_button()
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "login-submit-btn")))
         result = self.driver.current_url
@@ -51,7 +57,7 @@ class AuthRegistrationTests:
     def test_login_with_registered_credentials(self):
         """Test case: Login with registered credentials."""
         print("\n" + str(test_cases('TC_LOGIN_WITH_REGISTERED_CREDENTIALS')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_functionality_by_entering_the_registered_credential(DEFAULT_USER, DEFAULT_PASS)
         result = self.driver.find_element(*LoginPageIdentifiers.START_TOPIC_BUTTON).text
         assert "Start a Topic" in result
@@ -62,7 +68,7 @@ class AuthRegistrationTests:
     def test_verify_the_login_with_blank_email(self):
         """Test case: Verify the login with blank email."""
         print("\n" + str(test_cases('TC_LOGIN_WITH_REGISTERED_CREDENTIALS')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_blank_email("", DEFAULT_PASS)
         result = self.driver.find_element(*LoginPageIdentifiers.EMAIL_VALIDATION).text
         assert "Please input your Email!" in result
@@ -73,7 +79,7 @@ class AuthRegistrationTests:
     def test_verify_the_login_with_blank_password(self):
         """Test case: Verify the login with blank password."""
         print("\n" + str(test_cases('TC_VERIFY_THE_LOGIN_WITH_BLANK_PASSWORD')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_blank_password(DEFAULT_USER, "")
         result = self.driver.find_element(*LoginPageIdentifiers.PASSWORD_VALIDATION).text
         assert "Please input your Password!" in result
@@ -83,7 +89,7 @@ class AuthRegistrationTests:
     # Documentation: Login with invalid email.
     def test_login_with_invalid_email(self):
         """Test case: Login with invalid email."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_the_login_with_invalid_email_format(DEFAULT_INVALID_USER, DEFAULT_PASS)
         result = self.driver.find_element(*LoginPageIdentifiers.VALID_EMAIL).text
         assert "Input is not valid!" in result
@@ -226,7 +232,7 @@ class AuthRegistrationTests:
     def test_click_create_topic_without_user_login(self):
         """Test case: Click create topic without user login."""
         print("\n" + str(test_cases('TC_CLICK_CREATE_TOPIC_WITHOUT_USER_LOGIN')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerCreateNewTopic(self.driver).click_create_topic_button_without_login()
         result = self.driver.current_url
         assert "/login?returnUrl=%2Fcreate%2Ftopic" in result
@@ -235,7 +241,7 @@ class AuthRegistrationTests:
     # Documentation: Upload file without userlogin.
     def test_upload_file_without_userlogin(self):
         """Test case: Upload file without userlogin."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerUploadFile(self.driver).upload_file_without_userlogin()
         result = self.driver.current_url
         assert "login" in result

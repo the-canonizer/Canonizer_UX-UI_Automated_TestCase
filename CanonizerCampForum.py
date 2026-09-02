@@ -26,7 +26,7 @@ class CanonizerCampForumPage(Page):
         self.action = ActionChains(self.driver)    
 
     def load_camp_forum_page(self, topic_name):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/div/header/div[2]/nav/ul/li[2]/a").click()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div/div/div/div[1]/div[2]/span/span/input").send_keys("test")
         self.find_element(*CampForumIdentifiers.SEARCH_TOPIC).send_keys(Keys.ENTER)
@@ -39,7 +39,7 @@ class CanonizerCampForumPage(Page):
         return CanonizerCampForumPage(self.driver)
 
     def load_all_threads_page(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.ID, "all-thread-btn").click()
         WebDriverWait(self.driver, 20).until(
             EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ant-table-cell.ant-table-cell-row-hover"))
@@ -47,7 +47,7 @@ class CanonizerCampForumPage(Page):
         return CanonizerCampForumPage(self.driver)
 
     def load_my_threads_page(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.ID, "my-thread-btn").click()
         WebDriverWait(self.driver, 20).until(
             EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ant-table-cell.ant-table-cell-row-hover"))
@@ -55,7 +55,7 @@ class CanonizerCampForumPage(Page):
         return CanonizerCampForumPage(self.driver)
 
     def load_my_participation_page(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.ID, "participate-btn").click()
         WebDriverWait(self.driver, 20).until(
             EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ant-table-cell.ant-table-cell-row-hover"))
@@ -63,7 +63,7 @@ class CanonizerCampForumPage(Page):
         return CanonizerCampForumPage(self.driver)
 
     def load_top_10_threads_page(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.ID, "most-rep-btn").click()
         WebDriverWait(self.driver, 20).until(
             EC.invisibility_of_element_located((By.CSS_SELECTOR, ".ant-table-cell.ant-table-cell-row-hover"))
@@ -71,7 +71,7 @@ class CanonizerCampForumPage(Page):
         return CanonizerCampForumPage(self.driver)
 
     def check_no_thread_availability(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*CampForumIdentifiers.CAMP_FORUM_BUTTON).click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.CLASS_NAME, "Forum_cardTitle__VagbD")))
         self.driver.find_element(By.ID, "all-thread-btn").click()
@@ -81,7 +81,7 @@ class CanonizerCampForumPage(Page):
         return CanonizerCampForumPage(self.driver)
 
     def click_start_thread_button(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span")))
 
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[3]/div/div/div/button/span").click()
@@ -168,19 +168,19 @@ class CanonizerCampForumPage(Page):
             self.find_element(*CampForumIdentifiers.NICK_NAME_ASTERISK)
 
     def click_on_back_button(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.hover(*CampForumIdentifiers.BACK_BUTTON)
         self.find_element(*CampForumIdentifiers.BACK_BUTTON).click()
 
 
     def load_edit_thread_page(self):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.load_my_threads_page()
         self.driver.find_element(By.ID, "edit-button-0").click()
         return CanonizerCampForumPage(self.driver)
 
     def edit_thread(self):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.load_my_threads_page()
         self.driver.find_element(By.ID, "edit-button-0").click()
         self.driver.find_element(By.ID, "create_new_thread_thread_title").send_keys("thread edit selenium")
@@ -245,7 +245,7 @@ class CanonizerCampForumPage(Page):
 
     def thread_post_with_valid_data(self):
         #WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "Forum_cardTitle__VagbD")))
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div/section/section/main/div/div[1]/div/div[2]/div[2]/div/div/div/div/div/table/tbody/tr/td[1]/div/a/span").click()
         self.driver.find_element(By.ID, "comment-button-desktop").click()
         self.driver.find_element(By.CLASS_NAME, "ck-placeholder").send_keys("test post")
@@ -269,7 +269,7 @@ class CanonizerCampForumPage(Page):
         return CanonizerCampForumPage(self.driver)
 
     def verify_nick_name_link_on_post_page(self):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "Forum_cardTitle__VagbD")))
         self.find_element(By.XPATH, "/html/body/div/div/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div/span[2]/a").click()
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "ant-card-head-title")))

@@ -7,7 +7,7 @@ class CampTests:
     def test_topic_comparison_create_camp_button(self):
         """Test case: Topic comparison create camp button."""
         print("\n" + str(test_cases('TC_VERIFY_CREATE_CAMP_BUTTON_FUNCTIONALITY_ON_TOPIC_COMPARISON_PAGE')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -23,7 +23,7 @@ class CampTests:
     def test_load_create_camp_page(self):
         """Test case: Load create camp page."""
         print("\n" + str(test_cases('TC_LOAD_CREATE_CAMP_PAGE')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -38,7 +38,7 @@ class CampTests:
     def test_create_camp_with_valid_data(self):
         """Test case: Create camp with valid data."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_VALID_DATA')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -53,7 +53,7 @@ class CampTests:
     def test_create_camp_with_blank_camp_name(self):
         """Test case: Create camp with blank camp name."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_BLANK_CAMP_NAME')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -68,7 +68,7 @@ class CampTests:
     def test_create_camp_with_duplicate_camp_name(self):
         """Test case: Create camp with duplicate camp name."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_DUPLICATE_CAMP_NAME')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -83,7 +83,7 @@ class CampTests:
     def test_create_camp_with_invalid_camp_about_url(self):
         """Test case: Create camp with invalid camp about url."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_INVALID_CAMP_ABOUT_URL')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -110,7 +110,7 @@ class CampTests:
     # Documentation: Create camp mandatory fields are marked with asterisk.
     def test_create_camp_mandatory_fields_are_marked_with_asterisk(self):
         """Test case: Create camp mandatory fields are marked with asterisk."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -122,7 +122,7 @@ class CampTests:
     # Documentation: Cancel create camp.
     def test_cancel_create_camp(self):
         """Test case: Cancel create camp."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -135,7 +135,7 @@ class CampTests:
     # Documentation: Create camp with only mandatory fields.
     def test_create_camp_with_only_mandatory_fields(self):
         """Test case: Create camp with only mandatory fields."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -148,7 +148,7 @@ class CampTests:
     # Documentation: Update camp with valid data.
     def test_update_camp_with_valid_data(self):
         """Test case: Update camp with valid data."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -162,7 +162,7 @@ class CampTests:
     # Documentation: Verify submit camp update button.
     def test_verify_submit_camp_update_button(self):
         """Test case: Verify submit camp update button."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -175,7 +175,7 @@ class CampTests:
     # Documentation: Camp preview fields.
     def test_camp_preview_fields(self):
         """Test case: Camp preview fields."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -188,7 +188,7 @@ class CampTests:
     # Documentation: Camp preview cancel.
     def test_camp_preview_cancel(self):
         """Test case: Camp preview cancel."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -201,7 +201,7 @@ class CampTests:
     # Documentation: Camp preview submitter nickname.
     def test_camp_preview_submitter_nickname(self):
         """Test case: Camp preview submitter nickname."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -214,7 +214,7 @@ class CampTests:
     # Documentation: Compare camp versions.
     def test_compare_camp_versions(self):
         """Test case: Compare camp versions."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -227,7 +227,7 @@ class CampTests:
     # Documentation: Camp comparison displays both versions.
     def test_camp_comparison_displays_both_versions(self):
         """Test case: Camp comparison displays both versions."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -240,7 +240,7 @@ class CampTests:
     # Documentation: Load camp manage edit page.
     def test_load_camp_manage_edit_page(self):
         """Test case: Load camp manage edit page."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -296,7 +296,7 @@ class CampTests:
     # Documentation: Create news available for child camps.
     def test_create_news_available_for_child_camps(self):
         """Test case: Create news available for child camps."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
@@ -309,7 +309,7 @@ class CampTests:
     # Documentation: Advanced search camp tab navigation.
     def test_advanced_search_camp_tab_navigation(self):
         """Test case: Advanced search camp tab navigation."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerSearchPage(self.driver).open_all_results("tree").click_sidebar_tab("/search/camp")
         result = self.driver.find_element(*SearchPageIdentifiers.CAMP_HEADING).text
@@ -319,7 +319,7 @@ class CampTests:
     # Documentation: Advanced search camp bydate filter route.
     def test_advanced_search_camp_bydate_filter_route(self):
         """Test case: Advanced search camp bydate filter route."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerSearchPage(self.driver).open_camp_results("tree", "asof=bydate")
         result = self.driver.current_url
@@ -329,7 +329,7 @@ class CampTests:
     # Documentation: Browse profile setting supported camps.
     def test_browse_profile_setting_supported_camps(self):
         """Test case: Browse profile setting supported camps."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         self.driver.find_element(*BrowsePageIdentifiers.PROFILE_LINK).click()
         self.driver.find_element(*BrowsePageIdentifiers.SUPPORTED_CAMP).click()
@@ -340,7 +340,7 @@ class CampTests:
     # Documentation: Authentication expiry for create camp.
     def test_authentication_expiry_for_create_camp(self):
         """Test case: Authentication expiry for create camp."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -357,7 +357,7 @@ class CampTests:
     # Documentation: Authentication expiry for supported camp.
     def test_authentication_expiry_for_supported_camp(self):
         """Test case: Authentication expiry for supported camp."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
 
         CanonizerPofilePage(self.driver).profile_page_direct_supported_camp_tab()
@@ -369,7 +369,7 @@ class CampTests:
     # Documentation: Authentication expiry for direct supported camp.
     def test_authentication_expiry_for_direct_supported_camp(self):
         """Test case: Authentication expiry for direct supported camp."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
 
         CanonizerPofilePage(self.driver).profile_page_direct_supported_camp_tab()
@@ -380,7 +380,7 @@ class CampTests:
     # Documentation: Authentication expiry for delegate supported camp.
     def test_authentication_expiry_for_delegate_supported_camp(self):
         """Test case: Authentication expiry for delegate supported camp."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerPofilePage(self.driver).profile_page_delegate_supported_camp_tab()
         result = self.driver.current_url
@@ -391,7 +391,7 @@ class CampTests:
     def test_support_camp_error_first_time(self):
         """Test case: Support camp error first time."""
         print("\n" + str(test_cases('TC_CREATE_CAMP_WITH_VALID_DATA')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -407,7 +407,7 @@ class CampTests:
     # Documentation: Profile page direct supported camp tab.
     def test_profile_page_direct_supported_camp_tab(self):
         """Test case: Profile page direct supported camp tab."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerPofilePage(self.driver).profile_page_direct_supported_camp_tab()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.DIRECT_SUPPORTED).text
@@ -417,7 +417,7 @@ class CampTests:
     # Documentation: Profile page delegate supported camp tab.
     def test_profile_page_delegate_supported_camp_tab(self):
         """Test case: Profile page delegate supported camp tab."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerPofilePage(self.driver).profile_page_delegate_supported_camp_tab()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.DELEGATE_SUPPORT).text
@@ -427,7 +427,7 @@ class CampTests:
     # Documentation: Asp old urls for camps.
     def test_asp_old_urls_for_camps(self):
         """Test case: Asp old urls for camps."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.get(OLD_ASP_CAMP_URL)
         result = self.driver.current_url
         assert "https://ux-dev.canonizer.com/topic/6669-Test-dlkskndlksndl/1-Agreement?is_tree_open=0" in result

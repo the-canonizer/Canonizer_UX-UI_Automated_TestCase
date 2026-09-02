@@ -1,0 +1,27 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Users/ajay/Desktop/Canonizer/Canonizer_UX-UI_Automated_TestCase/.venv/bin/python
+rootdir: /Users/ajay/Desktop/Canonizer/Canonizer_UX-UI_Automated_TestCase
+configfile: pytest.ini
+collecting ... collected 1 item
+
+main.py::TestPages::test_click_on_join_now PASSED                        [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.9/site-packages/urllib3/__init__.py:35
+  /Users/ajay/Desktop/Canonizer/Canonizer_UX-UI_Automated_TestCase/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================== Canonizer showcase summary ==========================
+Total tests run: 1
+Passed: 1
+Failed: 0
+Skipped: 0
+XFailed: 0
+XPassed: 0
+Partial success: no
+Report file: /Users/ajay/Desktop/Canonizer/Canonizer_UX-UI_Automated_TestCase/showcase_test_results.json
+
+Passed tests:
+  PASS main.py::TestPages::test_click_on_join_now (61.508s)
+=================== 1 passed, 1 warning in 67.95s (0:01:07) ====================

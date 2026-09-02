@@ -166,7 +166,7 @@ class CanonizerLoginPage(Page):
             self.find_element(*LoginPageIdentifiers.PASSWORD_ASTRK)
 
     def click_on_login_button(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*LoginPageIdentifiers.LOGIN_BUTTON).click()
         return CanonizerLoginPage(self.driver)
 
@@ -203,12 +203,12 @@ class CanonizerLoginPage(Page):
             return CanonizerLoginPage(self.driver)
 
     def verify_the_login_functionality_by_entering_the_registered_credential(self, default_user, default_pass):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.verify_the_login_page(default_user, default_pass)
         return CanonizerLoginPage(self.driver)
 
     def verify_the_login_with_user2(self, default_user, default_pass):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.ID, "login_form_username").click()
         actions = ActionChains(self.driver)
         actions.key_down(Keys.CLEAR)
@@ -240,19 +240,19 @@ class CanonizerLoginPage(Page):
 
 
     def verify_one_time_request_code(self, default_user):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*LoginPageIdentifiers.EMAIL).send_keys(default_user)
         self.find_element(*LoginPageIdentifiers.LOGIN_REQUEST_OTP).click()
 
     def verify_one_time_request_code_with_invalid_email(self, default_user):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.verify_one_time_request_code(default_user)
         wait = WebDriverWait(self.driver, 10)
         element = wait.until(EC.element_to_be_clickable((By.ID, "login_form_username_help")))
         return CanonizerLoginPage(self.driver)
 
     def verify_one_time_request_code_with_valid_credentials(self, default_user):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
 
         self.verify_one_time_request_code(default_user)
         return CanonizerLoginPage(self.driver)
@@ -263,7 +263,7 @@ class CanonizerLoginPage(Page):
 
 
     def verifying_google_link(self):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*LoginPageIdentifiers.GOOGLE_LINK).click()
         wait = WebDriverWait(self.driver, 10)
         element = wait.until(EC.element_to_be_clickable((By.ID, "headingText")))
@@ -293,5 +293,5 @@ class CanonizerLoginPage(Page):
     def verifying_github_link(self):
         self.click_on_login_button()
         self.find_element(*LoginPageIdentifiers.GITHUB_LINK).click()
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         return CanonizerLoginPage(self.driver)

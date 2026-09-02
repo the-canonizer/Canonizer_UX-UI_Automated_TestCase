@@ -1,0 +1,4 @@
+PASS	68	main.py::TestPages::test_click_on_join_now
+FAIL	158	main.py::TestPages::test_registration_with_valid_credential
+FAIL	152	main.py::TestPages::test_registration_first_name_with_spaces
+FAIL	176	main.py::TestPages::test_registration_with_blank_first_name

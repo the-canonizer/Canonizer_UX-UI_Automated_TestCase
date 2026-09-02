@@ -9,6 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from selenium.common.exceptions import TimeoutException
 from CanonizerBase import Page
+from Config import IMPLICIT_WAIT_SECONDS
 from Identifiers import BrowsePageIdentifiers, CreateTopicIdentifiers
 from selenium.webdriver.support.ui import Select
 import time
@@ -37,19 +38,19 @@ class CanonizerBrowsePage(Page):
         :return:
             Return the result to the main page.
         """
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.ID, "menu-item-2").click()
         return CanonizerBrowsePage(self.driver)
 
 
     def click_only_my_topics_button(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*BrowsePageIdentifiers.ONLY_MY_TOPICS).click()
         return CanonizerBrowsePage(self.driver)
 
 
     def scroll_down(self):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         action = ActionChains(self.driver)
 
         self.i = 100
@@ -66,7 +67,7 @@ class CanonizerBrowsePage(Page):
                 break
             self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/form/div/div[1]/div[1]/div/div/div/div/div[2]/div/span[2]").click()
     def select_dropdown_value(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.click_browse_page_button()
         self.find_element(*BrowsePageIdentifiers.NAMESPACE).click()
         self.scroll_down()
@@ -74,7 +75,7 @@ class CanonizerBrowsePage(Page):
 
 
     def search_topic_tag(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.click_browse_page_button()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/form/div/div[1]/div[2]/div/div/div/div/div[2]/div/div/div/div/input").send_keys("History")
         action = ActionChains(self.driver)
@@ -82,7 +83,7 @@ class CanonizerBrowsePage(Page):
         return CanonizerBrowsePage(self.driver)
 
     def search_archived_camp(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         if self.driver.find_element(By.ID, "name-space-dropdown"):
             self.driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div").click()
             self.scroll_sandbox()
@@ -97,7 +98,7 @@ class CanonizerBrowsePage(Page):
         return CanonizerBrowsePage(self.driver)
 
     def algo_dropdown_filter(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*CreateTopicIdentifiers.REFINE_BUTTON_FILTER).click()
 
         return CanonizerBrowsePage(self.driver)

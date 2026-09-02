@@ -21,7 +21,7 @@ class ForumNewsTests:
     def test_create_thread_with_valid_data(self):
         """Test case: Create thread with valid data."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_VALID_DATA')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -37,7 +37,7 @@ class ForumNewsTests:
     def test_create_thread_with_blank_title(self):
         """Test case: Create thread with blank title."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_BLANK_TITLE')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -53,7 +53,7 @@ class ForumNewsTests:
     def test_create_thread_with_special_chars(self):
         """Test case: Create thread with special chars."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_SPECIAL_CHARS')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -69,7 +69,7 @@ class ForumNewsTests:
     def test_create_thread_with_blank_mandatory_fields(self):
         """Test case: Create thread with blank mandatory fields."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_BLANK_MANDATORY_FIELDS')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -85,7 +85,7 @@ class ForumNewsTests:
     def test_create_thread_with_duplicate_title(self):
         """Test case: Create thread with duplicate title."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_DUPLICATE_TITLE')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -101,7 +101,7 @@ class ForumNewsTests:
     def test_create_thread_with_valid_data_with_enter_key(self):
         """Test case: Create thread with valid data with enter key."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_VALID_DATA_WITH_ENTER_KEY')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -117,7 +117,7 @@ class ForumNewsTests:
     def test_create_thread_with_trailing_spaces(self):
         """Test case: Create thread with trailing spaces."""
         print("\n" + str(test_cases('TC_CREATE_THREAD_WITH_TRAILING_SPACES')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -130,7 +130,7 @@ class ForumNewsTests:
     # Documentation: Load edit thread page.
     def test_load_edit_thread_page(self):
         """Test case: Load edit thread page."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -146,7 +146,7 @@ class ForumNewsTests:
     # Documentation: Edit thread.
     def test_edit_thread(self):
         """Test case: Edit thread."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -161,7 +161,7 @@ class ForumNewsTests:
     # Documentation: Create post.
     def test_create_post(self):
         """Test case: Create post."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -177,7 +177,7 @@ class ForumNewsTests:
     # Documentation: Edit post.
     def test_edit_post(self):
         """Test case: Edit post."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -192,7 +192,7 @@ class ForumNewsTests:
     # Documentation: Delete post.
     def test_delete_post(self):
         """Test case: Delete post."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()
@@ -209,7 +209,7 @@ class ForumNewsTests:
     def test_load_my_threads_page(self):
         """Test case: Load my threads page."""
         print("\n" + str(test_cases('TC_LOAD_MY_THREADS_PAGE')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         topic_name = "New Topic " + add_name
@@ -226,7 +226,7 @@ class ForumNewsTests:
     def test_load_top_10_threads_page(self):
         """Test case: Load top 10 threads page."""
         print("\n" + str(test_cases('TC_LOAD_TOP_10_THREADS_PAGE')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         topic_name = "New Topic " + add_name
@@ -247,7 +247,7 @@ class ForumNewsTests:
     def test_load_add_news_page(self):
         """Test case: Load add news page."""
         print("\n" + str(test_cases('TC_LOAD_ADD_NEWS_FEED_PAGE')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
@@ -261,7 +261,7 @@ class ForumNewsTests:
     def test_add_news_page_mandatory_fields_are_marked_with_asterisk(self):
         """Test case: Add news page mandatory fields are marked with asterisk."""
         print("\n" + str(test_cases('TC_ADD_NEWS_PAGE_MANDATORY_FIELDS_ARE_MARKED_WITH_ASTERISK')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
@@ -275,7 +275,7 @@ class ForumNewsTests:
     def test_create_news_with_valid_data(self):
         """Test case: Create news with valid data."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_VALID_DATA')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
@@ -290,7 +290,7 @@ class ForumNewsTests:
     def test_create_news_with_blank_display_text(self):
         """Test case: Create news with blank display text."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_BLANK_DISPLAY_TEXT')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
@@ -304,7 +304,7 @@ class ForumNewsTests:
     def test_create_news_with_blank_link(self):
         """Test case: Create news with blank link."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_BLANK_LINK')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
@@ -329,7 +329,7 @@ class ForumNewsTests:
     def test_create_news_with_invalid_link_format(self):
         """Test case: Create news with invalid link format."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_INVALID_LINK_FORMAT')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
@@ -343,7 +343,7 @@ class ForumNewsTests:
     def test_create_news_using_enter_key(self):
         """Test case: Create news using enter key."""
         print("\n" + str(test_cases('TC_CREATE_NEWS_WITH_ENTER_KEY')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
@@ -369,7 +369,7 @@ class ForumNewsTests:
     def test_create_news_with_trailing_spaces(self):
         """Test case: Create news with trailing spaces."""
         print("\n", str(test_cases("TC_CREATE_NEWS_WITH_TRAILING_SPACES")))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
@@ -383,7 +383,7 @@ class ForumNewsTests:
     def test_load_edit_news_page(self):
         """Test case: Load edit news page."""
         print("\n" + str(test_cases('TC_LOAD_EDIT_NEWS_PAGE')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         topic_name = "New Topic " + add_name
@@ -398,7 +398,7 @@ class ForumNewsTests:
     def test_click_edit_news_cancel_button(self):
         """Test case: Click edit news cancel button."""
         print("\n" + str(test_cases('TC_CLICK_EDIT_NEWS_CANCEL_BUTTON')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         topic_name = "New Topic " + add_name
@@ -413,7 +413,7 @@ class ForumNewsTests:
     def test_update_news_with_blank_display_text(self):
         """Test case: Update news with blank display text."""
         print("\n" + str(test_cases('TC_UPDATE_NEWS_WITH_BLANK_DISPLAY_TEXT')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         topic_name = "New Topic " + add_name
@@ -428,7 +428,7 @@ class ForumNewsTests:
     def test_update_news_with_blank_link(self):
         """Test case: Update news with blank link."""
         print("\n" + str(test_cases('TC_UPDATE_NEWS_WITH_BLANK_LINK')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         topic_name = "New Topic " + add_name
@@ -442,7 +442,7 @@ class ForumNewsTests:
     # Documentation: Edit news with valid data.
     def test_edit_news_with_valid_data(self):
         """Test case: Edit news with valid data."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         topic_name = "New Topic " + add_name
@@ -456,7 +456,7 @@ class ForumNewsTests:
     # Documentation: Edit news with invalid link.
     def test_edit_news_with_invalid_link(self):
         """Test case: Edit news with invalid link."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         topic_name = "New Topic " + add_name
@@ -470,7 +470,7 @@ class ForumNewsTests:
     # Documentation: Edit news with trailing spaces.
     def test_edit_news_with_trailing_spaces(self):
         """Test case: Edit news with trailing spaces."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         topic_name = "New Topic " + add_name
@@ -484,7 +484,7 @@ class ForumNewsTests:
     # Documentation: Authentication add news.
     def test_authentication_add_news(self):
         """Test case: Authentication add news."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button()

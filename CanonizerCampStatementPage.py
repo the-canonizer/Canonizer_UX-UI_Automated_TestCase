@@ -52,7 +52,7 @@ class CanonizerCampStatementPage(Page):
         return CanonizerCampStatementPage(self.driver)
 
     def click_add_camp_statement(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*CampStatementIdentifiers.ADD_STATEMENT_BUTTON).click()
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "publish-button")))
 
@@ -60,7 +60,7 @@ class CanonizerCampStatementPage(Page):
 
 
     def scroll_down(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         action = ActionChains(self.driver)
         self.i = 100
         self.current_name_list = []
@@ -76,7 +76,7 @@ class CanonizerCampStatementPage(Page):
                 break
 
     def create_new_topic(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.n = random.randint(0, 10000000)
         self.n = str(self.n)
         self.driver.find_element(*CreateTopicIdentifiers.CREATE_NEW_TOPIC).click()
@@ -92,7 +92,7 @@ class CanonizerCampStatementPage(Page):
         self.driver.find_element(*CreateTopicIdentifiers.CREATE_TOPIC_BUTTON).click()
 
     def add_camp_statement(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.click_add_camp_statement()
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "publish-button")))
         self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("create new statement")
@@ -107,7 +107,7 @@ class CanonizerCampStatementPage(Page):
         return CanonizerCampStatementPage(self.driver)
 
     def add_camp_statement_asterisk(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.click_add_camp_statement()
         self.driver.find_element(*CampStatementIdentifiers.SUBMIT_STATEMENT_BUTTON).click()
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "publish-button")))
@@ -115,14 +115,14 @@ class CanonizerCampStatementPage(Page):
         return CanonizerCampStatementPage(self.driver)
 
     def add_camp_statement_without_mandatory_data(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.click_add_camp_statement()
         self.driver.find_element(*CampStatementIdentifiers.SUBMIT_STATEMENT_BUTTON).click()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button[1]/span").click()
         return CanonizerCampStatementPage(self.driver)
 
     def add_camp_statement_with_trailing_spaces(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.click_add_camp_statement()
         self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("          create new statement")
         self.driver.find_element(*CampStatementIdentifiers.SUBMIT_STATEMENT_BUTTON).click()
@@ -130,7 +130,7 @@ class CanonizerCampStatementPage(Page):
         return CanonizerCampStatementPage(self.driver)
 
     def add_camp_statement_with_blank_data(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.click_add_camp_statement()
         self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("         ")
         self.driver.find_element(*CampStatementIdentifiers.SUBMIT_STATEMENT_BUTTON).click()
@@ -138,7 +138,7 @@ class CanonizerCampStatementPage(Page):
         return CanonizerCampStatementPage(self.driver)
 
     def click_on_add_camp_statement_cancel_button(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.click_add_camp_statement()
         self.driver.find_element(*CampStatementIdentifiers.UPDATE_CANCEL_BUTTON).click()
         if self.driver.find_element(*CampStatementIdentifiers.ADD_STATEMENT_BUTTON):
@@ -146,7 +146,7 @@ class CanonizerCampStatementPage(Page):
         return CanonizerCampStatementPage(self.driver)
 
     def click_on_camp_statement_preview_button(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.click_add_camp_statement()
         self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("hello statement")
         self.driver.find_element(*CampStatementIdentifiers.EDIT_SUMMARY).send_keys("hello summary")
@@ -157,12 +157,12 @@ class CanonizerCampStatementPage(Page):
         return CanonizerCampStatementPage(self.driver)
 
     def load_edit_camp_statement(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button/span").click()
         return CanonizerCampStatementPage(self.driver)
 
     def update_camp_statement_with_mandatory_field(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button/span").click()
         self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("hello statement")
         self.driver.find_element(*CampStatementIdentifiers.EDIT_SUMMARY).send_keys("hello summary")
@@ -172,7 +172,7 @@ class CanonizerCampStatementPage(Page):
 
 
     def edit_camp_statement_with_trailing_spaces(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button/span").click()
         self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("          hello statement")
         self.driver.find_element(*CampStatementIdentifiers.EDIT_SUMMARY).send_keys("            hello summary")
@@ -182,7 +182,7 @@ class CanonizerCampStatementPage(Page):
         return CanonizerCampStatementPage(self.driver)
 
     def edit_camp_statement_with_blank_data(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button/span").click()
         self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("      ")
         self.driver.find_element(*CampStatementIdentifiers.EDIT_SUMMARY).send_keys("         ")
@@ -192,7 +192,7 @@ class CanonizerCampStatementPage(Page):
         return CanonizerCampStatementPage(self.driver)
 
     def compare_camp_statement(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div[1]/label/span[1]/input").click()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div[2]/label/span[1]/input").click()
         self.driver.find_element(*CampStatementIdentifiers.COMPARE_STATEMENT_BUTTON).click()
@@ -200,7 +200,7 @@ class CanonizerCampStatementPage(Page):
         return CanonizerCampStatementPage(self.driver)
 
     def edit_camp_statement(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button/span").click()
         self.driver.find_element(*CampStatementIdentifiers.STATEMENT_TEXT).send_keys("hello statement")
         self.driver.find_element(*CampStatementIdentifiers.EDIT_SUMMARY).send_keys("hello summary")

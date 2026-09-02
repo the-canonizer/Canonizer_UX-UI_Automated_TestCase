@@ -15,6 +15,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from CanonizerBase import Page
 from CanonizerValidationCheckMessages import message
+from Config import IMPLICIT_WAIT_SECONDS
 from Identifiers import RegistrationPageIdentifiers
 
 
@@ -167,14 +168,14 @@ class CanonizerRegisterPage(Page):
         return CanonizerRegisterPage(self.driver)
 
     def click_on_register_button(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.safe_click(RegistrationPageIdentifiers.REGISTER)
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "register-btn")))
 
         return CanonizerRegisterPage(self.driver)
 
     def check_login_page_open_click_login_here_link(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*RegistrationPageIdentifiers.LOGIN_HERE).click()
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "login-submit-btn")))
 

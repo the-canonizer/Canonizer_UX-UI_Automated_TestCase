@@ -23,7 +23,7 @@ class CanonizerAddNewsPage(Page):
     def driver(self):
         self.driver = webdriver.Chrome()
     def load_add_news_page(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         action = ActionChains(self.driver)
         news = self.driver.current_url
         news = news.replace("topic", "addnews")
@@ -46,7 +46,7 @@ class CanonizerAddNewsPage(Page):
         self.find_element(*AddNewsIdentifiers.AVAILABLE_FOR_CHILD_CAMP).click()
 
     def create_news(self, link, display_text):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.enter_link(link)
         self.enter_display_text(display_text)
         self.click_create_news_button()
@@ -109,7 +109,7 @@ class CanonizerEditNewsPage(Page):
     window_scroll = "window.scrollTo(0, document.body.scrollHeight);"
 
     def load_edit_news_page(self, topic_name):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div/div/header/div[2]/nav/ul/li[2]/a").click()
 
         # Click on Search Topic

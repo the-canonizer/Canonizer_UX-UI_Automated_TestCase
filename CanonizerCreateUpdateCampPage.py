@@ -4,6 +4,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from CanonizerBase import Page
+from Config import IMPLICIT_WAIT_SECONDS
 from Identifiers import *
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -20,7 +21,7 @@ class CanonizerCreateCampPage(Page):
         self.driver = webdriver.Chrome()
 
     def load_create_camp_page(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*CreateCampIdentifiers.CREATE_CAMP_PAGE).click()
         return CanonizerCreateCampPage(self.driver)
 
@@ -62,19 +63,19 @@ class CanonizerCreateCampPage(Page):
         self.find_element(*CreateCampIdentifiers.CAMP_ABOUT_NICK_NAME).send_keys(camp_about_nick_name)
 
     def click_create_camp_button(self):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*CreateCampIdentifiers.CREATE_CAMP_BUTTON).click()
 
 
 
     def create_camp(self, *args):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         args = list(args[0])
         self.enter_camp_name(args[2])
         self.enter_camp_name(args[2])
         self.click_create_camp_button()
     def disable_create_camp(self, *args):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         args = list(args[0])
         self.enter_camp_name(args[2])
         self.driver.find_element(By.ID, "is_disabled").click()
@@ -89,12 +90,12 @@ class CanonizerCreateCampPage(Page):
         self.enter_camp_about_url(args[5])
         self.click_create_camp_button()
     def create_camp_with_valid_data(self, create_camp_list1):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.create_camp(create_camp_list1)
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/section/div[2]/div[1]/div/button/span")))
         return CanonizerCreateCampPage(self.driver)
     def disable_create_camp_with_valid_data(self, create_camp_list1):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.disable_create_camp(create_camp_list1)
         return CanonizerCreateCampPage(self.driver)
     def create_camp2_with_valid_data(self, create_camp_list1):
@@ -111,7 +112,7 @@ class CanonizerCreateCampPage(Page):
             print("Error not found or is not matching")
 
     def create_camp_with_duplicate_camp_name(self, create_camp_list_5):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.create_camp(create_camp_list_5)
         return CanonizerCreateCampPage(self.driver)
 
@@ -140,7 +141,7 @@ class CanonizerEditCampPage(Page):
         self.action = ActionChains(self.driver)
 
     def load_camp_manage_edit_page(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[1]/div[2]/div[2]/a/span/img").click()
         self.driver.find_element(By.ID, "threedot_dropdown_manage_camp_btn__menu_item_text").click()
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div/div[1]/button/span").click()
@@ -155,7 +156,7 @@ class CanonizerEditCampPage(Page):
         self.driver.get(camp_url)
     
     def submit_camp_update_with_valid_name(self):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.ID, "create_new_camp_camp_name").send_keys("camp changed")
         self.driver.find_element(By.ID, "crate-camp-btn").click()
         return CanonizerEditCampPage(self.driver)

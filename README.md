@@ -118,7 +118,13 @@ CANONIZER_HEADLESS=1 ./run_tests.sh -m smoke -q
 ```
 
 The implicit wait defaults to 30s and can be tuned with
-`CANONIZER_IMPLICIT_WAIT` while the suite migrates to explicit waits.
+`CANONIZER_IMPLICIT_WAIT` while the suite migrates to explicit waits. It is
+resolved once as `Config.IMPLICIT_WAIT_SECONDS`; the test bodies and page
+objects that previously hardcoded `implicitly_wait(30)` now use that constant,
+so the env var actually takes effect everywhere. Lower it (e.g. `3`) for a
+faster local run — passing tests speed up a lot; the explicit `WebDriverWait`
+calls (10–20s) still guard the real synchronization points. `run_tests.sh`
+picks it up from `.env.local`; VS Code picks it up via `python.envFile`.
 
 Showcase summary, printed to the terminal and written as JSON:
 
@@ -155,17 +161,46 @@ need setting up.
 
 ## Run Tests In VS Code
 
-Tests are composed into `main.py`, which does not match pytest's default
-`test_*.py` discovery pattern, so discovery must point directly at `main.py`.
-`.vscode/settings.json`, `launch.json` and `tasks.json` are already wired up.
+The suite is composed by multiple inheritance in `main.py`, which has no
+physical `def test_` lines, so the editor cannot draw per-test "Run" gutter
+icons there. `test_all.py` is a generated flat view — one one-line `def test_`
+wrapper per case, delegating to the real implementation in `test_suites/` — so
+every test gets a Run/Debug icon. Regenerate it after adding or renaming tests:
 
-1. Open the workspace root containing `Canonizer_UX-UI_Automated_TestCase`.
-2. `Python: Select Interpreter` → `.venv/bin/python`.
-3. `Python: Configure Tests` → pytest.
-4. `Testing: Refresh Tests`.
+```sh
+.venv/bin/python tools/gen_test_all.py
+```
+
+VS Code reads test settings from the **workspace-root** `.vscode/settings.json`.
+If you open the parent folder (the one holding all the canonizer repos) as the
+workspace, edit `<parent>/.vscode/settings.json`, not this project's copy. It
+needs discovery pointed at `test_all.py` and `cwd` set to this project:
+
+```json
+{
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": ["test_all.py"],
+    "python.testing.cwd": "${workspaceFolder}/Canonizer_UX-UI_Automated_TestCase"
+}
+```
+
+(If you open `Canonizer_UX-UI_Automated_TestCase` itself as the workspace, this
+project's `.vscode/settings.json` already points at `test_all.py` and no `cwd`
+override is needed.)
+
+1. `Python: Select Interpreter` → `.venv/bin/python`.
+2. `Python: Configure Tests` → pytest.
+3. `Testing: Refresh Tests`.
+4. Open `test_all.py` — the ▶ icons are in the gutter next to each test.
 
 If run icons do not appear: `Testing: Refresh Tests`, then
-`Developer: Reload Window`, then reopen `main.py`.
+`Developer: Reload Window`, then reopen `test_all.py`. Check the Python test
+log (`Output` panel → `Python`) for an import/collection error.
+
+Gutter runs use the interpreter directly with no `--headless`, so the browser
+is visible. Credentials come from the environment VS Code was launched with —
+if login tests fail on missing creds, launch VS Code from a shell that sourced
+`.env.local`, or set `"python.envFile"` to a `.env` holding them.
 
 Available tasks: `canonizer: setup`, `canonizer: run all tests`,
 `canonizer: run filtered tests`, `canonizer: run smoke tests`,

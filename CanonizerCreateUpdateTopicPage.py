@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from CanonizerValidationCheckMessages import message
 from CanonizerBase import Page
+from Config import IMPLICIT_WAIT_SECONDS
 from Identifiers import CreateTopicIdentifiers, CampForumIdentifiers, UpdateTopicIdentifiers, CreateCampIdentifiers, \
     BrowsePageIdentifiers, CampStatementIdentifiers
 from selenium.webdriver.chrome.service import Service
@@ -23,32 +24,32 @@ class CanonizerCreateNewTopic(Page):
         self.action = ActionChains(self.driver)
 
     def click_create_topic_button_without_login(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.ID, "create-topic-link").click()
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "login-submit-btn")))
         return CanonizerCreateNewTopic(self.driver)
 
     def click_create_topic_button(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.ID, "create-topic-link").click()
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "cancel-btn")))
         return CanonizerCreateNewTopic(self.driver)
 
     def create_topic_button(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.find_element(*CreateTopicIdentifiers.CREATE_TOPIC_BUTTON).click()
 
     def enter_topic_name(self, topic_name):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         WebDriverWait(self.driver, 2).until(EC.presence_of_element_located((By.ID, 'create_new_topic_topic_name')))
         self.find_element(*CreateTopicIdentifiers.TOPIC_NAME).send_keys(topic_name)
 
     def entering_data_fields(self, topic_name):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.enter_topic_name(topic_name)
 
     def scroll_down(self):
-        self.driver.implicitly_wait(10)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         action = ActionChains(self.driver)
 
         self.i = 100
@@ -69,7 +70,7 @@ class CanonizerCreateNewTopic(Page):
                                      "/html/body/div[1]/section/section/main/div/div/div/div[1]/div/div/form/div[1]/div[4]/div/div[2]/div/div/div[2]/div/div/div[2]/div[1]/div/div/div/div/span[2]").click()
 
     def scroll_down_edit(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         action = ActionChains(self.driver)
 
         self.i = 100
@@ -90,7 +91,7 @@ class CanonizerCreateNewTopic(Page):
                 return CanonizerCreateNewTopic(self.driver)
 
     def scroll_to_sandbox(self):
-        self.driver.implicitly_wait(20)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         action = ActionChains(self.driver)
 
         self.i = 100
@@ -110,7 +111,7 @@ class CanonizerCreateNewTopic(Page):
                 break
 
     def create_topic(self, topic_name):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.entering_data_fields(topic_name)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div/div/form/div[1]/div[4]/div/div[2]/div/div/div[2]/div/div/div[2]/div[1]/div/div/div/div/span[2]").click()
         self.scroll_down()
@@ -118,7 +119,7 @@ class CanonizerCreateNewTopic(Page):
         self.create_topic_button()
 
     def create_topic_with_valid_data(self, topic_name):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.create_topic(topic_name)
         wait = WebDriverWait(self.driver, 10)
         element = wait.until(
@@ -126,14 +127,14 @@ class CanonizerCreateNewTopic(Page):
         return CanonizerCreateNewTopic(self.driver)
 
     def create_topic_with_blank_topic(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.create_topic("     ")
         WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.ID, "create_new_topic_topic_name_help")))
 
         return CanonizerCreateNewTopic(self.driver)
 
     def create_topic_with_same_topic(self, topic_name):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.create_topic(topic_name)
         wait = WebDriverWait(self.driver, 10)
         element = wait.until(
@@ -141,7 +142,7 @@ class CanonizerCreateNewTopic(Page):
         return CanonizerCreateNewTopic(self.driver)
 
     def create_topic_name_with_trailing_space(self, topic_name):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.create_topic("     New Topic")
 
         return CanonizerCreateNewTopic(self.driver)
@@ -158,13 +159,13 @@ class CanonizerCreateNewTopic(Page):
             print("Page not found")
 
     def create_topic_with_special_chars(self, topic_name):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.create_topic(topic_name)
 
         return CanonizerCreateNewTopic(self.driver)
 
     def create_topic_without_entering_mandatory_fields(self, topic_name):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.create_topic('')
         return CanonizerCreateNewTopic(self.driver)
 
@@ -202,7 +203,7 @@ class CanonizerCreateNewTopic(Page):
 class CanonizerUpdateTopicPage(Page):
     def load_topic_history_page(self):
 
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div/div[1]/div[1]/div[2]/div[2]/a/span").click()
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "threedot_dropdown_manage_topic_btn__menu_item_text")))
         self.driver.find_element(By.ID, "threedot_dropdown_manage_topic_btn__menu_item_text").click()
@@ -216,7 +217,7 @@ class CanonizerUpdateTopicPage(Page):
 
 
     def verify_submit_topic_update_button(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.driver.find_element(By.XPATH, "/html/body/div[1]/section/section/main/div/div/div[2]/div/div/div[2]/div/div[2]/div[1]/button/span").click()
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "create-topic-btn")))
 
@@ -224,7 +225,7 @@ class CanonizerUpdateTopicPage(Page):
 
 
     def update_topic_name(self):
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
 
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "create-topic-btn")))
         self.driver.find_element(*UpdateTopicIdentifiers.UPDATE_TOPIC_NAME).send_keys("Test")

@@ -6,7 +6,7 @@ class MiscTests:
     def test_click_on_join_now(self):
         """Test case: Click on join now."""
         print("\n" + str(test_cases('TC_CLICK_ON_REGISTER_BUTTON')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).join_now()
 
         result = self.driver.find_element(*RegistrationPageIdentifiers.REGISTRATION_TITLE).text
@@ -17,7 +17,7 @@ class MiscTests:
     # Documentation: Registration with valid credential.
     def test_registration_with_valid_credential(self):
         """Test case: Registration with valid credential."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_17)
         result = self.driver.find_element(*RegistrationPageIdentifiers.OTP_SENT).text
         assert "Note : Registration code has been sent to your registered email address." in result
@@ -27,7 +27,7 @@ class MiscTests:
     def test_registration_first_name_with_spaces(self):
         """Test case: Registration first name with spaces."""
         print("\n" + str(test_cases('TC_REGISTER_WITH_BLANK_SPACES_FIRST_NAME')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_18)
         result = self.driver.find_element(*RegistrationPageIdentifiers.OTP_SENT).text
         assert "Note : Registration code has been sent to your registered email address." in result
@@ -38,7 +38,7 @@ class MiscTests:
     def test_registration_with_blank_first_name(self, ):
         """Test case: Registration with blank first name."""
         print("\n" + str(test_cases('TC_REGISTER_WITH_BLANK_FIRST_NAME')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_3)
         result = self.driver.find_element(*RegistrationPageIdentifiers.FIRST_NAME_VALIDATION).text
         assert "Please input your first name!" in result
@@ -49,7 +49,7 @@ class MiscTests:
     def test_registration_with_blank_email(self):
         """Test case: Registration with blank email."""
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_BLANK_EMAIL')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_5)
         result = self.driver.find_element(*RegistrationPageIdentifiers.EMAIL_VALIDATION).text
         assert "Please input your E-mail!" in result
@@ -60,7 +60,7 @@ class MiscTests:
     def test_registration_with_blank_last_name(self):
         """Test case: Registration with blank last name."""
         print("\n" + str(test_cases('TC_REGISTER_WITH_BLANK_LAST_NAME')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_4)
         result = self.driver.find_element(*RegistrationPageIdentifiers.LAST_NAME_VALIDATION).text
         assert "Please input your last name!" in result
@@ -71,7 +71,7 @@ class MiscTests:
     def test_registration_with_blank_password(self):
         """Test case: Registration with blank password."""
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_BLANK_PASSWORD')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_6)
         result = self.driver.find_element(*RegistrationPageIdentifiers.PASSWORD_VALIDATION).text
         assert "Please input your password!" in result
@@ -82,7 +82,7 @@ class MiscTests:
     def test_registration_with_invalid_password_length(self):
         """Test case: Registration with invalid password length."""
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_INVALID_PASSWORD_LENGTH')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_7)
         result = self.driver.find_element(*RegistrationPageIdentifiers.PASSWORD_TYPE_VALIDATION).text
         assert "Password must contain small, capital letter, number and special character like Abc@1234." in result
@@ -95,7 +95,7 @@ class MiscTests:
     def test_registration_with_invalid_email(self):
         """Test case: Registration with invalid email."""
         print("\n" + str(test_cases('TC_REGISTRATION_WITH_INVALID_EMAIL')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_14)
         result = self.driver.find_element(*RegistrationPageIdentifiers.VALID_EMAIL).text
         assert "Please enter a valid email address." in result
@@ -106,7 +106,7 @@ class MiscTests:
     def test_verify_the_functionality_of_registration_with_entering_data_in_mandatory_fields(self):
         """Test case: Verify the functionality of registration with entering data in mandatory fields."""
         print("\n" + str(test_cases('TC_VERIFY_THE_FUNCTIONALITY_OF_REGISTRATION_WITH_MANDATORY_FIELDS')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_15)
         result = self.driver.find_element(*RegistrationPageIdentifiers.OTP_SENT).text
         assert "Note : Registration code has been sent to your registered email address." in result
@@ -117,7 +117,7 @@ class MiscTests:
     def test_verify_the_functionality_0f_registration_with_entering_data_in_mobile_number_field(self):
         """Test case: Verify the functionality 0f registration with entering data in mobile number field."""
         print("\n" + str(test_cases('TC_VERIFY_THE_FUNCTIONALITY_OF_REGISTRATION_WITH_MOBILE_NUMBER_FIELDS')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerRegisterPage(self.driver).click_on_register_button().registration_with_valid_credential(reg_list_16)
         result = self.driver.find_element(*RegistrationPageIdentifiers.VALID_PHONE_NUMBER).text
         assert "Please input valid phone number!" in result
@@ -128,7 +128,7 @@ class MiscTests:
     def test_verify_one_time_request_code_with_valid_credentials(self):
         """Test case: Verify one time request code with valid credentials."""
         print("\n" + str(test_cases('TC_VERIFY_ONE_TIME_REQUEST_CODE_WITH_VALID_CREDENTIALS')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         CanonizerLoginPage(self.driver).click_on_login_page_button().verify_one_time_request_code(DEFAULT_USER)
         result = self.driver.find_element(*LoginPageIdentifiers.RESEND_OTP).text
         assert "Resend OTP" in result
@@ -211,7 +211,7 @@ class MiscTests:
     def test_load_my_participation_page(self):
         """Test case: Load my participation page."""
         print("\n" + str(test_cases('TC_LOAD_MY_PARTICIPATION_PAGE')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         topic_name = "New Topic " + add_name
@@ -228,7 +228,7 @@ class MiscTests:
     def test_create_new_with_blank_fields(self):
         """Test case: Create new with blank fields."""
         print("\n", str(test_cases('TC_NEW_FEED_WITH_BLANK_FIELDS')))
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         add_name = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
         CanonizerCreateNewTopic(self.driver).click_create_topic_button().create_topic_with_valid_data("New Topic " + add_name)
@@ -240,7 +240,7 @@ class MiscTests:
     # Documentation: Cafe text in address bar.
     def test_cafe_text_in_address_bar(self):
         """Test case: Cafe text in address bar."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         self.driver.get(PROFILE_PAGE)
         self.driver.find_element(*ProfileInfoIdentifiersPage.ADDRESS_LINE).send_keys("Café,")
@@ -253,7 +253,7 @@ class MiscTests:
     # Documentation: Update first name.
     def test_update_first_name(self):
         """Test case: Update first name."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).enter_first_name()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
@@ -265,7 +265,7 @@ class MiscTests:
     # Documentation: Update last name.
     def test_update_last_name(self):
         """Test case: Update last name."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).enter_last_name()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
@@ -276,7 +276,7 @@ class MiscTests:
     # Documentation: Update date of birth.
     def test_update_date_of_birth(self):
         """Test case: Update date of birth."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).select_date_of_birth()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
@@ -287,7 +287,7 @@ class MiscTests:
     # Documentation: Update gender.
     def test_update_gender(self):
         """Test case: Update gender."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).select_gender()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
@@ -298,7 +298,7 @@ class MiscTests:
     # Documentation: Update phone number.
     def test_update_phone_number(self):
         """Test case: Update phone number."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).enter_phone_number()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
@@ -309,7 +309,7 @@ class MiscTests:
     # Documentation: Update address 1.
     def test_update_address_1(self):
         """Test case: Update address 1."""
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(IMPLICIT_WAIT_SECONDS)
         self.login_to_canonizer_app()
         CanonizerPofileUpdatePage(self.driver).enter_address_1()
         result = self.driver.find_element(*ProfileInfoIdentifiersPage.PROFILE_UPDATED_POP_UP).text
